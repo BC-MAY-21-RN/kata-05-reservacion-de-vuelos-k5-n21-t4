@@ -6,29 +6,33 @@ import Color from './colors';
 export const Conteiner = styled.View`
     flex: 1;
     flex-direction: column;
-    justify-content: center;
-    padding: 4%;
-`;
+    padding: 5%;
+    padding-top: 10%;
+    `;
 
-export const TO = styled.TouchableOpacity`
+export const TochOP = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
-  border-radius: 50px;
+  border-radius: 8px;
   height: 40px;
   width: 100%;
-  background-color: blue ; 
-`;
+  background-color:  #b6b7ba; 
+  margin-top: 4%;
+  margin-bottom: 4%;
+  `;
 
 export const InputLog = styled.TextInput`
-  text-align: left;
-    font-size: 10px;
+    text-align: left;
+    font-size: 15px;
     color: black;
+    font-weight: bold;
   `;
 
 export const PrimeTitle = styled.Text`
     text-align: left;
-    font-size: 30px;
-    color: blue;
+    font-size: 20px;
+    font-weight: bold;
+    color: #5974f5;
     
 `;
 
@@ -42,12 +46,12 @@ export const TextButton = styled.Text`
 
 export const SecondTitle = styled.Text`
     text-align: left; 
-    font-size: 20px;
+    font-size: 13px;
     color: black;
 `;
 
 export const InfoText = styled.Text`
-    text-align: left;
+    text-align: center;
     font-size: 10px;
     color: gray;
 `;
