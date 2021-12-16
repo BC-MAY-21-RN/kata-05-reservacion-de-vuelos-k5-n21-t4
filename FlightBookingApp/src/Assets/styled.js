@@ -26,6 +26,8 @@ export const InputLog = styled.TextInput`
     font-size: 15px;
     color: black;
     font-weight: bold;
+    border: 1px;
+    border-radius: 4px;
   `;
 
 export const PrimeTitle = styled.Text`

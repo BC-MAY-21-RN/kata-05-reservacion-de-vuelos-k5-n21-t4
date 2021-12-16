@@ -8,7 +8,7 @@ import {
   SecondTitle,
   InfoText,
 } from '../Assets/styled';
-import { Input } from 'react-native-elements'
+import { CheckBox  } from 'react-native-elements'
 //import MyTextInput from "../Components/InputLog";
 
 export const LogUp = () => {
@@ -34,6 +34,8 @@ export const LogUp = () => {
      
 
       <InfoText>Use 8 or more characters with a mix of text letters, numbers, and symbols</InfoText>
+      
+      
 
       <TochOP >
         <TextButton>Sign Up</TextButton>
