@@ -2,9 +2,8 @@ import React from "react";
 import {StyleSheet, TouchableOpacity, Image} from 'react-native'
 import {Icon, Input } from 'react-native-elements'
 import color from '../Assets/colors';
-
 export default function MyTextInput(props){
-    return (
+  return (
       <Input
         style={{alignItems: 'center'}}
         containerStyle={{marginBottom:20}}

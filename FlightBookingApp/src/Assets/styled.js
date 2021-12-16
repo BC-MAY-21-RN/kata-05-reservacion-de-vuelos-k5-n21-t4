@@ -55,3 +55,5 @@ export const InfoText = styled.Text`
     font-size: 10px;
     color: gray;
 `;
+
+
