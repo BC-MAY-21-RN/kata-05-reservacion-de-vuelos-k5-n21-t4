@@ -1,23 +1,14 @@
-import React, {useState } from "react";
-import {
-  Conteiner,
-  TextButton,
-  TochOP,
-  InputLog,
-  PrimeTitle,
-  SecondTitle,
-  InfoText,
-} from '../Assets/styled';
-import { CheckBox  } from 'react-native-elements'
+import React, {useState} from "react";
+import { Container, TextButton, TochOP, InputLog, PrimeTitle, SecondTitle, InfoText, Required } from '../Assets/styled';
 //import MyTextInput from "../Components/InputLog";
 
-export const LogUp = () => {
+export const SignUp = () => {
     const [hidePassword, setHidePassword] = useState(true);
     const [user, setUser] = useState("");
     const [pswrd, setPswrd] = useState("");
   
   return (
-    <Conteiner>
+    <Container>
       <PrimeTitle>Sign Up</PrimeTitle>
 
       <SecondTitle>First Name</SecondTitle>
@@ -25,17 +16,14 @@ export const LogUp = () => {
 
       <SecondTitle>Email *</SecondTitle>
       <InputLog></InputLog>
-      
-      
+
 
         
       <SecondTitle>Password *</SecondTitle>
       <InputLog></InputLog>
      
 
-      <InfoText>Use 8 or more characters with a mix of text letters, numbers, and symbols</InfoText>
-      
-      
+      <Required>Use 8 or more characters with a mix of text letters, numbers, and symbols</Required>
 
       <TochOP >
         <TextButton>Sign Up</TextButton>
@@ -47,7 +35,7 @@ export const LogUp = () => {
         <TextButton>Sign Up with Google</TextButton>
       </TochOP>
       <InfoText>Alredy have an account?</InfoText>
-    </Conteiner>
+    </Container>
   );
 };
 

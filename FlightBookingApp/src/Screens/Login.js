@@ -1,6 +1,7 @@
 import React from 'react'
 import { SafeAreaView, Text, TextInput, ToastAndroid } from 'react-native'
 import { auth } from 'firebase'
+import './index' //imports styles
 
 const Login = () => {
 
@@ -24,6 +25,7 @@ const Login = () => {
             <TextInput                 
                 onChangeText={() => setName(e).target.value}
                 placeholder="name"
+                placeholderTextColor={"black"}
                 value={name}
             />
 
