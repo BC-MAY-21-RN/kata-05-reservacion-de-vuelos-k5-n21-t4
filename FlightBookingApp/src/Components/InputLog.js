@@ -1,7 +1,27 @@
-import React from "react";
-import {StyleSheet, TouchableOpacity, Image} from 'react-native'
-import {Icon, Input } from 'react-native-elements'
-import color from '../Assets/colors';
+import React, {useState} from "react";
+import { TextInput, View, Image, StyleSheet, Button } from 'react-native'
+import Icon from 'react-native-vector-icons/react-native-vector-icons'
+
+
+export default function MyTextInput(){
+  const [hidePassword, setHidePassword] = useState(true);
+  
+  return(
+      <View>
+        <TextInput 
+          secureTextEntry = {hidePassword} 
+        ></TextInput>
+        <Button onPress = {()=>securePasw()}>
+        <Image style={ styles.btnImage} source = { (setHidePassword) ? require('../Img/ver.png') : require('../Img/ojo.png')}/>
+        </Button>
+      </View>
+    )
+}
+function securePasw() {
+    setHidePassword = false;
+}
+/*
+//onFocus enviar un promp
 export default function MyTextInput(props){
   return (
       <Input
@@ -32,7 +52,7 @@ export default function MyTextInput(props){
         onChangeText={props.onChangeText}
         value={props.value}/>
     )
-}
+}*/
 
 const styles = StyleSheet.create({  
 

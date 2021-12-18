@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import Color from './colors';
+import CheckBox from '@react-native-community/checkbox';
 
 export const Container = styled.View`
     flex: 1;
@@ -25,10 +26,14 @@ export const InputLog = styled.TextInput`
     color: black;
     font-weight: bold;
     border: 1px solid #4f4f4f;
-    margin: 15px;
+    padding: 10px;
+    margin-top: 10px;
     margin-left: 0;
     margin-right: 0;
-    
+  `;
+
+export const ActiveInput = styled.TextInput`        
+    border: 1px solid blue;
   `;
 
 export const PrimeTitle = styled.Text`
@@ -67,5 +72,19 @@ text-align: left;
 font-size: 13px;
 color: gray;
 `;
+export const CBox = styled(CheckBox)`
 
+`;
+export const CheckText = styled.Text`
+border: 1px solid red; 
+text-align: left;
+font-size: 17px;
+color: gray;
 
+`;
+
+export const CheckBoxCon = styled.View`
+flex-direction: row-reverse;
+display: flex;
+align-items: left;
+`;

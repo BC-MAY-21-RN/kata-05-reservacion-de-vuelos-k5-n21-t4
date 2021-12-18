@@ -8,6 +8,7 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
+    const [focus, setFocusState] = useState(false)
 
     const SignUp = (e) => {
         try {
@@ -19,10 +20,15 @@ const Login = () => {
         }
     }
 
+    const handleFocus = () => {
+        setFocusState(true)
+    }
+        
+
     return (
         <SafeAreaView>
-
-            <TextInput                 
+            <TextInput               
+                onFocus={hanfleFocus}
                 onChangeText={() => setName(e).target.value}
                 placeholder="name"
                 placeholderTextColor={"black"}
@@ -40,7 +46,7 @@ const Login = () => {
                 placeholder="password"
                 secureTextEntry={true}
                 value={password}
-            />
+            />        
 
         <Button 
             title="Sign up"
