@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import { Container, CBox, TextButton, TochOP, InputLog, PrimeTitle, SecondTitle, InfoText, Required, CheckText, CheckBoxCon } from '../Assets/styled';
-import { View } from 'react-native'
+import { View, Image } from 'react-native'
+import {auth} from 'firebase'
 
-import styled from "styled-components";
 //import MyTextInput from "../Components/InputLog";
 //import Checkbox from '../Components/Checkbox';
 
@@ -17,7 +17,19 @@ export const SignUp = () => {
     
     const SignUp = (e) => {
       try {
-          auth.createUserWithEmailAndPassword(email, password)
+          auth.createUserWithEmailAndPassword(email, password).then(credentials => {
+            return db.collection('users').doc(credentials.user.uid).set({
+              /*
+              email: ""
+              flights[]
+              name: ""
+              newsletter: bool
+              password: ""
+              */              
+            }).then(() =>{
+              ToastAndroid.show("Uploaded to firestore", ToastAndroid.SHORT)
+            })
+          })
           ToastAndroid.show("registro exitoso", ToastAndroid.SHORT)
       } catch (e) {
           console.log(e)
@@ -63,8 +75,7 @@ export const SignUp = () => {
         <CBox
             disabled={false}
             value={toggleCheckBox}
-            onValueChange={console.log("fuckoff")}
-
+            onValueChange={console.log("holi")}
         />
         <CheckText>I agree to the Terms and Privacy Policy</CheckText>
       </CheckBoxCon>
@@ -73,7 +84,7 @@ export const SignUp = () => {
         <CBox
             disabled={false}
             value={toggleCheckBox}
-            onValueChange={console.log("fuckoff")}
+            onValueChange={console.log("holi")}
         />
         <CheckText>Subcribe for select product updates</CheckText>
       </CheckBoxCon>
@@ -88,10 +99,7 @@ export const SignUp = () => {
       <InfoText> or </InfoText>
 
       <TochOP>
-        <TextButton>
-       
-        Sign Up with Google</TextButton>
-         
+        <TextButton>Sign Up with Google</TextButton>
       </TochOP>
       <InfoText>Alredy have an account?</InfoText>
     </Container>
