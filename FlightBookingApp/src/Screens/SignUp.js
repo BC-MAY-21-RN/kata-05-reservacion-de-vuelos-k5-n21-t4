@@ -1,96 +1,67 @@
 import React, {useState} from "react";
-import { Container, CBox, TextButton, TochOP, InputLog, PrimeTitle, SecondTitle, InfoText, Required, CheckText, CheckBoxCon } from '../Assets/styled';
-import { View, Image } from 'react-native'
-import {auth} from 'firebase'
+import { Container, TextButton, TochOP, PrimeTitle, SecondTitle, InfoText, Required, CheckText, CBoxCon} from '../Assets/styled';
+import {PswrdInput, UserInput, NameInput} from "../Components/InputLog";
+import CheckBox from '@react-native-community/checkbox';
 
-//import MyTextInput from "../Components/InputLog";
 //import Checkbox from '../Components/Checkbox';
 
 export const SignUp = () => {
-    const [toggleCheckBox, setToggleCheckBox] = useState(false)    
-
+    const [toggleCheckBox, setToggleCheckBox] = useState(false)
     const [hidePassword, setHidePassword] = useState(true);
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
-    const [pass, setPass] = useState("");
-    const [focus, setFocusState] = useState(false)
+    const [pswrd, setPswrd] = useState("");
+    const [isSelectedP, setSelectionP] = useState(false);
+    const [isSelectedS, setSelectionS] = useState(false);
     
-    const SignUp = (e) => {
-      try {
-          auth.createUserWithEmailAndPassword(email, password).then(credentials => {
-            return db.collection('users').doc(credentials.user.uid).set({
-              /*
-              email: ""
-              flights[]
-              name: ""
-              newsletter: bool
-              password: ""
-              */              
-            }).then(() =>{
-              ToastAndroid.show("Uploaded to firestore", ToastAndroid.SHORT)
-            })
-          })
-          ToastAndroid.show("registro exitoso", ToastAndroid.SHORT)
-      } catch (e) {
-          console.log(e)
-          ToastAndroid.show("falla en el registro: " + e, ToastAndroid.SHORT)
-      }
-  }
-
-    const handleFocus = () => {
-      setFocusState(true)
-  }
-
-    
-  return (
+    return (
     <Container>
       <PrimeTitle>Sign Up</PrimeTitle>
 
-      {/*<Input>*/}
+      
       <SecondTitle>First Name</SecondTitle>
-      <InputLog 
-        onChangeText={() => setName(e).target.value}
-        placeholder="texto"
-        placeholderTextColor={"black"}
-        value={name}
+      <NameInput
+        placeholder='First Name'
+        
       />
 
       <SecondTitle>Email *</SecondTitle>
-      <InputLog 
-        onChangeText={() => setEmail(e).target.value}
-        placeholder=""
-        placeholderTextColor={"black"}
-        value={email}
+      <UserInput
+        placeholder='Email'
+      
       />
+      
         
       <SecondTitle>Password *</SecondTitle>
-      <InputLog 
-        onChangeText={() => setPass(e).target.value}
-        placeholder=""
-        placeholderTextColor={"black"}
-        value={pass}
-      />
+      <PswrdInput
+        keyboardType={null}
+        placeholder="Contraseña"
+        secureTextEntry={hidePassword}
+        onPress={() => setHidePassword(!hidePassword)}
+        value={pswrd}
+        onChangeText={(pswrd) =>setPswrd(pswrd)}
+        />
 
-      <CheckBoxCon>
-        <CBox
-            disabled={false}
-            value={toggleCheckBox}
-            onValueChange={console.log("holi")}
+        <Required>Use 8 or more characters with a mix of text letters, numbers, and symbols</Required>
+      <CBoxCon >
+        <CheckBox
+            style = {{color: '#5974f5'}}
+            value={isSelectedP}
+            onValueChange={setSelectionP}
+           
         />
         <CheckText>I agree to the Terms and Privacy Policy</CheckText>
-      </CheckBoxCon>
+      </CBoxCon >
 
-      <CheckBoxCon>
-        <CBox
-            disabled={false}
-            value={toggleCheckBox}
-            onValueChange={console.log("holi")}
+      <CBoxCon >
+        <CheckBox
+            style = {{color: '#5974f5'}}
+           value={isSelectedS}
+           onValueChange={setSelectionS}
         />
         <CheckText>Subcribe for select product updates</CheckText>
-      </CheckBoxCon>
+      </CBoxCon >
       
-
-      <Required>Use 8 or more characters with a mix of text letters, numbers, and symbols</Required>
 
       <TochOP >
         <TextButton>Sign Up</TextButton>
@@ -106,26 +77,3 @@ export const SignUp = () => {
   );
 };
 
-
-/**
- Input de la contraseña
- * <MyTextInput
-        keyboardType={null}
-        placeholder="Contraseña"
-        image="lock"
-        bolGone={true}
-        secureTextEntry={hidePassword}
-        onPress={() => setHidePassword(!hidePassword)}
-        value={pswrd}
-        onChangeText={(pswrd) => setPswrd(pswrd)}
-        />
-        
-    * Input para el correo 
-        <MyTextInput
-          keyboardType="email-address"
-          placeholder="Correo"
-          image="user"
-          value={user}
-          onChangeText={(user) => setUser(user)}
-        />
- */
