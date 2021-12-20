@@ -1,52 +1,59 @@
-import React, { useState } from 'react'
-import { SafeAreaView, Text, TextInput, ToastAndroid, Button, TouchableOpacity } from 'react-native'
-import {auth} from '../firebase/config'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import React from 'react'
+import { SafeAreaView, Text, TextInput, ToastAndroid } from 'react-native'
+import { auth } from 'firebase'
+import './index' //imports styles
 
-export const Login = () => {
+const Login = () => {
 
-    
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
+    const [focus, setFocusState] = useState(false)
 
-    const SignUp = () => {
-        createUserWithEmailAndPassword(auth, email, password)
-        .then((re)=>{
-            console.log(re);
-        })
-        .catch((re)=>{
-            console.log(re);
-        })
+    const SignUp = (e) => {
+        try {
+            auth.createUserWithEmailAndPassword(email, password)
+            ToastAndroid.show("registro exitoso", ToastAndroid.SHORT)
+        } catch (e) {
+            console.log(e)
+            ToastAndroid.show("falla en el registro: " + e, ToastAndroid.SHORT)
+        }
     }
 
+    const handleFocus = () => {
+        setFocusState(true)
+    }
+        
 
     return (
         <SafeAreaView>
-
-            <TextInput                 
-                onChangeText={nam => setName(nam)}
+            <TextInput               
+                onFocus={hanfleFocus}
+                onChangeText={() => setName(e).target.value}
                 placeholder="name"
+                placeholderTextColor={"black"}
                 value={name}
             />
 
         <TextInput                 
-                onChangeText={correo => setEmail(correo)}
+                onChangeText={() => setEmail(e).target.value}
                 placeholder="name"
                 value={email}
             />
         
         <TextInput                 
-                onChangeText={pwd => setPassword(pwd)}
+                onChangeText={() => ssetPassword(e).target.value}
                 placeholder="password"
                 secureTextEntry={true}
                 value={password}
-            />
+            />        
 
-        <Button
+        <Button 
             title="Sign up"
             onPress={SignUp}
         />
         </SafeAreaView>
     )
 }
+
+export default Login
