@@ -1,12 +1,11 @@
 import styled from 'styled-components/native';
-import Color from './colors';
 import CheckBox from '@react-native-community/checkbox';
 
 export const Container = styled.View`
     flex: 1;
     flex-direction: column;
-    padding: 5%;
-    padding-top: 10%;
+    padding: 6%;
+    padding-top: 5%;
     `;
 
 export const TochOP = styled.TouchableOpacity`
@@ -75,16 +74,17 @@ color: gray;
 export const CBox = styled(CheckBox)`
 
 `;
+
+export const CBoxCon = styled.View`
+  flex-direction: row;
+  margin-top: 3px ;
+  align-items: center;
+`;
+
 export const CheckText = styled.Text`
-border: 1px solid red; 
+ 
 text-align: left;
-font-size: 17px;
+font-size: 13px;
 color: gray;
-
 `;
 
-export const CheckBoxCon = styled.View`
-flex-direction: row-reverse;
-display: flex;
-align-items: left;
-`;

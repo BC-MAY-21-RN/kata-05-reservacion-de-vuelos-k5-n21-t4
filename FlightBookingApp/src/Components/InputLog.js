@@ -2,27 +2,7 @@ import React, {useState} from "react";
 import { TextInput, View, Image, StyleSheet, Button } from 'react-native'
 import Icon from 'react-native-vector-icons/react-native-vector-icons'
 
-
-export default function MyTextInput(){
-  const [hidePassword, setHidePassword] = useState(true);
-  
-  return(
-      <View>
-        <TextInput 
-          secureTextEntry = {hidePassword} 
-        ></TextInput>
-        <Button onPress = {()=>securePasw()}>
-        <Image style={ styles.btnImage} source = { (setHidePassword) ? require('../Img/ver.png') : require('../Img/ojo.png')}/>
-        </Button>
-      </View>
-    )
-}
-function securePasw() {
-    setHidePassword = false;
-}
-/*
-//onFocus enviar un promp
-export default function MyTextInput(props){
+export default function TextInput(props){
   return (
       <Input
         style={{alignItems: 'center'}}
@@ -52,7 +32,28 @@ export default function MyTextInput(props){
         onChangeText={props.onChangeText}
         value={props.value}/>
     )
-}*/
+}
+
+/*
+export default function MyTextInput(){
+  const [hidePassword, setHidePassword] = useState(true);
+  
+  return(
+      <View>
+        <TextInput 
+          secureTextEntry = {hidePassword} 
+        ></TextInput>
+        <Button onPress = {()=>securePasw()}>
+        <Image style={ styles.btnImage} source = { (setHidePassword) ? require('../Img/ver.png') : require('../Img/ojo.png')}/>
+        </Button>
+      </View>
+    )
+}
+function securePasw() {
+    setHidePassword = false;
+}
+//onFocus enviar un promp
+*/
 
 const styles = StyleSheet.create({  
 
