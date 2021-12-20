@@ -1,28 +1,37 @@
 import React, {useState} from "react";
 import { Container, CBox, TextButton, TochOP, InputLog, PrimeTitle, SecondTitle, InfoText, Required, CheckText, CBoxCon  } from '../Assets/styled';
-import CheckBox from '@react-native-community/checkbox';
-
-//import MyTextInput from "../Components/InputLog";
+import MyTextInput from "../Components/InputLog";
 //import Checkbox from '../Components/Checkbox';
 
 export const PruebaLog = () => {
     const [toggleCheckBox, setToggleCheckBox] = useState(false)
+    const [hidePassword, setHidePassword] = useState(true);
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [pswrd, setPswrd] = useState("");
+   
+
     return (
     <Container>
       <PrimeTitle>Sign Up</PrimeTitle>
 
       
       <SecondTitle>First Name</SecondTitle>
-      <InputLog 
-      />
+      <InputLog />
 
       <SecondTitle>Email *</SecondTitle>
-      <InputLog
-      />
+      <InputLog />
+      
         
       <SecondTitle>Password *</SecondTitle>
-      <InputLog 
-      />
+      <MyTextInput
+        keyboardType={null}
+        placeholder="Contraseña"
+        secureTextEntry={hidePassword}
+        onPress={() => setHidePassword(!hidePassword)}
+        value={pswrd}
+        onChangeText={(pswrd) => setPswrd(pswrd)}
+        />
 
         <Required>Use 8 or more characters with a mix of text letters, numbers, and symbols</Required>
       <CBoxCon >
