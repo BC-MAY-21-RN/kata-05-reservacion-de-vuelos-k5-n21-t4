@@ -1,9 +1,9 @@
 import React from 'react'
-import {SignUp} from './src/Screens/index';
+import {SignUp, Login} from './src/Screens/index';
 
 const App = () => {
   return (
-    <SignUp />
+    <Login />
   )
 }
 
