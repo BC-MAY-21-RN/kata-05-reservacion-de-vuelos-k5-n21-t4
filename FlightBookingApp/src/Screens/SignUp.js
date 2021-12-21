@@ -5,7 +5,7 @@ import CheckBox from '@react-native-community/checkbox';
 
 //import Checkbox from '../Components/Checkbox';
 
-export const SignUp = () => {
+export const SignUp = ({navigation}) => {
     const [toggleCheckBox, setToggleCheckBox] = useState(false)
     const [hidePassword, setHidePassword] = useState(true);
     const [email, setEmail] = useState("");
@@ -72,7 +72,7 @@ export const SignUp = () => {
       <TochOP>
         <TextButton>Sign Up with Google</TextButton>
       </TochOP>
-      <InfoText>Alredy have an account?</InfoText>
+      <InfoText onPress={() => navigation.navigate('Login')} >Alredy have an account?</InfoText>
     </Container>
   );
 };
