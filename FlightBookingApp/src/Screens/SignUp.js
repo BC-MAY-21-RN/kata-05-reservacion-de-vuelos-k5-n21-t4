@@ -11,8 +11,8 @@ import {
 import {PswrdInput, UserInput, NameInput} from '../Components/InputLog';
 import CheckBoxWithLabel from '../Components/Checkbox';
 
-/*import firestore from '@react-native-firebase/firestore';
-const usersCollection = firestore().collection('Users')*/
+import firestore from '@react-native-firebase/firestore';
+const usersCollection = firestore().collection('Users')
 
 export const SignUp = ({navigation}) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
@@ -23,8 +23,6 @@ export const SignUp = ({navigation}) => {
   const [termsCheckBox, setTermsCheckBox] = useState('');
   const [subscribeCheckBox, setSubscribeCheckBox] = useState('');
 
-/*
-
   const addUserToFirestore = () => {
     firestore().collection('usuarios').add({
       email: '',
@@ -32,7 +30,7 @@ export const SignUp = ({navigation}) => {
       password: '',
     }).then(() => {console.log('User registration succesful')})    
   }
-*/
+
   
   return (
     <Container>

@@ -37,9 +37,3 @@ allprojects {
         maven { url 'https://www.jitpack.io' }
     }
 }
-
-
-dependencies {
-  // Import the Firebase BoM
-  implementation platform('com.google.firebase:firebase-bom:29.0.3')
-}
