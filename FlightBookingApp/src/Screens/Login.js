@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Text} from 'react-native'
 import {PswrdInput, UserInput} from '../Components/InputLog';
 import {Button} from 'react-native';
 import { Container, TextButton, TochOP, PrimeTitle, SecondTitle, InfoText} from '../Assets/styled';
@@ -13,8 +14,6 @@ export const Login = ({navigation}) => {
 
   return (
     <Container >
-      <PrimeTitle>Login</PrimeTitle>
-
       <SecondTitle>Email *</SecondTitle>
       <UserInput
         placeholder='Email'
@@ -43,11 +42,9 @@ export const Login = ({navigation}) => {
       <TochOP>
         <TextButton>Sign Up with Google</TextButton>
       </TochOP>
-      <InfoText>You do not have an account?</InfoText>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('SignUp')}
-      />
+
+      <InfoText >You do not have an account?<Text onPress={() => navigation.navigate('SignUp')} style={{color:'#5974f5'}}> Sign Up</Text></InfoText>
+      
     </Container>
   );
 };

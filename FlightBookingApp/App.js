@@ -9,8 +9,12 @@ const App = () => {
   return (
   <NavigationContainer>{ 
     <Stack.Navigator>
-      <Stack.Screen name='Login' component={Login}/>
-      <Stack.Screen name='SignUp' component={SignUp}/>
+      <Stack.Screen name='Login' component={Login} options={{headerTintColor: '#5974f5',  headerTitleStyle: {
+            fontWeight: 'bold',
+          }}}/>
+      <Stack.Screen name='SignUp' component={SignUp} options={{headerTintColor: '#5974f5',  headerTitleStyle: {
+            fontWeight: 'bold',
+          }}}/>
     </Stack.Navigator>
   }</NavigationContainer>
   )
