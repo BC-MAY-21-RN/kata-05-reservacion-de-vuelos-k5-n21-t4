@@ -12,7 +12,6 @@ import {PswrdInput, UserInput, NameInput} from '../Components/InputLog';
 import CheckBoxWithLabel from '../Components/Checkbox';
 
 import firestore from '@react-native-firebase/firestore';
-const usersCollection = firestore().collection('Users')
 
 export const SignUp = ({navigation}) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
@@ -24,21 +23,21 @@ export const SignUp = ({navigation}) => {
   const [subscribeCheckBox, setSubscribeCheckBox] = useState('');
 
   const addUserToFirestore = () => {
-    firestore().collection('usuarios').add({
-      email: '',
-      name: '',
-      password: '',
-    }).then(() => {console.log('User registration succesful')})    
+    firestore().collection('Users').add({
+      email: email,
+      flights: ["1"],
+      name: name,
+      password: pswrd,
+    }).then(() => {console.log('User registration succesful' + " email: "+ email + " name: "+ name + " password: " + pswrd)})    
   }
 
-  
   return (
     <Container>
       <SecondTitle>First Name</SecondTitle>
-      <NameInput placeholder="First Name" />
+      <NameInput placeholder="Name" value={setName}/>
 
       <SecondTitle>Email *</SecondTitle>
-      <UserInput placeholder="Email" />
+      <UserInput placeholder="Email" value={setEmail}/>
 
       <SecondTitle>Password *</SecondTitle>
       <PswrdInput
@@ -46,8 +45,7 @@ export const SignUp = ({navigation}) => {
         placeholder="Contraseña"
         secureTextEntry={hidePassword}
         onPress={() => setHidePassword(!hidePassword)}
-        value={pswrd}
-        onChangeText={pswrd => setPswrd(pswrd)}
+        value={setPswrd}
       />
 
       <Required>
@@ -63,7 +61,7 @@ export const SignUp = ({navigation}) => {
         Subscribe for select product updates
       </CheckBoxWithLabel>
 
-      <TochOP>
+      <TochOP onPress={()=>addUserToFirestore()}>
         <TextButton>Sign Up</TextButton>
       </TochOP>
 
