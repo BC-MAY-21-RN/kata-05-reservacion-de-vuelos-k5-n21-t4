@@ -1,19 +1,36 @@
 import React, {useState} from 'react';
 import {PswrdInput, Input} from '../Components/InputLog';
 import {Container, Texto, TochOP} from '../Assets/styled';
-import {auth} from 'firebase';
+import auth from '@react-native-firebase/auth'
 
 export const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
   const [pswrd, setPswrd] = useState('');
   const [focus, setFocusState] = useState(false);
   const [hidePassword, setHidePassword] = useState(true);
 
+
+  const login = async () =>{
+    try{
+      await auth().signInWithEmailAndPassword(email, pswrd)
+      .then((res)=>{
+        console.log(res)
+        console.log('Welcome'+res.user)
+      })
+      .catch((e)=>{
+        console.log(e)
+      })
+    }
+    catch (e){
+      console.log(e)
+    }
+
+  }
+
   return (
     <Container>
       <Texto size={'16px'}>Email *:</Texto>
-      <Input placeholder="Email" />
+      <Input placeholder="Email" value={setEmail}/>
 
       <Texto size={'16px'}>Password *:</Texto>
       <PswrdInput
@@ -21,11 +38,14 @@ export const Login = ({navigation}) => {
         placeholder="Contraseña"
         secureTextEntry={hidePassword}
         onPress={() => setHidePassword(!hidePassword)}
-        value={pswrd}
-        onChangeText={pswrd => setPswrd(pswrd)}
+        value={setPswrd}
       />
 
-      <TochOP>
+      <TochOP
+        onPress={()=>{
+          login()
+        }}
+      >
         <Texto size={'18px'} color={'white'} FW={'bold'}>
           Sign Up
         </Texto>

@@ -4,6 +4,7 @@ import {PswrdInput, Input} from '../Components/InputLog';
 import CheckBoxWithLabel from '../Components/Checkbox';
 
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
 export const SignUp = ({navigation}) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
@@ -15,9 +16,17 @@ export const SignUp = ({navigation}) => {
   const [subscribeCheckBox, setSubscribeCheckBox] = useState('');
 
   const addUserToFirestore = () => {
-    firestore()
+
+    //Creacion del usuario en la firebase
+    auth().createUserWithEmailAndPassword(email, pswrd)
+    .then((e)=>{// e recupera lo que es la información
+      console.log("User created on auth database in firebase")
+
+      //Creación del usuario en la firestore
+      firestore()
       .collection('Users')
-      .add({
+      .doc(e.user.uid)//Usa el id que se crea en createuserwithEmailand password
+      .set({
         email: email,
         flights: ['1'],
         name: name,
@@ -25,15 +34,13 @@ export const SignUp = ({navigation}) => {
       })
       .then(() => {
         console.log(
-          'User registration succesful' +
-            ' email: ' +
-            email +
-            ' name: ' +
-            name +
-            ' password: ' +
-            pswrd,
+          'User registration succesful'
         );
       });
+    })
+    .catch(e=>{
+      console.log("Error"+e)
+    })
   };
 
   return (
