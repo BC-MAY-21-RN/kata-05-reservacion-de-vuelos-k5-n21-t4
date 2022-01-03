@@ -1,16 +1,20 @@
-import React from "react";
-import { Text, View, CheckBox } from 'react-native'
+import React from 'react';
+import CheckBox from '@react-native-community/checkbox';
+import {CheckText, CBoxCon} from '../Assets/styled';
 
-export default function MyTextInput(props){
-
-    const { isSelected, execFunction } = props;
+const CheckBoxWithLabel = ({value, changeValue, children, disabled = false}) => {
     return(
-        <View>
-            <CheckBox
-            value={isSelected}
-            onValueChange={execFunction}          
-            />
-            {/*<Text>{text}</Text>*/}
-        </View>
-    )
-}
+      <CBoxCon>
+        <CheckBox 
+          disabled={disabled}
+          value={value}
+          onValueChange={(newValue) => changeValue(newValue)}
+          tintColors={{true: '#5c6ef8'}}
+        />
+        <CheckText>
+          {children}
+        </CheckText>
+      </CBoxCon>
+    );
+  };
+  export default CheckBoxWithLabel;

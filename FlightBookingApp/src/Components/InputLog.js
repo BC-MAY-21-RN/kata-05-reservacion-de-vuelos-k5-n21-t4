@@ -12,8 +12,9 @@ export function PswrdInput(props) {
         placeholderTextColor={color.LIGHTPRIMARYCOLOR}
         placeholder={props.placeholder}
         secureTextEntry={props.secureTextEntry}
-        onChangeText={valor =>
+        onChangeText={(valor) =>{
           valor.length > 0 ? setBorder('#5974f5') : setBorder('black')
+          props.value(valor)}
         }
       />
       <TouchableOpacity onPress={props.onPress}>
@@ -35,8 +36,8 @@ export function UserInput(props) {
     <InpCon style={{borderColor: border}}>
       <InputLog
         placeholder={props.placeholder}
-        onChangeText={valor =>
-          valor.length > 0 ? setBorder('#5974f5') : setBorder('black')
+        onChangeText={(valor) => {valor.length > 0 ? setBorder('#5974f5') : setBorder('black')
+          props.value(valor)}
         }
       />
     </InpCon>
@@ -49,8 +50,9 @@ export function NameInput(props) {
     <InpCon style={{borderColor: border}}>
       <InputLog
         placeholder={props.placeholder}
-        onChangeText={valor =>
-          valor.length > 0 ? setBorder('blue') : setBorder('black')
+        onChangeText={
+          (valor) => {valor.length > 0 ? setBorder('blue') : setBorder('black')
+          props.value(valor)}
         }
       />
     </InpCon>
