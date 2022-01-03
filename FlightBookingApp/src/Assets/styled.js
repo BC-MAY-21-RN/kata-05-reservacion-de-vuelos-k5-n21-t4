@@ -17,9 +17,20 @@ export const TochOP = styled.TouchableOpacity.attrs(props=>({
   background-color: ${(props)=> props.BackColor ||'#b6b7ba'};
   margin:2% 0% 2% 0%;
   padding: 3px;
-  font-size: 18px;
   font-weight: bold;
-  color: white;
+  `;
+export const Plus = styled.TouchableOpacity`
+  position:absolute;   
+  align-self: center;
+  margin-bottom: 70%;
+  border-radius: 100px;
+  width: 22%;
+  height: 14%;
+  background-color:#5974f5;
+  margin: 140% 0% -140% 0%;
+  font-weight: bold;
+  
+  
   `;
   
   
