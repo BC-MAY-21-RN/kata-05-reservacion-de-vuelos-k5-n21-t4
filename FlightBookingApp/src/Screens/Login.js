@@ -50,6 +50,14 @@ export const Login = ({navigation}) => {
           Sign Up
         </Texto>
       </Texto>
+      
+        <Texto
+          color={'#5974f5'}
+          onPress={() => navigation.navigate('My Flights')}
+          style={{color: '#5974f5'}}>
+          Pantalla mis vuelos 
+        </Texto>
+      
     </Container>
   );
 };
