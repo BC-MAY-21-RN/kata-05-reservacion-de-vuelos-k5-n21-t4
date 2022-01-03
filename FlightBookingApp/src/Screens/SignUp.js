@@ -1,14 +1,6 @@
 import React, {useState} from 'react';
-import {Text} from 'react-native';
-import {
-  Container,
-  TextButton,
-  TochOP,
-  SecondTitle,
-  InfoText,
-  Required,
-} from '../Assets/styled';
-import {PswrdInput, UserInput, NameInput} from '../Components/InputLog';
+import {Container, Texto, TochOP} from '../Assets/styled';
+import {PswrdInput, Input} from '../Components/InputLog';
 import CheckBoxWithLabel from '../Components/Checkbox';
 
 import firestore from '@react-native-firebase/firestore';
@@ -23,23 +15,36 @@ export const SignUp = ({navigation}) => {
   const [subscribeCheckBox, setSubscribeCheckBox] = useState('');
 
   const addUserToFirestore = () => {
-    firestore().collection('Users').add({
-      email: email,
-      flights: ["1"],
-      name: name,
-      password: pswrd,
-    }).then(() => {console.log('User registration succesful' + " email: "+ email + " name: "+ name + " password: " + pswrd)})    
-  }
+    firestore()
+      .collection('Users')
+      .add({
+        email: email,
+        flights: ['1'],
+        name: name,
+        password: pswrd,
+      })
+      .then(() => {
+        console.log(
+          'User registration succesful' +
+            ' email: ' +
+            email +
+            ' name: ' +
+            name +
+            ' password: ' +
+            pswrd,
+        );
+      });
+  };
 
   return (
     <Container>
-      <SecondTitle>First Name</SecondTitle>
-      <NameInput placeholder="Name" value={setName}/>
+      <Texto size={'16px'}>First Name</Texto>
+      <Input placeholder="Name" value={setName} />
 
-      <SecondTitle>Email *</SecondTitle>
-      <UserInput placeholder="Email" value={setEmail}/>
+      <Texto size={'16px'}>Email *</Texto>
+      <Input placeholder="Email" value={setEmail} />
 
-      <SecondTitle>Password *</SecondTitle>
+      <Texto size={'16px'}>Password *</Texto>
       <PswrdInput
         keyboardType={null}
         placeholder="Contraseña"
@@ -48,37 +53,42 @@ export const SignUp = ({navigation}) => {
         value={setPswrd}
       />
 
-      <Required>
+      <Texto color={'gray'} MP={'-3% 0% 0% 0%'}>
         Use 8 or more characters with a mix of text letters, numbers, and
         symbols
-      </Required>
-      
+      </Texto>
+
       <CheckBoxWithLabel value={termsCheckBox} changeValue={setTermsCheckBox}>
         I agree to the Terms and Privacy policy.
       </CheckBoxWithLabel>
-      
-      <CheckBoxWithLabel value={subscribeCheckBox} changeValue={setSubscribeCheckBox}>
+
+      <CheckBoxWithLabel
+        value={subscribeCheckBox}
+        changeValue={setSubscribeCheckBox}>
         Subscribe for select product updates
       </CheckBoxWithLabel>
 
-      <TochOP onPress={()=>addUserToFirestore()}>
-        <TextButton>Sign Up</TextButton>
+      <TochOP onPress={() => addUserToFirestore()}>
+        <Texto size={'18px'} color={'white'} FW={'bold'}>
+          Sign Up
+        </Texto>
       </TochOP>
 
-      <InfoText> or </InfoText>
+      <Texto color={'#747474'} align={'center'}>
+        or
+      </Texto>
 
       <TochOP>
-        <TextButton>Sign Up with Google</TextButton>
+        <Texto size={'18px'} color={'white'} FW={'bold'}>
+          Sign Up with Google
+        </Texto>
       </TochOP>
-      <InfoText>
+      <Texto align={'center'} color={'gray'}>
         Alredy have an account?
-        <Text
-          onPress={() => navigation.navigate('Login')}
-          style={{color: '#5974f5'}}>
-          {' '}
+        <Texto color={'#5974f5'} onPress={() => navigation.navigate('Login')}>
           Log In
-        </Text>
-      </InfoText>
+        </Texto>
+      </Texto>
     </Container>
   );
 };
