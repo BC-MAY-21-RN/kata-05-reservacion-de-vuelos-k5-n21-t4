@@ -1,79 +1,94 @@
-import React, {useState} from "react";
-import { Container, TextButton, TochOP, PrimeTitle, SecondTitle, InfoText, Required, CheckText, CBoxCon} from '../Assets/styled';
-import {PswrdInput, UserInput, NameInput} from "../Components/InputLog";
-import CheckBox from '@react-native-community/checkbox';
+import React, {useState} from 'react';
+import {Container, Texto, TochOP} from '../Assets/styled';
+import {PswrdInput, Input} from '../Components/InputLog';
+import CheckBoxWithLabel from '../Components/Checkbox';
 
-//import Checkbox from '../Components/Checkbox';
+import firestore from '@react-native-firebase/firestore';
 
-export const SignUp = () => {
-    const [toggleCheckBox, setToggleCheckBox] = useState(false)
-    const [hidePassword, setHidePassword] = useState(true);
-    const [email, setEmail] = useState("");
-    const [name, setName] = useState("");
-    const [pswrd, setPswrd] = useState("");
-    const [isSelectedP, setSelectionP] = useState(false);
-    const [isSelectedS, setSelectionS] = useState(false);
-    
-    return (
+export const SignUp = ({navigation}) => {
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [hidePassword, setHidePassword] = useState(true);
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [pswrd, setPswrd] = useState('');
+  const [termsCheckBox, setTermsCheckBox] = useState('');
+  const [subscribeCheckBox, setSubscribeCheckBox] = useState('');
+
+  const addUserToFirestore = () => {
+    firestore()
+      .collection('Users')
+      .add({
+        email: email,
+        flights: ['1'],
+        name: name,
+        password: pswrd,
+      })
+      .then(() => {
+        console.log(
+          'User registration succesful' +
+            ' email: ' +
+            email +
+            ' name: ' +
+            name +
+            ' password: ' +
+            pswrd,
+        );
+      });
+  };
+
+  return (
     <Container>
-      <PrimeTitle>Sign Up</PrimeTitle>
+      <Texto size={'16px'}>First Name</Texto>
+      <Input placeholder="Name" value={setName} />
 
-      
-      <SecondTitle>First Name</SecondTitle>
-      <NameInput
-        placeholder='First Name'
-        
-      />
+      <Texto size={'16px'}>Email *</Texto>
+      <Input placeholder="Email" value={setEmail} />
 
-      <SecondTitle>Email *</SecondTitle>
-      <UserInput
-        placeholder='Email'
-      
-      />
-      
-        
-      <SecondTitle>Password *</SecondTitle>
+      <Texto size={'16px'}>Password *</Texto>
       <PswrdInput
         keyboardType={null}
         placeholder="Contraseña"
         secureTextEntry={hidePassword}
         onPress={() => setHidePassword(!hidePassword)}
-        value={pswrd}
-        onChangeText={(pswrd) =>setPswrd(pswrd)}
-        />
+        value={setPswrd}
+      />
 
-        <Required>Use 8 or more characters with a mix of text letters, numbers, and symbols</Required>
-      <CBoxCon >
-        <CheckBox
-            style = {{color: '#5974f5'}}
-            value={isSelectedP}
-            onValueChange={setSelectionP}
-           
-        />
-        <CheckText>I agree to the Terms and Privacy Policy</CheckText>
-      </CBoxCon >
+      <Texto color={'gray'} MP={'-3% 0% 0% 0%'}>
+        Use 8 or more characters with a mix of text letters, numbers, and
+        symbols
+      </Texto>
 
-      <CBoxCon >
-        <CheckBox
-            style = {{color: '#5974f5'}}
-           value={isSelectedS}
-           onValueChange={setSelectionS}
-        />
-        <CheckText>Subcribe for select product updates</CheckText>
-      </CBoxCon >
-      
+      <CheckBoxWithLabel value={termsCheckBox} changeValue={setTermsCheckBox}>
+        I agree to the Terms and Privacy policy.
+      </CheckBoxWithLabel>
 
-      <TochOP >
-        <TextButton>Sign Up</TextButton>
+      <CheckBoxWithLabel
+        value={subscribeCheckBox}
+        changeValue={setSubscribeCheckBox}>
+        Subscribe for select product updates
+      </CheckBoxWithLabel>
+
+      <TochOP onPress={() => addUserToFirestore()}>
+        <Texto size={'18px'} color={'white'} FW={'bold'}>
+          Sign Up
+        </Texto>
       </TochOP>
 
-      <InfoText> or </InfoText>
+      <Texto color={'#747474'} align={'center'}>
+        or
+      </Texto>
 
       <TochOP>
-        <TextButton>Sign Up with Google</TextButton>
+        <Texto size={'18px'} color={'white'} FW={'bold'}>
+          Sign Up with Google
+        </Texto>
       </TochOP>
-      <InfoText>Alredy have an account?</InfoText>
+      <Texto align={'center'} color={'gray'}>
+        Alredy have an account?
+        <Texto color={'#5974f5'} onPress={() => navigation.navigate('Login')}>
+          Log In
+        </Texto>
+      </Texto>
     </Container>
   );
 };
-

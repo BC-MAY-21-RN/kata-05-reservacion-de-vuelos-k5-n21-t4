@@ -1,10 +1,24 @@
-import React from 'react'
-import {SignUp} from './src/Screens/index';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {SignUp, Login} from './src/Screens/index';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <SignUp />
+  <NavigationContainer>{ 
+    <Stack.Navigator>
+      <Stack.Screen name='Login' component={Login} options={{headerTintColor: '#5974f5',  headerTitleStyle: {
+            fontWeight: 'bold',
+          }}}/>
+      <Stack.Screen name='SignUp' component={SignUp} options={{headerTintColor: '#5974f5',  headerTitleStyle: {
+            fontWeight: 'bold',
+          }}}/>
+    </Stack.Navigator>
+  }</NavigationContainer>
   )
 }
 
 export default App;
+

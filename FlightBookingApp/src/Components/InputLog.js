@@ -6,15 +6,14 @@ import color from '../Assets/colors';
 export function PswrdInput(props) {
   const [border, setBorder] = useState('');
   return (
-    <InpCon style={{borderColor: border}}>
+    <InpCon BColor={border}>
       <InpL
-        style={{alignItems: 'center'}}
-        placeholderTextColor={color.LIGHTPRIMARYCOLOR}
         placeholder={props.placeholder}
         secureTextEntry={props.secureTextEntry}
-        onChangeText={valor =>
-          valor.length > 0 ? setBorder('#5974f5') : setBorder('black')
-        }
+        onChangeText={valor => {
+          valor.length > 0 ? setBorder(color.PRIMARYCOLOR) : setBorder('black');
+          props.value(valor);
+        }}
       />
       <TouchableOpacity onPress={props.onPress}>
         <Image
@@ -29,30 +28,16 @@ export function PswrdInput(props) {
   );
 }
 
-export function UserInput(props) {
+export function Input(props) {
   const [border, setBorder] = useState('');
   return (
-    <InpCon style={{borderColor: border}}>
-      <InputLog
-        placeholder={props.placeholder}
-        onChangeText={valor =>
-          valor.length > 0 ? setBorder('#5974f5') : setBorder('black')
-        }
-      />
-    </InpCon>
-  );
-}
-
-export function NameInput(props) {
-  const [border, setBorder] = useState('');
-  return (
-    <InpCon style={{borderColor: border}}>
-      <InputLog
-        placeholder={props.placeholder}
-        onChangeText={valor =>
-          valor.length > 0 ? setBorder('blue') : setBorder('black')
-        }
-      />
-    </InpCon>
+    <InputLog
+      placeholder={props.placeholder}
+      onChangeText={valor => {
+        valor.length != '' ? setBorder(color.PRIMARYCOLOR) : setBorder('black');
+        props.value(valor);
+      }}
+      BColor={border}
+    />
   );
 }

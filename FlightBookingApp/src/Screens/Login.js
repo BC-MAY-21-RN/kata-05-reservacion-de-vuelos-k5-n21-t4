@@ -1,59 +1,55 @@
-import React from 'react'
-import { SafeAreaView, Text, TextInput, ToastAndroid } from 'react-native'
-import { auth } from 'firebase'
-import './index' //imports styles
+import React, {useState} from 'react';
+import {PswrdInput, Input} from '../Components/InputLog';
+import {Container, Texto, TochOP} from '../Assets/styled';
+import {auth} from 'firebase';
 
-const Login = () => {
+export const Login = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [pswrd, setPswrd] = useState('');
+  const [focus, setFocusState] = useState(false);
+  const [hidePassword, setHidePassword] = useState(true);
 
-    const [email, setEmail] = useState('')
-    const [name, setName] = useState('')
-    const [password, setPassword] = useState('')
-    const [focus, setFocusState] = useState(false)
+  return (
+    <Container>
+      <Texto size={'16px'}>Email *:</Texto>
+      <Input placeholder="Email" />
 
-    const SignUp = (e) => {
-        try {
-            auth.createUserWithEmailAndPassword(email, password)
-            ToastAndroid.show("registro exitoso", ToastAndroid.SHORT)
-        } catch (e) {
-            console.log(e)
-            ToastAndroid.show("falla en el registro: " + e, ToastAndroid.SHORT)
-        }
-    }
+      <Texto size={'16px'}>Password *:</Texto>
+      <PswrdInput
+        keyboardType={null}
+        placeholder="Contraseña"
+        secureTextEntry={hidePassword}
+        onPress={() => setHidePassword(!hidePassword)}
+        value={pswrd}
+        onChangeText={pswrd => setPswrd(pswrd)}
+      />
 
-    const handleFocus = () => {
-        setFocusState(true)
-    }
-        
+      <TochOP>
+        <Texto size={'18px'} color={'white'} FW={'bold'}>
+          Sign Up
+        </Texto>
+      </TochOP>
 
-    return (
-        <SafeAreaView>
-            <TextInput               
-                onFocus={hanfleFocus}
-                onChangeText={() => setName(e).target.value}
-                placeholder="name"
-                placeholderTextColor={"black"}
-                value={name}
-            />
+      <Texto color={'#747474'} align={'center'}>
+        or
+      </Texto>
 
-        <TextInput                 
-                onChangeText={() => setEmail(e).target.value}
-                placeholder="name"
-                value={email}
-            />
-        
-        <TextInput                 
-                onChangeText={() => ssetPassword(e).target.value}
-                placeholder="password"
-                secureTextEntry={true}
-                value={password}
-            />        
+      <TochOP>
+        <Texto size={'18px'} color={'white'} FW={'bold'}>
+          Sign Up with Google
+        </Texto>
+      </TochOP>
 
-        <Button 
-            title="Sign up"
-            onPress={SignUp}
-        />
-        </SafeAreaView>
-    )
-}
-
-export default Login
+      <Texto align={'center'} color={'gray'}>
+        You do not have an account?
+        <Texto
+          color={'#5974f5'}
+          onPress={() => navigation.navigate('SignUp')}
+          style={{color: '#5974f5'}}>
+          Sign Up
+        </Texto>
+      </Texto>
+    </Container>
+  );
+};
