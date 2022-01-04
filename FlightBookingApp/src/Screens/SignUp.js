@@ -7,7 +7,7 @@ import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/go
 
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 
 export const SignUp = ({navigation}) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
@@ -17,6 +17,7 @@ export const SignUp = ({navigation}) => {
   const [pswrd, setPswrd] = useState('');
   const [termsCheckBox, setTermsCheckBox] = useState('');
   const [subscribeCheckBox, setSubscribeCheckBox] = useState('');
+  const [info_user, setInfoUser] = useState({});
 
   const addUserToFirestore = () => {
     //Creacion del usuario en la firebase
@@ -27,7 +28,7 @@ export const SignUp = ({navigation}) => {
       //Creación del usuario en la firestore
       firestore()
       .collection('Users')
-      .doc(e.user.uid)//Usa el id que se crea en createuserwithEmailand password
+      .doc(e.user.uid)//Usa el id que se crea en createuserwithEmailand password para darte titulo al documento del usuario el cual contendra la información
       .set({
         email: email,
         flights: ['1'],
@@ -38,6 +39,8 @@ export const SignUp = ({navigation}) => {
         console.log(
           'User registration succesful'
         );
+        setInfoUser(e)
+        navigation.navigate('Flights', info_user)
       });
     })
     .catch(e=>{
@@ -52,8 +55,12 @@ export const SignUp = ({navigation}) => {
 
     try {
       await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-      console.log(userInfo);
+      const { idToken } = await GoogleSignin.signIn();
+      // Create a Google credential with the token
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+      // Sign-in the user with the credential
+      return auth().signInWithCredential(googleCredential);
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         alert('You cancelled the sign in.');
