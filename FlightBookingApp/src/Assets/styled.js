@@ -5,10 +5,10 @@ export const Container = styled.View`
   flex: 1;
   padding: 6%;
   `;
-//Estilo botones
-export const TochOP = styled.TouchableOpacity.attrs(props=>({
-  activeOpacity: props.actOpa || 1,
-}))`
+  //Estilo botones
+  export const TochOP = styled.TouchableOpacity.attrs(props=>({
+    activeOpacity: props.actOpa || 1,
+  }))`
   justify-content: center;
   align-items: center;
   border-radius: 18px;
@@ -29,6 +29,7 @@ export const Plus = styled.TouchableOpacity`
   background-color:#5974f5;
   margin: 140% 0% -140% 0%;
   font-weight: bold;
+  
   
   
   `;
