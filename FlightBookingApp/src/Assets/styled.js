@@ -4,6 +4,7 @@ export const Container = styled.View`
   flex-direction: column;
   flex: 1;
   padding: 6%;
+  background-color: white;
   `;
   //Estilo botones
   export const TochOP = styled.TouchableOpacity.attrs(props=>({
@@ -19,7 +20,9 @@ export const Container = styled.View`
   padding: 3px;
   font-weight: bold;
   `;
-export const Plus = styled.TouchableOpacity`
+export const Plus = styled.TouchableOpacity.attrs(props=>({
+  activeOpacity: 0.8,
+}))`
   position:absolute;   
   align-self: center;
   margin-bottom: 70%;
@@ -29,9 +32,6 @@ export const Plus = styled.TouchableOpacity`
   background-color:#5974f5;
   margin: 140% 0% -140% 0%;
   font-weight: bold;
-  
-  
-  
   `;
   
   
