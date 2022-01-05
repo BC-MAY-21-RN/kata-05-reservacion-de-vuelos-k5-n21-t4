@@ -7,17 +7,16 @@ import auth from '@react-native-firebase/auth';
 import { Tarjetaprueba } from '../Components';
 
 export const flights = (props) => {
-    
-    const { route: { params: info_user } } = props
-
-    const [info, setInfo] = useState([]);
     const [renderFlights, setFlights] = useState([])
     const [documents, setDocs] = useState([])
 
     const docFunct = async()=>{
         try{
+            // ACA SE COLOCA LA VALIDACIÓN DE LOS VUELOS JAJA
             setDocs(await firestore().collection('Flights').get())
 
+            //setDocs(await firestore().collection('Flights').doc('').get())  <========= se usa para obtener un documento en especifico
+            
             setFlights( documents._docs.map((doc, index) => {
                     return <Tarjetaprueba key={`InfoKey-${index}`} info={doc._data} />;
                 })

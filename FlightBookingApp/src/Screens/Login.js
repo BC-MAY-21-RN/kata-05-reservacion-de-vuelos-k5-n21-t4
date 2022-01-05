@@ -4,6 +4,9 @@ import {Container, Texto, TochOP} from '../Assets/styled';
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore';
 
+import { Text } from 'react-native'
+import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
+
 export const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [pswrd, setPswrd] = useState('');
@@ -60,7 +63,7 @@ export const Login = ({navigation}) => {
         }}
       >
         <Texto size={'18px'} color={'white'} FW={'bold'}>
-          Sign Up
+          Login
         </Texto>
       </TochOP>
 
@@ -68,11 +71,13 @@ export const Login = ({navigation}) => {
         or
       </Texto>
 
-      <TochOP>
-        <Texto size={'18px'} color={'white'} FW={'bold'}>
-          Sign Up with Google
-        </Texto>
-      </TochOP>
+      <Text>
+        <GoogleSigninButton
+          style={{ width: 220, height: 50 }}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Dark}
+        />;
+      </Text>
 
       <Texto align={'center'} color={'gray'}>
         You do not have an account?
