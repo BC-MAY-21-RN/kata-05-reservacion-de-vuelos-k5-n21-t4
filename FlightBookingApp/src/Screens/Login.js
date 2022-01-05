@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react';
 import {PswrdInput, Input} from '../Components/InputLog';
 import {Container, Texto, TochOP} from '../Assets/styled';
 import auth from '@react-native-firebase/auth'
-import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin'
+import firestore from '@react-native-firebase/firestore';
 
 export const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -10,18 +10,25 @@ export const Login = ({navigation}) => {
   const [focus, setFocusState] = useState(false);
   const [hidePassword, setHidePassword] = useState(true);
 
-  useEffect(() => {
-    GoogleSignin.configure({
-      webClientId: '43375129789-o4hq99pg74v43qg22hsmql93uqtk2vm6.apps.googleusercontent.com',
-    });
-  }, [])
-
   const login = async () =>{
     try{
       await auth().signInWithEmailAndPassword(email, pswrd)
       .then((res)=>{
-        console.log(res)
-        console.log('Welcome'+res.user)
+        firestore()
+        .collection('Users')
+        .doc(res.user.uid)
+        .get()
+        .then(res2=>{
+          alert("Welcome "+res2._data.name)
+          auth().onAuthStateChanged((user)=>{
+            if(user){
+              navigation.navigate('Flights')
+            }
+            else{
+              console.log("signed out")
+            }
+          });
+        })
       })
       .catch((e)=>{
         console.log(e)

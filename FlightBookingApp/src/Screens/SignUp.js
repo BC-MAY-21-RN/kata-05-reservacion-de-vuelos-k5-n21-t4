@@ -9,7 +9,12 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import { Text } from 'react-native';
 
+GoogleSignin.configure({
+  webClientId: '43375129789-19d3mo4bim7cgmt6d7co7lr44doerqti.apps.googleusercontent.com'
+});
+
 export const SignUp = ({navigation}) => {
+
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [hidePassword, setHidePassword] = useState(true);
   const [email, setEmail] = useState('');
@@ -46,38 +51,20 @@ export const SignUp = ({navigation}) => {
     .catch(e=>{
       console.log("Error"+e)
     })
-  };
-
-  async function onGoogleButtonPress() {
-    GoogleSignin.configure({
-      webClientId: '43375129789-o4hq99pg74v43qg22hsmql93uqtk2vm6.apps.googleusercontent.com',
-    });
-
-    try {
-      await GoogleSignin.hasPlayServices();
-      const { idToken } = await GoogleSignin.signIn();
-      // Create a Google credential with the token
-      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
-      // Sign-in the user with the credential
-      return auth().signInWithCredential(googleCredential);
-    } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        alert('You cancelled the sign in.');
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        alert('Google sign In operation is in process');
-      } else if (
-        error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE
-      ) {
-        alert('Play Services not available');
-      } else {
-        alert(
-          'Something unknown went wrong with Google sign in. ' +
-            error.message,
-        );
-      }
-    }
   }
+
+  const signIn = async () => {
+    await GoogleSignin.hasPlayServices();
+
+    // Get the users ID token
+    const { idToken } = await GoogleSignin.signIn();
+
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(googleCredential);
+  };
 
 
   return (
@@ -124,13 +111,10 @@ export const SignUp = ({navigation}) => {
 
         <Text>
           <GoogleSigninButton
-            title={'Login with Google'}
             style={{ width: 192, height: 48 }}
             size={GoogleSigninButton.Size.Wide}
             color={GoogleSigninButton.Color.Dark}
-            onPress={()=>{
-              onGoogleButtonPress()
-            }}
+            onPress={signIn}
           />;
         </Text>
 
