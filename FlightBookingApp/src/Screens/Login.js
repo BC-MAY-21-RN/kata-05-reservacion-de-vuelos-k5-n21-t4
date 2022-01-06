@@ -42,20 +42,26 @@ export const Login = ({navigation}) => {
       </TochOP>
 
       <Texto align={'center'} color={'gray'}>
-        You do not have an account?
+        Don't have an account?_
         <Texto
           color={'#5974f5'}
           onPress={() => navigation.navigate('SignUp')}
           style={{color: '#5974f5'}}>
-          Sign Up
+        Sign Up
         </Texto>
       </Texto>
-      
+
         <Texto
           color={'#5974f5'}
           onPress={() => navigation.navigate('My Flights')}
           style={{color: '#5974f5'}}>
           Pantalla mis vuelos 
+        </Texto>
+        <Texto
+          color={'#5974f5'}
+          onPress={() => navigation.navigate('Add Flight')}
+          style={{color: '#5974f5'}}>
+          Pantalla añadir vuelo 
         </Texto>
       
     </Container>

@@ -1,31 +1,31 @@
 import React from 'react';
 import {Text} from 'react-native';
 
-import {Container, Cont, Linea, Pais, Ciudad, MoreInfo} from '../Assets/cardStyled';
+import {Container, Cont, Linea, Pais, Ciudad, MoreInfo, TempIcon} from '../Assets/cardStyled';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 export function CardFlight(props) {
 
-  const {orAirport, destAirport, ctryOrigin, ctryDestination, flightDate, flightpassengers} = props;
+  const {orAirport, destAirport, ctryOrigin, ctryDestination, flightDate, flightPassengers} = props;
 
   return (
     <Container>
-        <Cont>
+        <Cont height={'40px'}>
           <Pais>{orAirport}</Pais>
-          <Text>avion</Text>
+          <TempIcon>✈</TempIcon> 
           <Pais>{destAirport}</Pais>
         </Cont>
-        <Cont >
+        <Cont height={'20px'}>
           <Ciudad>{ctryOrigin}</Ciudad>
           <Ciudad>{ctryDestination}</Ciudad>
         </Cont>
         <Linea BackColor={'#b6b7ba'}></Linea>
-        <Cont >
+        <Cont height={'35px'} marginT={'10px'}>
           <MoreInfo>{flightDate}</MoreInfo>
-          <MoreInfo>{flightpassengers} passengers</MoreInfo>
+          <MoreInfo>{flightPassengers} passengers</MoreInfo>
         </Cont>
-        <Linea BackColor={'black'} height={'3px'}></Linea>
+        <Linea BackColor={'black'} height={'1.3px'}></Linea>
     </Container>
   );
 }

@@ -6,63 +6,64 @@ export const Container = styled.View`
   padding: 6%;
   background-color: white;
   `;
-  //Estilo botones
-  export const TochOP = styled.TouchableOpacity.attrs(props=>({
-    activeOpacity: props.actOpa || 1,
-  }))`
+//Estilo botones
+export const TochOP = styled.TouchableOpacity.attrs(props => ({
+  activeOpacity: props.actOpa || 1,
+}))
+  `
   justify-content: center;
   align-items: center;
   border-radius: 18px;
   width: 100%;
   height: 8%;
-  background-color: ${(props)=> props.BackColor ||'#b6b7ba'};
-  margin:2% 0% 2% 0%;
+  background-color: ${(props) => props.BackColor || '#b6b7ba'};
+  margin: 2% 0% 2% 0%;
   padding: 3px;
   font-weight: bold;
   `;
-export const Plus = styled.TouchableOpacity.attrs(props=>({
+export const Plus = styled.TouchableOpacity.attrs(props => ({
   activeOpacity: 0.8,
-}))`
-  position:absolute;   
+}))
+  `
+  position: absolute;   
   align-self: center;
-  margin-bottom: 70%;
   border-radius: 100px;
-  width: 22%;
-  height: 14%;
+  width: 80px;
+  height: 80px;
   background-color:#5974f5;
-  margin: 140% 0% -140% 0%;
   font-weight: bold;
+  bottom: 15px;
   `;
-  
-  
-  //Textos
+
+
+//Textos
 
 export const Texto = styled.Text`
-text-align: ${(props)=>props.align || 'left'};
-font-size: ${(props)=>props.size || '14px'};
-color: ${(props)=>props.color || '#4f4f4f'};
-margin: ${(props)=>props.MP || '0%'};
-font-weight: ${(props)=>props.FW || 'normal'};
+text-align: ${(props) => props.align || 'left'};
+font-size: ${(props) => props.size || '14px'};
+color: ${(props) => props.color || '#4f4f4f'};
+margin: ${(props) => props.MP || '0%'};
+font-weight: ${(props) => props.FW || 'normal'};
 `;
-  
-  //estilos Checbox
+
+//estilos Checbox
 export const CBoxCon = styled.View`
   flex-direction: row;
   margin-top: 3px;
   align-items: center;
   `;
-  
+
 export const CheckText = styled.Text`
   text-align: left;
   font-size: 13px;
   color: gray;
   `;
-  //Input pswrd
+//Input pswrd
 export const Image = styled.Image`
   height: 20px;
   width: 20px;
   `;
-  
+
 export const InpCon = styled.View`
   padding: 0px;
   padding-right: 15px;
@@ -78,8 +79,8 @@ export const InpCon = styled.View`
   border: 1px;
   border-color: ${(props) => props.BColor || '#4f4f4f'};
   `;
-  
-  // Inputs normales
+
+// Inputs normales
 export const InputLog = styled.TextInput`
   padding-left: 10px;
   font-weight: bold;
@@ -99,6 +100,6 @@ export const InpL = styled.TextInput`
   padding-left: 3px;
   `;
 
-  export const ScrollView = styled.ScrollView`
+export const ScrollView = styled.ScrollView`
 
   `;
