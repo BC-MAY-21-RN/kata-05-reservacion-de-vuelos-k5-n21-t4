@@ -37,3 +37,4 @@ export const Pais = styled.Text`
   color: black;
   font-size: 15px;
 `;
+

@@ -98,3 +98,7 @@ export const InpL = styled.TextInput`
   padding: 0;
   padding-left: 3px;
   `;
+
+  export const ScrollView = styled.ScrollView`
+
+  `;
