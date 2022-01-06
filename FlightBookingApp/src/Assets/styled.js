@@ -1,73 +1,52 @@
 import styled from 'styled-components/native';
-import CheckBox from '@react-native-community/checkbox';
-
-
 
 export const Container = styled.View`
   flex-direction: column;
   flex: 1;
   padding: 6%;
+  background-color: white;
   `;
-
-export const TochOP = styled.TouchableOpacity`
+//Estilo botones
+export const TochOP = styled.TouchableOpacity.attrs(props => ({
+  activeOpacity: props.actOpa || 1,
+}))
+  `
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
+  border-radius: 18px;
   width: 100%;
-  background-color: #b6b7ba;
-  margin-top: 2%;
-  margin-bottom: 2%;
+  height: 8%;
+  background-color: ${(props) => props.BackColor || '#b6b7ba'};
+  margin: 2% 0% 2% 0%;
   padding: 3px;
-  `;
-
-export const InputLog = styled.TextInput`
-  padding: 0px;
-  text-align: left;
-  color: black;
   font-weight: bold;
-  padding: 2px;
-  padding-left: 3px;
   `;
-
-export const ActiveInput = styled.TextInput`
-  border: 1px solid blue;
-  `;
-
-export const PrimeTitle = styled.Text`
-  text-align: left;
-  font-size: 24px;
+export const Plus = styled.TouchableOpacity.attrs(props => ({
+  activeOpacity: 0.8,
+}))
+  `
+  position: absolute;   
+  align-self: center;
+  border-radius: 100px;
+  width: 80px;
+  height: 80px;
+  background-color:#5974f5;
   font-weight: bold;
-  color: #5974f5;
-  margin: 20px;
-  margin-left: 0;
-  margin-right: 0;
+  bottom: 15px;
   `;
 
-export const TextButton = styled.Text`
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
-  `;
 
-export const SecondTitle = styled.Text`
-  text-align: left;
-  font-size: 16px;
-  color: #4f4f4f;
-  `;
+//Textos
 
-export const InfoText = styled.Text`
-  text-align: center;
-  font-size: 14px;
-  color: #747474;
-  `;
+export const Texto = styled.Text`
+text-align: ${(props) => props.align || 'left'};
+font-size: ${(props) => props.size || '14px'};
+color: ${(props) => props.color || '#4f4f4f'};
+margin: ${(props) => props.MP || '0%'};
+font-weight: ${(props) => props.FW || 'normal'};
+`;
 
-export const Required = styled.Text`
-  text-align: left;
-  font-size: 13px;
-  color: gray;
-  margin-top: -3% ;
-  `;
-
+//estilos Checbox
 export const CBoxCon = styled.View`
   flex-direction: row;
   margin-top: 3px;
@@ -79,7 +58,7 @@ export const CheckText = styled.Text`
   font-size: 13px;
   color: gray;
   `;
-
+//Input pswrd
 export const Image = styled.Image`
   height: 20px;
   width: 20px;
@@ -92,12 +71,24 @@ export const InpCon = styled.View`
   align-items: center;
   text-align: left;
   font-weight: bold;
-  height: 9%;
+  height: 53px;
   width: 100%;
   margin-top: 1%;
   margin-bottom: 4%;
   justify-content: space-between;
-  border: 1px solid #4f4f4f;
+  border: 1px;
+  border-color: ${(props) => props.BColor || '#4f4f4f'};
+  `;
+
+// Inputs normales
+export const InputLog = styled.TextInput`
+  padding-left: 10px;
+  font-weight: bold;
+  height: 55px;
+  width: 100%;
+  margin: 1% 0% 4% 0% ;
+  border: 1px; 
+  border-color: ${(props) => props.BColor || '#4f4f4f'};
   `;
 
 export const InpL = styled.TextInput`
@@ -109,6 +100,6 @@ export const InpL = styled.TextInput`
   padding-left: 3px;
   `;
 
-  export const ChBox = styled(CheckBox)`
-    
+export const ScrollView = styled.ScrollView`
+
   `;

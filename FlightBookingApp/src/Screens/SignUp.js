@@ -1,19 +1,20 @@
-import React, {useState} from 'react';
-import {Text} from 'react-native';
-import {
-  Container,
-  TextButton,
-  TochOP,
-  SecondTitle,
-  InfoText,
-  Required,
-} from '../Assets/styled';
-import {PswrdInput, UserInput, NameInput} from '../Components/InputLog';
+import React, { useEffect, useState} from 'react';
+import {Container, Texto, TochOP} from '../Assets/styled';
+import {PswrdInput, Input} from '../Components/InputLog';
 import CheckBoxWithLabel from '../Components/Checkbox';
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin'
+
 
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
+import { Text } from 'react-native';
+
+GoogleSignin.configure({
+  webClientId: '43375129789-19d3mo4bim7cgmt6d7co7lr44doerqti.apps.googleusercontent.com'
+});
 
 export const SignUp = ({navigation}) => {
+
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [hidePassword, setHidePassword] = useState(true);
   const [email, setEmail] = useState('');
@@ -21,25 +22,58 @@ export const SignUp = ({navigation}) => {
   const [pswrd, setPswrd] = useState('');
   const [termsCheckBox, setTermsCheckBox] = useState('');
   const [subscribeCheckBox, setSubscribeCheckBox] = useState('');
+  const [info_user, setInfoUser] = useState({});
 
   const addUserToFirestore = () => {
-    firestore().collection('Users').add({
-      email: email,
-      flights: ["1"],
-      name: name,
-      password: pswrd,
-    }).then(() => {console.log('User registration succesful' + " email: "+ email + " name: "+ name + " password: " + pswrd)})    
+    //Creacion del usuario en la firebase
+    auth().createUserWithEmailAndPassword(email, pswrd)
+    .then((e)=>{// e recupera lo que es la información
+      console.log("User created on auth database in firebase")
+
+      //Creación del usuario en la firestore
+      firestore()
+      .collection('Users')
+      .doc(e.user.uid)//Usa el id que se crea en createuserwithEmailand password para darte titulo al documento del usuario el cual contendra la información
+      .set({
+        email: email,
+        flights: ['1'],
+        name: name,
+        password: pswrd,
+      })
+      .then(() => {
+        console.log(
+          'User registration succesful'
+        );
+        setInfoUser(e)
+        navigation.navigate('My Flights', info_user)
+      });
+    })
+    .catch(e=>{
+      console.log("Error"+e)
+    })
   }
+
+  const signIn = async () => {
+    // Get the users ID token
+    const { idToken } = await GoogleSignin.signIn();
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(googleCredential).then((resp)=>{
+      console.log(resp)
+    })
+  };
+
 
   return (
     <Container>
-      <SecondTitle>First Name</SecondTitle>
-      <NameInput placeholder="Name" value={setName}/>
+      <Texto size={'16px'}>First Name</Texto>
+      <Input placeholder="Name" value={setName} />
 
-      <SecondTitle>Email *</SecondTitle>
-      <UserInput placeholder="Email" value={setEmail}/>
+      <Texto size={'16px'}>Email *</Texto>
+      <Input placeholder="Email" value={setEmail} />
 
-      <SecondTitle>Password *</SecondTitle>
+      <Texto size={'16px'}>Password *</Texto>
       <PswrdInput
         keyboardType={null}
         placeholder="Contraseña"
@@ -48,37 +82,46 @@ export const SignUp = ({navigation}) => {
         value={setPswrd}
       />
 
-      <Required>
+      <Texto color={'gray'} MP={'-3% 0% 0% 0%'}>
         Use 8 or more characters with a mix of text letters, numbers, and
         symbols
-      </Required>
-      
+      </Texto>
+
       <CheckBoxWithLabel value={termsCheckBox} changeValue={setTermsCheckBox}>
         I agree to the Terms and Privacy policy.
       </CheckBoxWithLabel>
-      
-      <CheckBoxWithLabel value={subscribeCheckBox} changeValue={setSubscribeCheckBox}>
+
+      <CheckBoxWithLabel
+        value={subscribeCheckBox}
+        changeValue={setSubscribeCheckBox}>
         Subscribe for select product updates
       </CheckBoxWithLabel>
 
-      <TochOP onPress={()=>addUserToFirestore()}>
-        <TextButton>Sign Up</TextButton>
+      <TochOP onPress={() => addUserToFirestore()}>
+        <Texto size={'18px'} color={'white'} FW={'bold'}>
+          Sign Up
+        </Texto>
       </TochOP>
 
-      <InfoText> or </InfoText>
+      <Texto color={'#747474'} align={'center'}>
+        or
+      </Texto>
 
-      <TochOP>
-        <TextButton>Sign Up with Google</TextButton>
-      </TochOP>
-      <InfoText>
-        Alredy have an account?
-        <Text
-          onPress={() => navigation.navigate('Login')}
-          style={{color: '#5974f5'}}>
-          {' '}
-          Log In
+        <Text>
+          <GoogleSigninButton
+            style={{ width: 192, height: 48 }}
+            size={GoogleSigninButton.Size.Wide}
+            color={GoogleSigninButton.Color.Dark}
+            onPress={signIn}
+          />;
         </Text>
-      </InfoText>
+
+      <Texto align={'center'} color={'gray'}>
+        Alredy have an account?
+        <Texto color={'#5974f5'} onPress={() => navigation.navigate('Login')}>
+          Log In
+        </Texto>
+      </Texto>
     </Container>
   );
 };
