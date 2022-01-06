@@ -9,7 +9,9 @@ import { Tarjetaprueba } from '../Components';
 export const flights = (props) => {
     const [renderFlights, setFlights] = useState([])
     const [documents, setDocs] = useState([])
+    const { route: { params: info_user } } = props
 
+    console.log(info_user)
     const docFunct = async()=>{
         try{
             // ACA SE COLOCA LA VALIDACIÓN DE LOS VUELOS JAJA

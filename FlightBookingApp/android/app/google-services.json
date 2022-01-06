@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "43375129789-l7um1rkdbcmq2do2rqvlktqthlasrgo2.apps.googleusercontent.com",
+          "client_id": "43375129789-nmer0knlpstn17q63c8u2via485k5rb4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.flightbookingapp",
-            "certificate_hash": "4c2ca88e63006def88172420656da36b79d01127"
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },
         {
