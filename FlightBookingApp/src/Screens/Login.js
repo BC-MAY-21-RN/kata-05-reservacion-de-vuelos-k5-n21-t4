@@ -7,6 +7,10 @@ import firestore from '@react-native-firebase/firestore';
 import { Text } from 'react-native'
 import { GoogleSigninButton, GoogleSignin } from '@react-native-google-signin/google-signin';
 
+GoogleSignin.configure({
+  webClientId: '43375129789-19d3mo4bim7cgmt6d7co7lr44doerqti.apps.googleusercontent.com'
+});
+
 export const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [pswrd, setPswrd] = useState('');
@@ -45,24 +49,16 @@ export const Login = ({navigation}) => {
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
     // Sign-in the user with the credential
     await auth().signInWithCredential(googleCredential).then((resp)=>{
-      firess(resp)
-    })
-
-    const firess = (res) =>{
-      try{
-        firestore()
+      firestore()
         .collection('Users')
-        .doc(res.user.uid)
+        .doc(resp.user.uid)
         .get()
         .then(res2=>{
           alert("Welcome "+res2._data.name)
           setInfoUser(res2._data)
-          navigation.navigate('Flights', infoUser)
+          navigation.navigate('My Flights', infoUser)
         })
-      } catch(e){
-        console.log(e)
-      }
-    }
+    })
   };
 
   return (

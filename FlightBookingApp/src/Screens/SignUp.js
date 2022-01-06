@@ -45,7 +45,7 @@ export const SignUp = ({navigation}) => {
           'User registration succesful'
         );
         setInfoUser(e)
-        navigation.navigate('Flights', info_user)
+        navigation.navigate('My Flights', info_user)
       });
     })
     .catch(e=>{
