@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Texto, Plus } from '../Assets/styled';
-import { CardFlight } from '../Components/CardFlight'
-import { Cont } from '../Assets/cardStyled';
-import { ScrollView } from 'react-native';
+import { Texto, Plus, } from '../Assets/styled';
+import {ScrlView, Container2} from '../Assets/cardStyled'
+import {  CardFlight } from '../Components/CardFlight'
 import db from '../firebase/config';
 
 export const MyFlights = ({ navigation }) => {
@@ -25,8 +24,8 @@ export const MyFlights = ({ navigation }) => {
 
   return (
 
-    <Container>
-      <ScrollView>
+    <Container2>
+      <ScrlView>
         {/* {
         //might throw the unique key error or not even work haha
         flights && flights.map(flight => {
@@ -95,7 +94,7 @@ export const MyFlights = ({ navigation }) => {
           flightPassengers={2}
         />
 
-      </ScrollView>
+      </ScrlView>
       <Plus>
           <Texto 
             size={'60px'} 
@@ -107,7 +106,7 @@ export const MyFlights = ({ navigation }) => {
           </Texto>
         </Plus>
 
-    </Container>
+    </Container2>
   );
 };
 

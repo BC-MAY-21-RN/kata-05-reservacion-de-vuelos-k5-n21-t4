@@ -6,6 +6,10 @@ export const Container = styled.View`
   width: 100%;
   margin-bottom: 3%;
   `;
+export const Container2 = styled.View`
+  flex: 1; 
+  background-color: white;
+`;
 export const Cont = styled.View` 
   flex-direction: row;
   width: 100%;
@@ -31,7 +35,7 @@ export const Ciudad = styled.Text`
   color:#b6b7ba;
 `;
 export const MoreInfo = styled.Text`
-  font-weight: bold;
+  font-weight: 500;
   color: black;
   font-size: 15px;
 `;
@@ -40,5 +44,8 @@ export const MoreInfo = styled.Text`
 export const TempIcon = styled.Text`
 font-weight: bold;
 color: #5974f5;
-font-size: 26px;
+font-size: 32px;
+`;
+export const ScrlView = styled.ScrollView`
+  padding: 5%;
 `;

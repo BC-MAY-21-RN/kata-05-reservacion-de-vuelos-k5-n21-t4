@@ -1,6 +1,4 @@
 import React from 'react';
-import {Text} from 'react-native';
-
 import {Container, Cont, Linea, Pais, Ciudad, MoreInfo, TempIcon} from '../Assets/cardStyled';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
