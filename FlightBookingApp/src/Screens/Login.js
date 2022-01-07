@@ -50,14 +50,14 @@ export const Login = ({navigation}) => {
     // Sign-in the user with the credential
     await auth().signInWithCredential(googleCredential).then((resp)=>{
       firestore()
-        .collection('Users')
-        .doc(resp.user.uid)
-        .get()
-        .then(res2=>{
-          alert("Welcome "+res2._data.name)
-          setInfoUser(res2._data)
-          navigation.navigate('My Flights', infoUser)
-        })
+      .collection('Users')
+      .doc(resp.user.uid)
+      .get()
+      .then(res2=>{
+        alert("Welcome "+res2._data.name)
+        setInfoUser(res2._data)
+        navigation.navigate('Flights', infoUser)
+      })
     })
   };
 
@@ -78,49 +78,30 @@ export const Login = ({navigation}) => {
       <TochOP
         onPress={()=>{
           login()
-        }}
-      >
+        }}>
         <Texto size={'18px'} color={'white'} FW={'bold'}>
           Login
         </Texto>
       </TochOP>
 
-      <Texto color={'#747474'} align={'center'}>
-        or
-      </Texto>
-
       <Text>
-          <GoogleSigninButton
-            style={{ width: 220, height: 55 }}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={signIn}
-          />;
-        </Text>
+        <GoogleSigninButton
+          style={{ width: 220, height: 55 }}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Dark}
+          onPress={signIn}
+        />;
+      </Text>
 
       <Texto align={'center'} color={'gray'}>
-        Don't have an account?_
+        You do not have an account?
         <Texto
           color={'#5974f5'}
           onPress={() => navigation.navigate('SignUp')}
           style={{color: '#5974f5'}}>
-        Sign Up
+          Sign Up
         </Texto>
       </Texto>
-
-        <Texto
-          color={'#5974f5'}
-          onPress={() => navigation.navigate('My Flights')}
-          style={{color: '#5974f5'}}>
-          Pantalla mis vuelos 
-        </Texto>
-        <Texto
-          color={'#5974f5'}
-          onPress={() => navigation.navigate('Add Flight')}
-          style={{color: '#5974f5'}}>
-          Pantalla añadir vuelo 
-        </Texto>
-      
     </Container>
   );
 };
