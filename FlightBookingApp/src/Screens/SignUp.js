@@ -54,14 +54,19 @@ export const SignUp = ({navigation}) => {
   }
 
   const signIn = async () => {
-    // Get the users ID token
-    const { idToken } = await GoogleSignin.signIn();
-    // Create a Google credential with the token
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    // Sign-in the user with the credential
-    return auth().signInWithCredential(googleCredential).then((resp)=>{
-      console.log(resp)
-    })
+    if(GoogleSignin)
+    {
+      GoogleSignin.signOut()
+    }
+    else
+    {
+      // Get the users ID token
+      const { idToken } = await GoogleSignin.signIn();
+      // Create a Google credential with the token
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+      // Sign-in the user with the credential
+      return auth().signInWithCredential(googleCredential);
+    }
   };
 
 
@@ -109,7 +114,7 @@ export const SignUp = ({navigation}) => {
 
         <Text>
           <GoogleSigninButton
-            style={{ width: 192, height: 48 }}
+            style={{ width: 220, height: 55 }}
             size={GoogleSigninButton.Size.Wide}
             color={GoogleSigninButton.Color.Dark}
             onPress={signIn}
