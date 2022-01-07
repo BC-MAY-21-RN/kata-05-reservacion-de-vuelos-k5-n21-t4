@@ -3,8 +3,8 @@ import {Container, Cont, Linea, Pais, Ciudad, MoreInfo, TempIcon} from '../Asset
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-export function CardFlight(props) {
-
+export function CardFlight({props}) {
+  console.log(props);
   const {orAirport, destAirport, ctryOrigin, ctryDestination, flightDate, flightPassengers} = props;
 
   return (
