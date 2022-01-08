@@ -1,7 +1,5 @@
 import React from 'react';
-import {Container, Cont, Linea, Pais, Ciudad, MoreInfo, TempIcon} from '../Assets/cardStyled';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
+import {Container, Cont, Linea, Pais, Ciudad, MoreInfo, TempIcon} from '../../Assets/cardStyled';
 
 export function CardFlight({props}) {
   const {orAirport, destAirport, ctryOrigin, ctryDestination, flightDate, flightPassengers} = props;
