@@ -53,6 +53,15 @@
             "ctryDestination":"Netherlands",
             "flightDate": "September 3, 2020",
             "flightPassengers": 2
+        },
+        {
+            "id": 7,
+            "orAirport": "BEG5",
+            "destAirport":"AMS",
+            "ctryOrigin": "Serbia",
+            "ctryDestination":"Netherlands",
+            "flightDate": "September 3, 2020",
+            "flightPassengers": 2
         }
     ]
 }

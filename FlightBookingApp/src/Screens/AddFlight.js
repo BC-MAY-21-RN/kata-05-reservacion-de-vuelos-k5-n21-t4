@@ -4,7 +4,7 @@ import { View, Text } from 'react-native'
 export const AddFlight = ({navigation}) => {
     return (
         <View>
-            <Text>yeh</Text>
+            <Text onPress={() => navigation.navigate('Origen')}> yeh</Text>
         </View>
     )
 };

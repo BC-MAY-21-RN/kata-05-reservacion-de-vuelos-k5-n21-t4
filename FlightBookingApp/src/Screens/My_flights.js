@@ -37,16 +37,3 @@ export const MyFlights = ({ navigation }) => {
     </Container2>
   );
 };
-
-/**
- * <ScrlView>
-        <CardFlight
-          orAirport={"BEG"}
-          destAirport={"AMS"}
-          ctryOrigin={"Serbia"}
-          ctryDestination={"Netherlands"}
-          flightDate={"September 3, 2020"}
-          flightPassengers={2}
-        />
-      </ScrlView>
- */
