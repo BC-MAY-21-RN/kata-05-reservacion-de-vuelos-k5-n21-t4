@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Texto, Plus, } from '../Assets/styled';
 import {ScrlView, Container2} from '../Assets/cardStyled'
 import {  CardFlight } from '../Components/CardFlight'
-import db from '../firebase/config';
 
 export const MyFlights = ({ navigation }) => {
 
