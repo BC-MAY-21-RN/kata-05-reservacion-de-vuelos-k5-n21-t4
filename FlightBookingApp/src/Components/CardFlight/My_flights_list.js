@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {FlList} from '../../Assets/cardStyled'
 import { CardFlight } from './index'
-import {flight} from '../../Assets/exampleInfo.json';
 import { getFlights } from '../../Assets/hooks/firebase/loadData';
 import { getFlightsList } from '../../Assets/hooks/firebase/infoVuelos';
 

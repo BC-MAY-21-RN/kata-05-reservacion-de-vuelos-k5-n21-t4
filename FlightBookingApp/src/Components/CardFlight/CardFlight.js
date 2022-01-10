@@ -2,7 +2,7 @@ import React from 'react';
 import {Container, Cont, Linea, Pais, Ciudad, MoreInfo, TempIcon} from '../../Assets/cardStyled';
 
 export function CardFlight({props}) {
-  console.log(props.Date)
+  console.log(props.Fecha)
   return (
     <Container>
         <Cont height={'40px'}>
@@ -16,7 +16,7 @@ export function CardFlight({props}) {
         </Cont>
         <Linea BackColor={'#b6b7ba'}></Linea>
         <Cont height={'35px'} marginT={'10px'}>
-          <MoreInfo></MoreInfo>
+          <MoreInfo>{props.Fecha}</MoreInfo>
           <MoreInfo>{props.Passengers} passengers</MoreInfo>
         </Cont>
         <Linea BackColor={'black'} height={'1.3px'}></Linea>
