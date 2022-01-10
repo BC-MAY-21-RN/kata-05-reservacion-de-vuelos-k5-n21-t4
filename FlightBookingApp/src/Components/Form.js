@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
-import { } from 'react-native';
-import { useValidation } from 'react-native-form-validator';
+import React, { useState, useEffect } from "react";
+import {name, email, pswrd, termsCheckBox} from "./src/Screens/SignUp.js"
 
-const FormTest = () => {
-  const [email, setEmail] = useState('tibtib@gmail.com');
-  const [newPassword, setNewPassword] = useState('');
-  const { validate} =
-    useValidation({
-      state: {email,newPassword,},
-    });
+interface LoginForm {
+  username: string;
+  password: string;
+}
+
+export const Hello = () => {
+  const [disabled, setDisabled] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (username === "" || password === "") {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  }, [username, password]);
 
   
-}
+};
+export default Hello;
+
