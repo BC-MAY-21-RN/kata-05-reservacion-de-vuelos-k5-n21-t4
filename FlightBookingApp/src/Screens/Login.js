@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import {PswrdInput, Input} from '../Components/InputLog';
 import {Container, Texto, TochOP} from '../Assets/styled';
-import auth from '@react-native-firebase/auth'
+import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
 import { Text } from 'react-native'
@@ -100,6 +100,12 @@ export const Login = ({navigation}) => {
           onPress={() => navigation.navigate('SignUp')}
           style={{color: '#5974f5'}}>
           Sign Up
+        </Texto>
+        <Texto
+          color={'#5974f5'}
+          onPress={() => navigation.navigate('Origen')}
+          style={{color: '#5974f5'}}>
+          Add flight
         </Texto>
       </Texto>
     </Container>
