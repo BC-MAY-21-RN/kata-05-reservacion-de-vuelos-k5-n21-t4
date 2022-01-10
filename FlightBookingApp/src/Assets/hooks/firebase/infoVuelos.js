@@ -9,7 +9,7 @@ export async function getFlightsList(vuelos) {
       .collection('Flights')
       .doc(vuelos[i])
       .get();
-    info.push(infoVuelos.data());
+    info.push({...infoVuelos.data(), key: i});
   }
   return info;
 }

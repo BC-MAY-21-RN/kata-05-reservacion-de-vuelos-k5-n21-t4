@@ -6,13 +6,13 @@ import { getFlights } from '../../Assets/hooks/firebase/loadData';
 import { getFlightsList } from '../../Assets/hooks/firebase/infoVuelos';
 
 export const MyFlights_List = () => {
-  const [data, setData] = useState()
+  const [dataFlights, setDataFly] = useState([])
   
   async function loadData(){
     try{
       const response = await getFlights('Dylanlegendary1@gmail.com')
       const info = await getFlightsList(response)
-      console.log(info);       
+      setDataFly(info)       
     } catch(e){
       console.log('Este es un error '+ e)
     }
@@ -33,9 +33,9 @@ export const MyFlights_List = () => {
   return (
     <>
       <FlList
-        data={flight}
+        data={dataFlights}
         renderItem={renderPlace}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.key}
         horizontal={false}
         />
     </>

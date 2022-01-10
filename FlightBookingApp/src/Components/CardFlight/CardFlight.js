@@ -2,23 +2,22 @@ import React from 'react';
 import {Container, Cont, Linea, Pais, Ciudad, MoreInfo, TempIcon} from '../../Assets/cardStyled';
 
 export function CardFlight({props}) {
-  const {orAirport, destAirport, ctryOrigin, ctryDestination, flightDate, flightPassengers} = props;
-
+  console.log(props.Date)
   return (
     <Container>
         <Cont height={'40px'}>
-          <Pais>{orAirport}</Pais>
+          <Pais>{props.Origin[0]}</Pais>
           <TempIcon>✈</TempIcon> 
-          <Pais>{destAirport}</Pais>
+          <Pais>{props.Destiny[0]}</Pais>
         </Cont>
         <Cont height={'20px'}>
-          <Ciudad>{ctryOrigin}</Ciudad>
-          <Ciudad>{ctryDestination}</Ciudad>
+          <Ciudad>{props.Origin[1]}</Ciudad>
+          <Ciudad>{props.Destiny[1]}</Ciudad>
         </Cont>
         <Linea BackColor={'#b6b7ba'}></Linea>
         <Cont height={'35px'} marginT={'10px'}>
-          <MoreInfo>{flightDate}</MoreInfo>
-          <MoreInfo>{flightPassengers} passengers</MoreInfo>
+          <MoreInfo></MoreInfo>
+          <MoreInfo>{props.Passengers} passengers</MoreInfo>
         </Cont>
         <Linea BackColor={'black'} height={'1.3px'}></Linea>
     </Container>
