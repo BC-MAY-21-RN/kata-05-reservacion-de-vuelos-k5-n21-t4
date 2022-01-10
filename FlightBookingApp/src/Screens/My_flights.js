@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Texto, Plus, } from '../Assets/styled';
 import {ScrlView, Container2} from '../Assets/cardStyled'
 import {  CardFlight } from '../Components/CardFlight'
-import db from '../firebase/config';
+import auth from '@react-native-firebase/auth'
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 export const MyFlights = ({ navigation }) => {
 
@@ -23,7 +24,6 @@ export const MyFlights = ({ navigation }) => {
   // }
 
   return (
-
     <Container2>
       <ScrlView>
         {/* {

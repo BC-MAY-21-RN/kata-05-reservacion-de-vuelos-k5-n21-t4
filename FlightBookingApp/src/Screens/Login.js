@@ -2,10 +2,10 @@ import React, { useEffect, useState} from 'react';
 import {PswrdInput, Input} from '../Components/InputLog';
 import {Container, Texto, TochOP} from '../Assets/styled';
 import auth from '@react-native-firebase/auth'
-import firestore from '@react-native-firebase/firestore';
 
 import { Text } from 'react-native'
 import { GoogleSigninButton, GoogleSignin } from '@react-native-google-signin/google-signin';
+import { getUserdata, loginAuth } from '../utils/firebase/FirebaseFunctions'
 
 GoogleSignin.configure({
   webClientId: '43375129789-19d3mo4bim7cgmt6d7co7lr44doerqti.apps.googleusercontent.com'
@@ -14,33 +14,16 @@ GoogleSignin.configure({
 export const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [pswrd, setPswrd] = useState('');
-  const [focus, setFocusState] = useState(false);
+  const [validation, setValidation] = useState({bcolor: '#b6b7ba', disabled: true});
   const [hidePassword, setHidePassword] = useState(true);
-  const [infoUser, setInfoUser] = useState({})
+  
+  useEffect(() => {
+    if(email.length>0&&pswrd.length>0)
+      setValidation({bcolor: '#5391DA', disabled: false})
+    else
+      setValidation({bcolor: '#b6b7ba', disabled: false})
+  }, [email, pswrd])
 
-
-  const login = async () =>{
-    try{
-      await auth().signInWithEmailAndPassword(email, pswrd)
-      .then((res)=>{
-        firestore()
-          .collection('Users')
-          .doc(res.user.uid)
-          .get()
-          .then(res2=>{
-            alert("Welcome "+res2._data.name)
-            setInfoUser(res2._data)
-            navigation.navigate('Flights', infoUser)
-          })
-      })
-      .catch((e)=>{
-        console.log(e)
-      })
-    }
-    catch (e){
-      console.log(e)
-    }
-  }
 
   const signIn = async () => {
     // Get the users ID token
@@ -48,16 +31,8 @@ export const Login = ({navigation}) => {
     // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
     // Sign-in the user with the credential
-    await auth().signInWithCredential(googleCredential).then((resp)=>{
-      firestore()
-      .collection('Users')
-      .doc(resp.user.uid)
-      .get()
-      .then(res2=>{
-        alert("Welcome "+res2._data.name)
-        setInfoUser(res2._data)
-        navigation.navigate('Flights', infoUser)
-      })
+    await auth().signInWithCredential(googleCredential).then((res)=>{
+      navigation.navigate("My Flights", getUserdata(res))
     })
   };
 
@@ -75,10 +50,7 @@ export const Login = ({navigation}) => {
         value={setPswrd}
       />
 
-      <TochOP
-        onPress={()=>{
-          login()
-        }}>
+      <TochOP disabled={validation.disabled} onPress={()=>{ loginAuth(navigation, email, pswrd) }} bcolor={validation.bcolor}>
         <Texto size={'18px'} color={'white'} FW={'bold'}>
           Login
         </Texto>
