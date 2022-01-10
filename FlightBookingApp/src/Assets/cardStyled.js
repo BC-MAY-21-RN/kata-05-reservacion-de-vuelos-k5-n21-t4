@@ -46,6 +46,6 @@ font-weight: bold;
 color: #5974f5;
 font-size: 32px;
 `;
-export const ScrlView = styled.ScrollView`
+export const FlList = styled.FlatList `
   padding: 5%;
 `;
