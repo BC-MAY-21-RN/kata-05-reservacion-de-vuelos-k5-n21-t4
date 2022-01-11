@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
 import {SignUp, Login, My_flights} from '../Screens/index';
 import { Origen, Confirmacion, Destino, Fecha,Pasajeros } from './MyFlightComponents/Index'
 

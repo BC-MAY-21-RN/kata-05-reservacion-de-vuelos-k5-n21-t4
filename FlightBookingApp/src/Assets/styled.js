@@ -16,7 +16,7 @@ export const TochOP = styled.TouchableOpacity.attrs(props => ({
   border-radius: 18px;
   width: 100%;
   height: 8%;
-  background-color: ${(props) => props.BackColor || '#b6b7ba'};
+  background-color: ${(props) => props.BackColor || props.bcolor};
   margin: 2% 0% 2% 0%;
   padding: 3px;
   font-weight: bold;
@@ -103,3 +103,7 @@ export const InpL = styled.TextInput`
 export const ScrollView = styled.ScrollView`
 
   `;
+
+export const GoogleBtn = styled.Text`
+  text-align: center;
+`
