@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {SignUp, Login, MyFlights, AddFlight} from './src/Screens/index';
+import {SignUp, Login, My_flights, Origen} from './src/Screens/index';
 
 const Stack = createNativeStackNavigator();
 
@@ -10,9 +10,7 @@ const App = () => {
     <NavigationContainer>
       {
         <Stack.Navigator>
-          <Stack.Screen
-            name="Login"
-            component={Login}
+          <Stack.Screen name="Login" component={Login}
             options={{
               headerTintColor: '#5974f5',
               headerTitleStyle: {
@@ -20,9 +18,7 @@ const App = () => {
               },
             }}
           />
-          <Stack.Screen
-            name="SignUp"
-            component={SignUp}
+          <Stack.Screen name="SignUp" component={SignUp}
             options={{
               headerTintColor: '#5974f5',
               headerTitleStyle: {
@@ -30,19 +26,15 @@ const App = () => {
               },
             }}
           />
-          <Stack.Screen
-            name="My Flights"
-            component={MyFlights}
+          {/* <Stack.Screen name="My Flights" component={My_flights}
             options={{
               headerTintColor: '#5974f5',
               headerTitleStyle: {
                 fontWeight: 'bold',
               },
             }}
-          />
-          <Stack.Screen
-            name="Add Flight"
-            component={AddFlight}
+          /> */}
+          <Stack.Screen name="Origen" component={Origen}
             options={{
               headerTintColor: '#5974f5',
               headerTitleStyle: {
