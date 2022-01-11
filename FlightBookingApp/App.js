@@ -1,20 +1,9 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {SignUp, Login, MyFlights, AddFlight} from './src/Screens/index';
-
-const Stack = createNativeStackNavigator();
+import {StackScreen} from './src/Components/NavigatorStack'
 
 const App = () => {
   return (
-  <NavigationContainer>{ 
-    <Stack.Navigator>
-      <Stack.Screen name='Login' component={Login} options={{headerTintColor: '#5974f5', headerTitleStyle:{fontSize: 30, fontWeight: 'bold',}, headerTitleAlign:'left'}}/>
-      <Stack.Screen name='SignUp' component={SignUp} options={{headerTintColor: '#5974f5',  headerTitleStyle:{fontSize: 30, fontWeight: 'bold',}, headerTitleAlign:'left'}}/>
-      <Stack.Screen name='My Flights' component={MyFlights} options={{headerTintColor: '#5974f5', headerTitleStyle:{fontSize: 30, fontWeight: 'bold',}, headerTitleAlign:'left'}}/>
-      <Stack.Screen name='Add Flight' component={AddFlight} options={{headerTintColor: '#5974f5', headerTitleStyle:{fontSize: 30, fontWeight: 'bold',}, headerTitleAlign:'left'}}/>
-    </Stack.Navigator>
-  }</NavigationContainer>
+    <StackScreen/>
   )
 }
 
