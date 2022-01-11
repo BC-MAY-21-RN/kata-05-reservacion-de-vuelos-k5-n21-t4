@@ -10,7 +10,7 @@ export const MyFlights = (props) => {
   return (
     <Container2>
         <MyFlights_List infoUser={infoUser}/>
-        <PlussButton onPress={() => navigation.navigate('Add Flight')}/>
+        <PlussButton navigation={navigation}/>
     </Container2>
   );
 };
