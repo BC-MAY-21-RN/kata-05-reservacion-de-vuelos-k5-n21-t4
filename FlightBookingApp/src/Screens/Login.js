@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import {PswrdInput, Input} from '../Components/InputLog';
-import {Container, Texto, TochOP} from '../Assets/styled';
+import {Container, Texto, TochOP, GoogleBtn} from '../Assets/styled';
 import auth from '@react-native-firebase/auth'
 
 import { Text } from 'react-native'
@@ -56,14 +56,14 @@ export const Login = ({navigation}) => {
         </Texto>
       </TochOP>
 
-      <Text>
+      <GoogleBtn>
         <GoogleSigninButton
-          style={{ width: 220, height: 55 }}
+          style={{ width: 220, height: 50 }}
           size={GoogleSigninButton.Size.Wide}
           color={GoogleSigninButton.Color.Dark}
           onPress={signInGoogle}
         />;
-      </Text>
+      </GoogleBtn>
 
       <Texto align={'center'} color={'gray'}>
         You do not have an account?
