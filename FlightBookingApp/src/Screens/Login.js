@@ -32,7 +32,7 @@ export const Login = ({navigation}) => {
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
     // Sign-in the user with the credential
     await auth().signInWithCredential(googleCredential).then((res)=>{
-      navigation.navigate("My Flights", getUserdata(res))
+      navigation.navigate("My Flights", res.user.uid)
     })
   };
 
