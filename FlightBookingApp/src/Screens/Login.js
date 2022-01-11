@@ -21,11 +21,11 @@ export const Login = ({navigation}) => {
     if(email.length>0&&pswrd.length>0)
       setValidation({bcolor: '#5391DA', disabled: false})
     else
-      setValidation({bcolor: '#b6b7ba', disabled: false})
+      setValidation({bcolor: '#b6b7ba', disabled: true})
   }, [email, pswrd])
 
 
-  const signIn = async () => {
+  const signInGoogle = async () => {
     // Get the users ID token
     const { idToken } = await GoogleSignin.signIn();
     // Create a Google credential with the token
@@ -38,10 +38,10 @@ export const Login = ({navigation}) => {
 
   return (
     <Container>
-      <Texto size={'16px'}>Email *:</Texto>
+      <Texto size={'16px'}>Email:</Texto>
       <Input placeholder="Email" value={setEmail}/>
 
-      <Texto size={'16px'}>Password *:</Texto>
+      <Texto size={'16px'}>Password:</Texto>
       <PswrdInput
         keyboardType={null}
         placeholder="Contraseña"
@@ -61,7 +61,7 @@ export const Login = ({navigation}) => {
           style={{ width: 220, height: 55 }}
           size={GoogleSigninButton.Size.Wide}
           color={GoogleSigninButton.Color.Dark}
-          onPress={signIn}
+          onPress={signInGoogle}
         />;
       </Text>
 

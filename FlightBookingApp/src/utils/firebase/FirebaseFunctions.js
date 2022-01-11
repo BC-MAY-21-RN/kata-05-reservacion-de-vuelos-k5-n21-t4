@@ -1,3 +1,4 @@
+import { ToastAndroid } from 'react-native'
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
 
@@ -8,7 +9,16 @@ export const loginAuth = async (navigation, email, pwd) =>{
         navigation.navigate("My Flights", getUserdata(res))
       })
       .catch((e)=>{
-        console.log(e)
+        console.log(e.code)
+
+        switch(e.code){
+          case 'auth/wrong-password': 
+            ToastAndroid.show("Invalid Password", 3)
+            break;
+          case 'auth/invalid-email':  
+            ToastAndroid.show("Invalid Email", 3)
+            break;
+        }
       })
     }
     catch (e){
