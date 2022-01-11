@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Text } from 'react-native';
+import React from 'react'
 import {Container2} from '../Assets/cardStyled'
 import { PlussButton, MyFlights_List } from '../Components/CardFlight/index';
-//import db from '../firebase/config';
 
 export const MyFlights = ({ navigation }) => {
   return (
     <Container2>
         <MyFlights_List/>
-        <PlussButton onPress={() => navigation.navigate('Add Flight')}/>
+        <PlussButton onPress={() => navigation.navigate('Origen')}/>
     </Container2>
   );
 };
