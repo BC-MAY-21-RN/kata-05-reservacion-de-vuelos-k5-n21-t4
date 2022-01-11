@@ -102,7 +102,7 @@ export const SignUp = ({navigation}) => {
         Subscribe for select product updates
       </CheckBoxWithLabel>
 
-      <TochOP onPress={() => addUserToFirestore()}>
+      <TochOP onPress={() => addUserToFirestore()} >
         <Texto size={'18px'} color={'white'} FW={'bold'}>
           Sign Up
         </Texto>

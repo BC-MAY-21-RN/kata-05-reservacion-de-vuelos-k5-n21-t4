@@ -1,0 +1,5 @@
+export {Origen} from './Orgin'
+export {Confirmacion} from './Confirmacion'
+export {Destino} from './Destino'
+export {Fecha} from './Fecha'
+export {Pasajeros} from './Pasajeros'
