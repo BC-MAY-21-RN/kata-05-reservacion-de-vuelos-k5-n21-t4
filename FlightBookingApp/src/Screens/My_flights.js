@@ -1,6 +1,7 @@
-import React from 'react'
-import {Container2} from '../Assets/cardStyled'
-import { PlussButton, MyFlights_List } from '../Components/CardFlight/index';
+import React, { useState, useEffect } from 'react';
+import { Texto, Plus, } from '../Assets/styled';
+import {ScrlView, Container2} from '../Assets/cardStyled'
+import {  CardFlight } from '../Components/CardFlight'
 
 export const MyFlights = ({ navigation }) => {
   return (

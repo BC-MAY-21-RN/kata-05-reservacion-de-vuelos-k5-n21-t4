@@ -30,7 +30,7 @@ export const Login = ({navigation}) => {
           .then(res2=>{
             alert("Welcome "+res2._data.name)
             setInfoUser(res2._data)
-            navigation.navigate('Flights', infoUser)
+            navigation.navigate('My Flights', infoUser)
           })
       })
       .catch((e)=>{
@@ -56,7 +56,7 @@ export const Login = ({navigation}) => {
       .then(res2=>{
         alert("Welcome "+res2._data.name)
         setInfoUser(res2._data)
-        navigation.navigate('Flights', infoUser)
+        navigation.navigate('My Flights', infoUser)
       })
     })
   };
