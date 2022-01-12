@@ -7,24 +7,18 @@ export const Container = styled.View`
   background-color: white;
   `;
 //Estilo botones
-export const TochOP = styled.TouchableOpacity.attrs(props => ({
-  activeOpacity: props.actOpa || 1,
-}))
-  `
+export const TochOP = styled.TouchableOpacity.attrs(props => ({activeOpacity: props.actOpa || 1,}))`
   justify-content: center;
   align-items: center;
   border-radius: 18px;
   width: 100%;
-  height: 8%;
+  height: 50px;
   background-color: ${(props) => props.BackColor || props.bcolor};
   margin: 2% 0% 2% 0%;
   padding: 3px;
   font-weight: bold;
-  `;
-export const Plus = styled.TouchableOpacity.attrs(props => ({
-  activeOpacity: 0.8,
-}))
-  `
+`;
+export const Plus = styled.View`
   position: absolute;   
   align-self: center;
   border-radius: 100px;
@@ -33,7 +27,7 @@ export const Plus = styled.TouchableOpacity.attrs(props => ({
   background-color:#5974f5;
   font-weight: bold;
   bottom: 15px;
-  `;
+`;
 
 
 //Textos

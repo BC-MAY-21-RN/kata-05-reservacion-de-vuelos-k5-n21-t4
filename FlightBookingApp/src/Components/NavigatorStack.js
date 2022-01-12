@@ -10,18 +10,45 @@ import { Origen, Confirmacion, Destino, Fecha,Pasajeros } from './MyFlightCompon
 const Stack = createNativeStackNavigator();
 
 export function StackScreen(){
+
+
+  const stackOptions = {
+    headerStyle: {
+      elevation: 0,
+      shadowOpacity: 0,
+    },
+    headerTintColor: '#5974f5', 
+    headerTitleStyle: {
+      fontSize: 30, 
+      fontWeight: 'bold',
+      left: 0,
+    }, 
+    headerTitleAlign:'left',
+  }
+  const stackOptionsForm = {
+    headerStyle: {
+      elevation: 0,
+      shadowOpacity: 0,
+    },
+    headerTintColor: '#5974f5', 
+    title: '',
+  }
+
+
+
+
     return(
         <NavigationContainer>{ 
             <Stack.Navigator>
-              <Stack.Screen name='Login' component={Login} options={{headerTintColor: '#5974f5', headerTitleStyle:{fontSize: 30, fontWeight: 'bold',}, headerTitleAlign:'left'}}/>
-              <Stack.Screen name='SignUp' component={SignUp} options={{headerTintColor: '#5974f5',  headerTitleStyle:{fontSize: 30, fontWeight: 'bold',}, headerTitleAlign:'left'}}/>
-              <Stack.Screen name='My Flights' component={MyFlights} options={{headerTintColor: '#5974f5', headerTitleStyle:{fontSize: 30, fontWeight: 'bold',}, headerTitleAlign:'left'}}/>
-              <Stack.Screen name='Add Flight' component={AddFlight} options={{headerTintColor: '#5974f5', headerTitleStyle:{fontSize: 30, fontWeight: 'bold',}, headerTitleAlign:'left'}}/>
-              <Stack.Screen name='Origen' component={Origen} options={{headerTintColor: '#5974f5', headerTitleStyle:{fontSize: 30, fontWeight: 'bold',}, headerTitleAlign:'left'}}/>
-              <Stack.Screen name='Confirmacion' component={Confirmacion} options={{headerTintColor: '#5974f5', headerTitleStyle:{fontSize: 30, fontWeight: 'bold',}, headerTitleAlign:'left'}}/>
-              <Stack.Screen name='Destino' component={Destino} options={{headerTintColor: '#5974f5', headerTitleStyle:{fontSize: 30, fontWeight: 'bold',}, headerTitleAlign:'left'}}/>
-              <Stack.Screen name='Fecha' component={Fecha} options={{headerTintColor: '#5974f5', headerTitleStyle:{fontSize: 30, fontWeight: 'bold',}, headerTitleAlign:'left'}}/>
-              <Stack.Screen name='Pasajeros' component={Pasajeros} options={{headerTintColor: '#5974f5', headerTitleStyle:{fontSize: 30, fontWeight: 'bold',}, headerTitleAlign:'left'}}/>
+              <Stack.Screen name='Login' component={Login} options={stackOptions}/>
+              <Stack.Screen name='SignUp' component={SignUp} options={stackOptions}/>
+              <Stack.Screen name='My Flights' component={MyFlights} options={stackOptions}/>
+              <Stack.Screen name='Add Flight' component={AddFlight} options={stackOptions}/>
+              <Stack.Screen name='Origen' component={Origen} options={stackOptionsForm}/>
+              <Stack.Screen name='Destino' component={Destino} options={stackOptionsForm}/>
+              <Stack.Screen name='Fecha' component={Fecha} options={stackOptionsForm}/>
+              <Stack.Screen name='Pasajeros' component={Pasajeros} options={stackOptionsForm}/>
+              <Stack.Screen name='Confirmacion' component={Confirmacion} options={stackOptionsForm}/>
             </Stack.Navigator>
           }</NavigationContainer>
     );

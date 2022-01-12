@@ -1,16 +1,14 @@
 import React from 'react'
 import { Texto, Plus, } from '../../Assets/styled';
 
-export function PlussButton(){
-  
+export function PlussButton(props){
     return(
         <Plus>
           <Texto 
             size={'60px'} 
             color={'white'} 
             align={'center'} 
-            MP={'-4% 0% 0% 0%'} 
-            >
+            MP={'-4% 0% 0% 0%'}>
             +
           </Texto>
         </Plus>

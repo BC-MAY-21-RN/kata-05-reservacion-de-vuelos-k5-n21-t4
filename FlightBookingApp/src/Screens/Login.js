@@ -73,6 +73,18 @@ export const Login = ({navigation}) => {
           style={{color: '#5974f5'}}>
           Sign Up
         </Texto>
+        <Texto
+          color={'#5974f5'}
+          onPress={() => navigation.navigate('Origen')}
+          style={{color: '#5974f5'}}>
+          {'\n'}Add Flight
+        </Texto>
+        <Texto
+          color={'#5974f5'}
+          onPress={() => navigation.navigate('My Flights')}
+          style={{color: '#5974f5'}}>
+          {'\n'}My Flights
+        </Texto>
       </Texto>
     </Container>
   );
