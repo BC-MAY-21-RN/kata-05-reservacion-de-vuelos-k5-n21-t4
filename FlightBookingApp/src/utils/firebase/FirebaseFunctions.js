@@ -6,7 +6,7 @@ export const loginAuth = async (navigation, email, pwd) =>{
     try{
       await auth().signInWithEmailAndPassword(email, pwd)
       .then((res)=>{
-        navigation.navigate("My Flights", getUserdata(res))
+        navigation.navigate("My Flights", res.user.uid)
       })
       .catch((e)=>{
         console.log(e.code)
@@ -18,6 +18,9 @@ export const loginAuth = async (navigation, email, pwd) =>{
           case 'auth/invalid-email':  
             ToastAndroid.show("Invalid Email", 3)
             break;
+          case 'auth/too-many-requests':  
+            ToastAndroid.show("Please wait 5 seconds before press the button again", 5)
+            break;
         }
       })
     }
@@ -26,19 +29,20 @@ export const loginAuth = async (navigation, email, pwd) =>{
     }
 }
 
-export const getUserdata = (props) =>{
-    let infoUser = {};
-    try{
-        return firestore()
-        .collection('Users')
-        .doc(props.user.uid)
-        .get()
-        .then(res2=>{
-            alert("Welcome "+res2._data.name)
-            infoUser = props.user
-            return infoUser
-        })
-    } catch (e){
-        console.log('Error: ', e)
-    }
-}
+// export const getUserdata = async (props) =>{
+//     let infoUser = ""
+//     try{
+//       await firestore()
+//         .collection('Users')
+//         .doc(props.user.uid)
+//         .get()
+//         .then(res2=>{
+//             alert("Welcome "+res2._data.name)
+//             infoUser = props.user.uid
+//             console.log("Soy el uid" + infoUser)
+//           })
+//     } catch (e){
+//       console.log('Error: ', e)
+//     }
+//   return infoUser
+// }
