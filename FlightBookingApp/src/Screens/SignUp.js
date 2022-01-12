@@ -1,10 +1,8 @@
 import React, { useEffect, useState} from 'react';
-import {Container, Texto, TochOP} from '../Assets/styled';
+import {Container, Texto, TochOP1} from '../Assets/styled';
 import {PswrdInput, Input} from '../Components/InputLog';
 import CheckBoxWithLabel from '../Components/Checkbox';
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin'
-
-
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import { Text } from 'react-native';
@@ -14,6 +12,7 @@ GoogleSignin.configure({
 });
 
 export const SignUp = ({navigation}) => {
+  
 
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [hidePassword, setHidePassword] = useState(true);
@@ -24,6 +23,14 @@ export const SignUp = ({navigation}) => {
   const [subscribeCheckBox, setSubscribeCheckBox] = useState('');
   const [info_user, setInfoUser] = useState({});
 
+
+    // if(){
+    //   setDisable(false)
+    // }
+
+
+
+  
   const addUserToFirestore = () => {
     //Creacion del usuario en la firebase
     auth().createUserWithEmailAndPassword(email, pswrd)
@@ -97,11 +104,12 @@ export const SignUp = ({navigation}) => {
         Subscribe for select product updates
       </CheckBoxWithLabel>
 
-      <TochOP onPress={() => addUserToFirestore()}>
+      <TochOP1 BackColor="gray" 
+      disabled={(email.length > 2 && name.length > 2 && pswrd.length >= 8 &&termsCheckBox == true && subscribeCheckBox ==true) ? false : true} onPress={() => addUserToFirestore()}>
         <Texto size={'18px'} color={'white'} FW={'bold'}>
           Sign Up
         </Texto>
-      </TochOP>
+      </TochOP1>
 
       <Texto color={'#747474'} align={'center'}>
         or

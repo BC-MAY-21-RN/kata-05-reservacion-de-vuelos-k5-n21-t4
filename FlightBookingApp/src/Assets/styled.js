@@ -16,11 +16,27 @@ export const TochOP = styled.TouchableOpacity.attrs(props => ({
   border-radius: 18px;
   width: 100%;
   height: 8%;
-  background-color: ${(props) => props.BackColor || '#b6b7ba'};
+  background-color: ${(props) => props.BackColor || props.bcolor};
   margin: 2% 0% 2% 0%;
   padding: 3px;
   font-weight: bold;
   `;
+
+  export const TochOP1 = styled.TouchableOpacity.attrs(props => ({
+    activeOpacity: props.actOpa || 1,
+  }))
+    `
+    justify-content: center;
+    align-items: center;
+    border-radius: 18px;
+    width: 100%;
+    height: 8%;
+    background-color: ${(props) => props.disabled ? 'gray' : '#5b6df7'};
+    margin: 2% 0% 2% 0%;
+    padding: 3px;
+    font-weight: bold;
+    `;
+
 export const Plus = styled.TouchableOpacity.attrs(props => ({
   activeOpacity: 0.8,
 }))
@@ -103,3 +119,7 @@ export const InpL = styled.TextInput`
 export const ScrollView = styled.ScrollView`
 
   `;
+
+export const GoogleBtn = styled.Text`
+  text-align: center;
+`
