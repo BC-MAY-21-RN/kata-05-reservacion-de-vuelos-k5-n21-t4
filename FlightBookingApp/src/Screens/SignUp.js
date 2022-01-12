@@ -1,10 +1,8 @@
 import React, { useEffect, useState} from 'react';
-import {Container, Texto, TochOP} from '../Assets/styled';
+import {Container, Texto, TochOP1} from '../Assets/styled';
 import {PswrdInput, Input} from '../Components/InputLog';
 import CheckBoxWithLabel from '../Components/Checkbox';
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin'
-
-
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import { Text } from 'react-native';
@@ -14,6 +12,7 @@ GoogleSignin.configure({
 });
 
 export const SignUp = ({navigation}) => {
+  
 
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [hidePassword, setHidePassword] = useState(true);
@@ -24,6 +23,14 @@ export const SignUp = ({navigation}) => {
   const [subscribeCheckBox, setSubscribeCheckBox] = useState('');
   const [info_user, setInfoUser] = useState({});
 
+
+    // if(){
+    //   setDisable(false)
+    // }
+
+
+
+  
   const addUserToFirestore = () => {
     //Creacion del usuario en la firebase
     auth().createUserWithEmailAndPassword(email, pswrd)
@@ -54,19 +61,14 @@ export const SignUp = ({navigation}) => {
   }
 
   const signIn = async () => {
-    if(GoogleSignin)
-    {
-      GoogleSignin.signOut()
-    }
-    else
-    {
-      // Get the users ID token
-      const { idToken } = await GoogleSignin.signIn();
-      // Create a Google credential with the token
-      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-      // Sign-in the user with the credential
-      return auth().signInWithCredential(googleCredential);
-    }
+    // Get the users ID token
+    const { idToken } = await GoogleSignin.signIn();
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(googleCredential).then((resp)=>{
+      console.log(resp)
+    })
   };
 
 
@@ -102,11 +104,12 @@ export const SignUp = ({navigation}) => {
         Subscribe for select product updates
       </CheckBoxWithLabel>
 
-      <TochOP onPress={() => addUserToFirestore()} >
+      <TochOP1 BackColor="gray" 
+      disabled={(email.length > 2 && name.length > 2 && pswrd.length >= 8 &&termsCheckBox == true && subscribeCheckBox ==true) ? false : true} onPress={() => addUserToFirestore()}>
         <Texto size={'18px'} color={'white'} FW={'bold'}>
           Sign Up
         </Texto>
-      </TochOP>
+      </TochOP1>
 
       <Texto color={'#747474'} align={'center'}>
         or
@@ -114,7 +117,7 @@ export const SignUp = ({navigation}) => {
 
         <Text>
           <GoogleSigninButton
-            style={{ width: 220, height: 55 }}
+            style={{ width: 192, height: 48 }}
             size={GoogleSigninButton.Size.Wide}
             color={GoogleSigninButton.Color.Dark}
             onPress={signIn}
