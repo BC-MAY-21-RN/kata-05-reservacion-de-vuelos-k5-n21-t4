@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity as Button} from 'react-native'
 import {NewFlightCard} from './NewFlightCard';
@@ -54,7 +53,6 @@ const styles = StyleSheet.create({
     button:{
         position: 'absolute',
         alignSelf: 'center',
-        alignItems: 'center',
         bottom: 60,
         padding: 12,
         borderRadius: 15,
