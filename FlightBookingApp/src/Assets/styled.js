@@ -123,3 +123,8 @@ export const ScrollView = styled.ScrollView`
 export const GoogleBtn = styled.Text`
   text-align: center;
 `
+
+export const TextAlert = styled.Text`
+  font-size: 14px;
+  color: red;
+`
