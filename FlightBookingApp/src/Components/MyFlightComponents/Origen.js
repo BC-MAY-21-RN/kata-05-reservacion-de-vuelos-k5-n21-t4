@@ -1,10 +1,9 @@
 
 import React, { useState } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity as Button} from 'react-native'
-import { Input } from '../InputLog'
-import {Texto} from '../../Assets/styled';
-import {NewFlightCard} from './NewFlightCard';
-import { CardFlight } from '../CardFlight';
+import { Text, View, TouchableOpacity as Button, ToastAndroid} from 'react-native'
+import { Picker } from '@react-native-picker/picker'
+import { styles } from './formStyles'
+{/**list picker: https://github.com/react-native-picker/picker */}
 
 export const Origen = ({navigation}) =>{
 
@@ -16,57 +15,40 @@ export const Origen = ({navigation}) =>{
         "key": 0,
     }
 
+    const [selectedLanguage, setSelectedLanguage] = useState("")
+
     const goToScreen = () =>{
-        navigation.navigate('Destino')
+        if (selectedLanguage != "") {
+            navigation.navigate('Destino')
+        }else{
+            ToastAndroid.show("Select a valid option",ToastAndroid.LONG)
+        }
     }    
+
     return (
         <View style={styles.screen}>
             {/**Origen */}
             <View style={styles.centerMainContent}>
                 <Text style={styles.header}>Where are you{'\n'}now?</Text>
-                <Input style={styles.input} placeholder="Select Location"/>
+                <View style={(selectedLanguage != "" ? (styles.input) : (styles.inputDisabled))}>
+                    <Picker
+                    selectedValue={selectedLanguage}
+                    onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}
+                    >
+                        {/**The last ono will be the default value */}
+                        <Picker.Item label="Select Location" value=""></Picker.Item> 
+                        <Picker.Item label="Belgrade, Serbia" value="Belgrade, Serbia"></Picker.Item>
+                        <Picker.Item label="Berlin, Germany" value="Berlin, Germany"></Picker.Item>
+                        <Picker.Item label="México, Michoacan" value="México, Michoacan"></Picker.Item>
+                        <Picker.Item label="Canada, Burlington" value="Canada, Burlington"></Picker.Item> 
+                    </Picker>
+                </View>
             </View>
-            {/**have a boolean to decided the design of the input component in props */}
-            <Button style={styles.button} onPress={goToScreen}>
+
+            <Button style={(selectedLanguage != "" ? (styles.button) : (styles.buttonDisabled))} onPress={goToScreen}>
                 <Text style={styles.centerText}> Next </Text>
             </Button>
 
         </View> 
     )
 }
-
-const styles = StyleSheet.create({
-    screen:{
-        backgroundColor: 'white',
-        height: '100%',
-        padding: 20,
-        paddingTop: 0,
-        flex: 1,
-        justifyContent: 'center',
-    },
-    centerMainContent:{
-        marginBottom: 220,
-    },
-    header:{
-        fontSize: 35,
-        fontWeight: 'bold',
-        color: 'black',
-        marginBottom: 90,
-    },
-    button:{
-        position: 'absolute',
-        alignSelf: 'center',
-        alignItems: 'center',
-        bottom: 60,
-        padding: 12,
-        borderRadius: 15,
-        flex: 1,
-        width: '100%',
-        backgroundColor: '#5C6EF8',
-    },
-    centerText:{
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: 'white',
-    },
-  });
