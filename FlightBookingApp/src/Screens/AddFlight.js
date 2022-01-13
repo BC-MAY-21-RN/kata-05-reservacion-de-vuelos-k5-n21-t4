@@ -4,7 +4,7 @@ import {Provider as PaperProvider} from 'react-native-paper'
 import { FormProvider } from './AddFlightFormScreens/AFFormContext'
 import {AddFlightNavigator as Navigator} from '../Components/AddFlightNavigator'
 import { View, Text } from 'react-native'
-import Origin from '../Components/MyFlightComponents/Orgin'
+import Origin from '../Components/MyFlightComponents/Origen'
 
 //replace the  things on top with the actual files
 

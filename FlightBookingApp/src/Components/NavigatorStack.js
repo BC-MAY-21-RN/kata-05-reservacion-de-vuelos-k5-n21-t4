@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import {SignUp, Login, MyFlights, AddFlight} from '../Screens/index';
 
-import { Origen, Confirmacion, Destino, Fecha,Pasajeros } from './MyFlightComponents/Index'
+import { Origen, Confirmacion, Destino, Fecha, Pasajeros } from './MyFlightComponents/Index'
 
 
 const Stack = createNativeStackNavigator();
@@ -33,9 +33,6 @@ export function StackScreen(){
     headerTintColor: '#5974f5', 
     title: '',
   }
-
-
-
 
     return(
         <NavigationContainer>{ 

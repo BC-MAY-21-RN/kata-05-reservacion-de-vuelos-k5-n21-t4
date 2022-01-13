@@ -42,17 +42,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     centerMainContent:{
-        marginBottom: 0,
+        marginBottom: 120,
     },
     header:{
         fontSize: 35,
         fontWeight: 'bold',
         color: 'black',
-        marginBottom: 90,
     },
     button:{
         position: 'absolute',
         alignSelf: 'center',
+        alignItems: 'center',
         bottom: 60,
         padding: 12,
         borderRadius: 15,
@@ -66,15 +66,3 @@ const styles = StyleSheet.create({
         color: 'white',
     },
   });
-
-  /**
-   * justify-content: center;
-  align-items: center;
-  border-radius: 18px;
-  width: 100%;
-  height: 50px;
-  background-color: ${(props) => props.BackColor || props.bcolor};
-  margin: 2% 0% 2% 0%;
-  padding: 3px;
-  font-weight: bold;
-   */

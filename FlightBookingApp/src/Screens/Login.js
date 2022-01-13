@@ -75,7 +75,7 @@ export const Login = ({navigation}) => {
         </Texto>
         <Texto
           color={'#5974f5'}
-          onPress={() => navigation.navigate('Origen')}
+          onPress={() => navigation.navigate('Destino')}
           style={{color: '#5974f5'}}>
           {'\n'}Add Flight
         </Texto>
