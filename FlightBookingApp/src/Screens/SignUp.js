@@ -1,20 +1,22 @@
-import React, { useEffect, useState} from 'react';
-import {Container, Texto, TochOP} from '../Assets/styled';
+import React, {useEffect, useState} from 'react';
+import {Container, GoogleBtn, Texto, TochOP} from '../Assets/styled';
 import {PswrdInput, Input} from '../Components/InputLog';
 import CheckBoxWithLabel from '../Components/Checkbox';
-import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin'
-
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+} from '@react-native-google-signin/google-signin';
 
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
-import { Text } from 'react-native';
+import {Text} from 'react-native';
 
 GoogleSignin.configure({
-  webClientId: '43375129789-19d3mo4bim7cgmt6d7co7lr44doerqti.apps.googleusercontent.com'
+  webClientId:
+    '43375129789-19d3mo4bim7cgmt6d7co7lr44doerqti.apps.googleusercontent.com',
 });
 
 export const SignUp = ({navigation}) => {
-
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [hidePassword, setHidePassword] = useState(true);
   const [email, setEmail] = useState('');
@@ -26,49 +28,45 @@ export const SignUp = ({navigation}) => {
 
   const addUserToFirestore = () => {
     //Creacion del usuario en la firebase
-    auth().createUserWithEmailAndPassword(email, pswrd)
-    .then((e)=>{// e recupera lo que es la información
-      console.log("User created on auth database in firebase")
+    auth()
+      .createUserWithEmailAndPassword(email, pswrd)
+      .then(e => {
+        // e recupera lo que es la información
+        console.log('User created on auth database in firebase');
 
-      //Creación del usuario en la firestore
-      firestore()
-      .collection('Users')
-      .doc(e.user.uid)//Usa el id que se crea en createuserwithEmailand password para darte titulo al documento del usuario el cual contendra la información
-      .set({
-        email: email,
-        flights: ['1'],
-        name: name,
-        password: pswrd,
+        //Creación del usuario en la firestore
+        firestore()
+          .collection('Users')
+          .doc(e.user.uid) //Usa el id que se crea en createuserwithEmailand password para darte titulo al documento del usuario el cual contendra la información
+          .set({
+            email: email,
+            flights: ['1'],
+            name: name,
+            password: pswrd,
+          })
+          .then(() => {
+            console.log('User registration succesful');
+            setInfoUser(e);
+            navigation.navigate('My Flights', info_user);
+          });
       })
-      .then(() => {
-        console.log(
-          'User registration succesful'
-        );
-        setInfoUser(e)
-        navigation.navigate('My Flights', info_user)
+      .catch(e => {
+        console.log('Error' + e);
       });
-    })
-    .catch(e=>{
-      console.log("Error"+e)
-    })
-  }
+  };
 
   const signIn = async () => {
-    if(GoogleSignin)
-    {
-      GoogleSignin.signOut()
-    }
-    else
-    {
+    if (GoogleSignin) {
+      GoogleSignin.signOut();
+    } else {
       // Get the users ID token
-      const { idToken } = await GoogleSignin.signIn();
+      const {idToken} = await GoogleSignin.signIn();
       // Create a Google credential with the token
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
       // Sign-in the user with the credential
       return auth().signInWithCredential(googleCredential);
     }
   };
-
 
   return (
     <Container>
@@ -102,7 +100,7 @@ export const SignUp = ({navigation}) => {
         Subscribe for select product updates
       </CheckBoxWithLabel>
 
-      <TochOP onPress={() => addUserToFirestore()} >
+      <TochOP onPress={() => addUserToFirestore()}>
         <Texto size={'18px'} color={'white'} FW={'bold'}>
           Sign Up
         </Texto>
@@ -112,14 +110,15 @@ export const SignUp = ({navigation}) => {
         or
       </Texto>
 
-        <Text>
+      <TochOP bcolor={'#5391DA'}>
+        <GoogleBtn>
           <GoogleSigninButton
-            style={{ width: 220, height: 55 }}
             size={GoogleSigninButton.Size.Wide}
             color={GoogleSigninButton.Color.Dark}
             onPress={signIn}
-          />;
-        </Text>
+          />
+        </GoogleBtn>
+      </TochOP>
 
       <Texto align={'center'} color={'gray'}>
         Alredy have an account?
