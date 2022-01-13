@@ -5,6 +5,7 @@ import CheckBoxWithLabel from '../Components/Checkbox';
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin'
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import validation from '../Components/SingUpVal';
 import { Text } from 'react-native';
 
 GoogleSignin.configure({
@@ -105,7 +106,7 @@ export const SignUp = ({navigation}) => {
       </CheckBoxWithLabel>
 
       <TochOP1 BackColor="gray" 
-      disabled={(email.length > 2 && name.length > 2 && pswrd.length >= 8 &&termsCheckBox == true && subscribeCheckBox ==true) ? false : true} onPress={() => addUserToFirestore()}>
+      disabled={(email.length > 2 && name.length > 2 && pswrd.length >= 8 &&termsCheckBox == true && subscribeCheckBox == true && validation(pswrd)) ? false : true} onPress={() => addUserToFirestore()}>
         <Texto size={'18px'} color={'white'} FW={'bold'}>
           Sign Up
         </Texto>
