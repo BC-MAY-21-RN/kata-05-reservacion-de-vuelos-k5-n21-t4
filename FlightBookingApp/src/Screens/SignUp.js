@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react';
-import {Container, Texto, TochOP1, TextAlert} from '../Assets/styled';
+import {Container, Texto, TochOP1, TextAlert, GoogleBtn} from '../Assets/styled';
 import {PswrdInput, Input} from '../Components/InputLog';
 import CheckBoxWithLabel from '../Components/Checkbox';
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin'
@@ -7,10 +7,7 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import validation from '../Components/SingUpVal';
 import { Text } from 'react-native';
-
-GoogleSignin.configure({
-  webClientId: '43375129789-19d3mo4bim7cgmt6d7co7lr44doerqti.apps.googleusercontent.com'
-});
+import { SignInWithGoogle } from '../utils/firebase/FirebaseFunctions.js';
 
 export const SignUp = ({navigation}) => {
   
@@ -23,14 +20,6 @@ export const SignUp = ({navigation}) => {
   const [termsCheckBox, setTermsCheckBox] = useState('');
   const [subscribeCheckBox, setSubscribeCheckBox] = useState('');
   const [info_user, setInfoUser] = useState({});
-
-
-    // if(){
-    //   setDisable(false)
-    // }
-
-
-
   
   const addUserToFirestore = () => {
     //Creacion del usuario en la firebase
@@ -44,7 +33,7 @@ export const SignUp = ({navigation}) => {
       .doc(e.user.uid)//Usa el id que se crea en createuserwithEmailand password para darte titulo al documento del usuario el cual contendra la información
       .set({
         email: email,
-        flights: ['1'],
+        flights: [],
         name: name,
         password: pswrd,
       })
@@ -57,21 +46,9 @@ export const SignUp = ({navigation}) => {
       });
     })
     .catch(e=>{
-      console.log("Error"+e)
+      console.log(e)
     })
   }
-
-  const signIn = async () => {
-    // Get the users ID token
-    const { idToken } = await GoogleSignin.signIn();
-    // Create a Google credential with the token
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    // Sign-in the user with the credential
-    return auth().signInWithCredential(googleCredential).then((resp)=>{
-      console.log(resp)
-    })
-  };
-
 
   return (
     <Container>
@@ -116,14 +93,14 @@ export const SignUp = ({navigation}) => {
         or
       </Texto>
 
-        <Text>
+        <GoogleBtn>
           <GoogleSigninButton
             style={{ width: 192, height: 48 }}
             size={GoogleSigninButton.Size.Wide}
             color={GoogleSigninButton.Color.Dark}
-            onPress={signIn}
+            onPress={()=>SignInWithGoogle}
           />;
-        </Text>
+        </GoogleBtn>
 
       <Texto align={'center'} color={'gray'}>
         Alredy have an account?
