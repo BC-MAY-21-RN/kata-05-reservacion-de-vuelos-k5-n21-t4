@@ -15,25 +15,36 @@ export const Origen = ({navigation}) =>{
         "key": 0,
     }
 
-    const [selectedLanguage, setSelectedLanguage] = useState("")
+    const [selectedValue, selectedSelectedValue] = useState("")
 
-    const goToScreen = () =>{
-        if (selectedLanguage != "") {
-            navigation.navigate('Destino')
+    const setOrigin = (value) =>{
+        selectedSelectedValue(value)
+        FlightData.Origin = value;
+    }
+
+    const goToScreen = (nextScreen) =>{
+        if (selectedValue != "") {
+            navigation.navigate(nextScreen)
         }else{
             ToastAndroid.show("Select a valid option",ToastAndroid.LONG)
         }
     }    
+
+    const nextStep = (pickerValue, nextScreen) =>{
+        setOrigin(pickerValue)
+        goToScreen(nextScreen)
+        console.log(FlightData)
+    }
 
     return (
         <View style={styles.screen}>
             {/**Origen */}
             <View style={styles.centerMainContent}>
                 <Text style={styles.header}>Where are you{'\n'}now?</Text>
-                <View style={(selectedLanguage != "" ? (styles.input) : (styles.inputDisabled))}>
+                <View style={(selectedValue != "" ? (styles.input) : (styles.inputDisabled))}>
                     <Picker
-                    selectedValue={selectedLanguage}
-                    onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}
+                    selectedValue={selectedValue}
+                    onValueChange={(itemValue, itemIndex) => selectedSelectedValue(itemValue)}
                     >
                         {/**The last ono will be the default value */}
                         <Picker.Item label="Select Location" value=""></Picker.Item> 
@@ -45,7 +56,7 @@ export const Origen = ({navigation}) =>{
                 </View>
             </View>
 
-            <Button style={(selectedLanguage != "" ? (styles.button) : (styles.buttonDisabled))} onPress={goToScreen}>
+            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Destino")}>
                 <Text style={styles.centerText}> Next </Text>
             </Button>
 
