@@ -1,10 +1,11 @@
 import React, { useEffect, useState} from 'react';
-import {Container, Texto, TochOP1} from '../Assets/styled';
+import {Container, Texto, TochOP1, TextAlert} from '../Assets/styled';
 import {PswrdInput, Input} from '../Components/InputLog';
 import CheckBoxWithLabel from '../Components/Checkbox';
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin'
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import validation from '../Components/SingUpVal';
 import { Text } from 'react-native';
 
 GoogleSignin.configure({
@@ -77,10 +78,10 @@ export const SignUp = ({navigation}) => {
       <Texto size={'16px'}>First Name</Texto>
       <Input placeholder="Name" value={setName} />
 
-      <Texto size={'16px'}>Email *</Texto>
+      <Texto size={'16px'}>Email * {email.trim().length > 2 ? '' : <TextAlert>Email con formato invalido</TextAlert>  }</Texto>
       <Input placeholder="Email" value={setEmail} />
 
-      <Texto size={'16px'}>Password *</Texto>
+      <Texto size={'16px'}>Password *{(pswrd.trim().length > 8 && validation(pswrd)) ? '' : <TextAlert>Password con formato invalido</TextAlert>} </Texto>
       <PswrdInput
         keyboardType={null}
         placeholder="Contraseña"
@@ -105,7 +106,7 @@ export const SignUp = ({navigation}) => {
       </CheckBoxWithLabel>
 
       <TochOP1 BackColor="gray" 
-      disabled={(email.length > 2 && name.length > 2 && pswrd.length >= 8 &&termsCheckBox == true && subscribeCheckBox ==true) ? false : true} onPress={() => addUserToFirestore()}>
+      disabled={(email.length > 2 && name.length > 2 && pswrd.length >= 8 && termsCheckBox == true  && validation(pswrd)) ? false : true} onPress={() => addUserToFirestore()}>
         <Texto size={'18px'} color={'white'} FW={'bold'}>
           Sign Up
         </Texto>
