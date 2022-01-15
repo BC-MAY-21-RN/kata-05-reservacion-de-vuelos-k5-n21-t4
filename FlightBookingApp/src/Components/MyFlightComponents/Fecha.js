@@ -4,30 +4,58 @@ import { Text, View, TouchableOpacity as Button} from 'react-native'
 import { Input } from '../../Components/InputLog'
 import {NewFlightCard} from './NewFlightCard';
 import { styles } from './formStyles'
+import FlightData from './Origen';
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars'
+import { getCalendarDateString } from 'react-native-calendars/src/services';
 
 export const Fecha = ({navigation}) =>{
 
-    const FlightData = {
-        "Destiny": ["Sjj", "Siraj"], 
-        "Fecha": "", //use setState to get this data, then update the object and pass it
-        "Origin": ["Smh", "something"], 
-        "Passengers": "", 
-        "key": 0,
-    }
+    const [selectedValue, setSelectedValue] = useState("")
 
-    const goToScreen = () =>{
-        navigation.navigate('Pasajeros')
+    const getCurrentDay = () => {
+        return 1
+    }
+    
+    const setObjectValue = (value) =>{
+        setSelectedValue(value)
+        FlightData.Fecha = value
+    }
+    
+    const goToScreen = (nextScreen) =>{
+        if (selectedValue != "") {
+            navigation.navigate(nextScreen)
+        }else{
+            ToastAndroid.show("Select a valid option",ToastAndroid.LONG)
+        }
     }    
+    
+    const nextStep = (pickerValue, nextScreen) =>{
+        setObjectValue(pickerValue)
+        goToScreen(nextScreen)
+        console.log(FlightData)
+    } 
+    //Next screen Pasajeros
+
     return (
         <View style={styles.screen}>
-            {/**Origen */}
             <NewFlightCard props={FlightData}></NewFlightCard>
-            <View style={styles.centerMainContent}>
-                <Text style={styles.header}>Select date</Text>
-                <Input style={styles.input} placeholder="Select Location"/>
+            <View style={styles.centerCalendarContent}>
+                <Text style={styles.headerCalendar}>Select date</Text>
+                <Calendar 
+                    style={{
+                        //the calendar would shift the whole content due to some months 
+                        //not having the same amount of days thus being vertically shorter
+                        height: 320 
+                    }}
+                    futureScrollRange={10}
+                    pastScrollRange={0}
+                    hideDayNames={true}
+                    allowSelectionOutOfRange={false}
+                    //maxDate={}
+                    onDayPress={() => console.log(() => getCalendarDateString())}
+                />
             </View>
-            {/**have a boolean to decided the design of the input component in props */}
-            <Button style={styles.button} onPress={goToScreen}>
+            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Confirmacion")}>
                 <Text style={styles.centerText}> Next </Text>
             </Button>
 

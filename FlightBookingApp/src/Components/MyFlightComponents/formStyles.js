@@ -11,11 +11,20 @@ export const styles = StyleSheet.create({
     centerMainContent:{
         marginBottom: 220,
     },
+    centerCalendarContent:{
+        marginBottom: 100,
+    },
     header:{
         fontSize: 35,
         fontWeight: 'bold',
         color: 'black',
         marginBottom: 90,
+    },
+    headerCalendar:{
+        fontSize: 35,
+        fontWeight: 'bold',
+        color: 'black',
+        marginBottom: 5,
     },
     button:{
         position: 'absolute',
@@ -45,6 +54,11 @@ export const styles = StyleSheet.create({
         color: 'white',
     },
     input:{
+        borderWidth: 1,
+        borderColor: 'white',
+        borderBottomColor: '#5C6EF8',
+    },
+    inputPicker:{
         borderWidth: 1,
         borderColor: 'white',
         borderBottomColor: '#5C6EF8',

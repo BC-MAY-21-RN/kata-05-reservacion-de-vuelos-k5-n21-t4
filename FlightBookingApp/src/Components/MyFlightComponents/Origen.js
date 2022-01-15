@@ -21,9 +21,14 @@ export const Origen = ({navigation}) =>{
     const [selectedValue, setSelectedValue] = useState("")
     
     const setObjectValue = (value) =>{
+        //get only the country
+        let Country = value.split(',')
+        Country.shift()
+        Country = Country.join(',')
+
         setSelectedValue(value)
-        FlightData.Origin[0] = value
-        FlightData.Origin[1] = value
+        FlightData.Origin[0] = value.slice(0, 3).toUpperCase() //get the first 3 letters of the country
+        FlightData.Origin[1] = Country
     }
     
     const goToScreen = (nextScreen) =>{
@@ -37,7 +42,6 @@ export const Origen = ({navigation}) =>{
     const nextStep = (pickerValue, nextScreen) =>{
         setObjectValue(pickerValue)
         goToScreen(nextScreen)
-        console.log(FlightData)
     }
 
     //Next screen Destino
@@ -54,10 +58,12 @@ export const Origen = ({navigation}) =>{
                     >
                         {/**The last ono will be the default value */}
                         <Picker.Item label="Select Location" value=""></Picker.Item> 
-                        <Picker.Item label="Belgrade, Serbia" value="Belgrade, Serbia"></Picker.Item>
-                        <Picker.Item label="Berlin, Germany" value="Berlin, Germany"></Picker.Item>
-                        <Picker.Item label="México, Michoacan" value="México, Michoacan"></Picker.Item>
-                        <Picker.Item label="Canada, Burlington" value="Canada, Burlington"></Picker.Item> 
+                        <Picker.Item label="Serbia, Belgrade" value="Serbia, Belgrade"></Picker.Item>
+                        <Picker.Item label="Germany, Berlin" value="Germany, Berlin"></Picker.Item>
+                        <Picker.Item label="Michoacan, México" value="Michoacan, México"></Picker.Item>
+                        <Picker.Item label="Burlington, Canada" value="Burlington, Canada"></Picker.Item> 
+                        <Picker.Item label="Cataluña, España" value="Cataluña, España"></Picker.Item> 
+                        <Picker.Item label="Colima, Colima" value="Colima, Colima"></Picker.Item> 
                     </Picker>
                 </View>
             </View>

@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Text, View, TouchableOpacity as Button, ToastAndroid} from 'react-native'
 import {NewFlightCard} from './NewFlightCard';
 import { Picker } from '@react-native-picker/picker'
@@ -9,11 +9,21 @@ import FlightData from './Origen' //the object where the flight data is stored, 
 export const Destino = ({navigation}) =>{
 
     const [selectedValue, setSelectedValue] = useState("")
+
+    //whenever the user wants to go back to make a change the component has to be rerendeered t
+    //hats why i have this function here, so each time the screen is in view the flightcard will re-render
+    const renderFlightCard = () =>{
+        return(<NewFlightCard props={FlightData}></NewFlightCard>)
+    }
     
     const setObjectValue = (value) =>{
-        setSelectedValue(value)
-        FlightData.Destiny[0] = value
-        FlightData.Destiny[1] = value
+        let Country = value.split(',')
+            Country.shift()
+            Country = Country.join(',')
+
+            setSelectedValue(value)
+            FlightData.Destiny[0] = value.slice(0, 3).toUpperCase() //get the first 3 letters of the country
+            FlightData.Destiny[1] = Country
     }
     
     const goToScreen = (nextScreen) =>{
@@ -27,7 +37,6 @@ export const Destino = ({navigation}) =>{
     const nextStep = (pickerValue, nextScreen) =>{
         setObjectValue(pickerValue)
         goToScreen(nextScreen)
-        console.log(FlightData)
     }  
 
     //Next screen Fecha
@@ -35,7 +44,7 @@ export const Destino = ({navigation}) =>{
     return (
         <View style={styles.screen}>
             {/**Origen */}
-            <NewFlightCard props={FlightData}></NewFlightCard>
+            {renderFlightCard()}
             <View style={styles.centerMainContent}>
                 <Text style={styles.header}>Where will you be{'\n'}flying to?</Text>
                 <View style={(selectedValue != "" ? (styles.input) : (styles.inputDisabled))}>
@@ -45,10 +54,12 @@ export const Destino = ({navigation}) =>{
                     >
                         {/**The last ono will be the default value */}
                         <Picker.Item label="Select Location" value=""></Picker.Item> 
-                        <Picker.Item label="Berlin, Germany" value="Berlin, Germany"></Picker.Item>
-                        <Picker.Item label="México, Michoacan" value="México, Michoacan"></Picker.Item>
-                        <Picker.Item label="Canada, Burlington" value="Canada, Burlington"></Picker.Item> 
-                        <Picker.Item label="Belgrade, Serbia" value="Belgrade, Serbia"></Picker.Item>
+                        <Picker.Item label="Serbia, Belgrade" value="Serbia, Belgrade"></Picker.Item>
+                        <Picker.Item label="Germany, Berlin" value="Germany, Berlin"></Picker.Item>
+                        <Picker.Item label="Michoacan, México" value="Michoacan, México"></Picker.Item>
+                        <Picker.Item label="Burlington, Canada" value="Burlington, Canada"></Picker.Item> 
+                        <Picker.Item label="Cataluña, España" value="Cataluña, España"></Picker.Item> 
+                        <Picker.Item label="Colima, Colima" value="Colima, Colima"></Picker.Item>
                     </Picker>
                 </View>
             </View>
