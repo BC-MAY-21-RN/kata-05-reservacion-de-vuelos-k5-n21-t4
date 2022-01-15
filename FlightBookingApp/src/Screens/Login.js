@@ -26,7 +26,7 @@ export const Login = ({navigation}) => {
 
   useEffect(() => {
     if (email.length > 0 && pswrd.length > 0)
-      setValidation({bcolor: '#5391DA', disabled: false});
+      setValidation({bcolor: '#5C6EF8', disabled: false});
     else setValidation({bcolor: '#b6b7ba', disabled: true});
   }, [email, pswrd]);
 
@@ -67,19 +67,19 @@ export const Login = ({navigation}) => {
           Login
         </Texto>
       </TochOP>
-
-      <TochOP bcolor={'#5391DA'}>
-        <GoogleBtn>
-          <GoogleSigninButton
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={signInGoogle}
-          />
-        </GoogleBtn>
+      
+      {/**test@gmail.com */}
+      <TochOP
+        disabled={validation.disabled}
+        onPress={signInGoogle}
+        bcolor={'#5C6EF8'}>
+        <Texto size={'18px'} color={'white'} FW={'bold'}>
+          🇬 Sign in with Google
+        </Texto>
       </TochOP>
 
       <Texto align={'center'} color={'gray'}>
-        You do not have an account?
+        Dont have an account?.
         <Texto
           color={'#5974f5'}
           onPress={() => navigation.navigate('SignUp')}

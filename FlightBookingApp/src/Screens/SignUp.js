@@ -106,18 +106,24 @@ export const SignUp = ({navigation}) => {
         </Texto>
       </TochOP>
 
-      <Texto color={'#747474'} align={'center'}>
-        or
-      </Texto>
 
-      <TochOP bcolor={'#5391DA'}>
-        <GoogleBtn>
-          <GoogleSigninButton
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={signIn}
-          />
-        </GoogleBtn>
+      {/** Sign in buttons */}
+
+      <TochOP
+        bcolor={'#5C6EF8'}>
+        <Texto size={'18px'} color={'white'} FW={'bold'}>
+          Sign Up
+        </Texto>
+      </TochOP>
+
+      <Texto color={'#747474'} align={'center'}> or </Texto>
+
+      <TochOP
+        onPress={signIn}
+        bcolor={'#5C6EF8'}>
+        <Texto size={'18px'} color={'white'} FW={'bold'}>
+          🇬 Sign in with Google
+        </Texto>
       </TochOP>
 
       <Texto align={'center'} color={'gray'}>

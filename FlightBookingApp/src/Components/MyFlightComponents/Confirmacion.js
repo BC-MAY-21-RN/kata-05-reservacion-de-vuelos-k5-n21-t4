@@ -14,6 +14,7 @@ export const Confirmacion = ({navigation}) =>{
     const goToScreen = () =>{
         console.log(FlightData)
         navigation.navigate('My Flights')
+        
         console.log("upload new flight data")
     }    
 
@@ -27,7 +28,7 @@ export const Confirmacion = ({navigation}) =>{
             </View>
             {/**have a boolean to decided the design of the input component in props */}
             <Button style={styles.button} onPress={goToScreen}>
-                <Text style={styles.centerText}> Next </Text>
+                <Text style={styles.centerText}> Confirm </Text>
             </Button>
 
         </View> 
