@@ -3,25 +3,29 @@ import React, { useState } from 'react'
 import { Text, View, TouchableOpacity as Button, ToastAndroid} from 'react-native'
 import { Picker } from '@react-native-picker/picker'
 import { styles } from './formStyles'
+//import { useFormHelpers } from './useFormHelpers'
 {/**list picker: https://github.com/react-native-picker/picker */}
 
+const FlightData = {
+    "Destiny": ["", ""],
+    "Fecha": "", 
+    "Origin": ["", ""], //use setState to get this data, then update the object and pass it
+    "Passengers": "", 
+    "key": 0,
+}
+
 export const Origen = ({navigation}) =>{
+    
+    // const { selectedValue, setSelectedValue } = useFormHelpers -> custom hook that doesnt work
 
-    const FlightData = {
-        "Destiny": ["", ""],
-        "Fecha": "", 
-        "Origin": ["", ""], //use setState to get this data, then update the object and pass it
-        "Passengers": "", 
-        "key": 0,
+    const [selectedValue, setSelectedValue] = useState("")
+    
+    const setObjectValue = (value) =>{
+        setSelectedValue(value)
+        FlightData.Origin[0] = value
+        FlightData.Origin[1] = value
     }
-
-    const [selectedValue, selectedSelectedValue] = useState("")
-
-    const setOrigin = (value) =>{
-        selectedSelectedValue(value)
-        FlightData.Origin = value;
-    }
-
+    
     const goToScreen = (nextScreen) =>{
         if (selectedValue != "") {
             navigation.navigate(nextScreen)
@@ -29,12 +33,14 @@ export const Origen = ({navigation}) =>{
             ToastAndroid.show("Select a valid option",ToastAndroid.LONG)
         }
     }    
-
+    
     const nextStep = (pickerValue, nextScreen) =>{
-        setOrigin(pickerValue)
+        setObjectValue(pickerValue)
         goToScreen(nextScreen)
         console.log(FlightData)
     }
+
+    //Next screen Destino
 
     return (
         <View style={styles.screen}>
@@ -44,7 +50,7 @@ export const Origen = ({navigation}) =>{
                 <View style={(selectedValue != "" ? (styles.input) : (styles.inputDisabled))}>
                     <Picker
                     selectedValue={selectedValue}
-                    onValueChange={(itemValue, itemIndex) => selectedSelectedValue(itemValue)}
+                    onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
                     >
                         {/**The last ono will be the default value */}
                         <Picker.Item label="Select Location" value=""></Picker.Item> 
@@ -63,3 +69,5 @@ export const Origen = ({navigation}) =>{
         </View> 
     )
 }
+
+export default FlightData

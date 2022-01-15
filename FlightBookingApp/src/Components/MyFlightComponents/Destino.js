@@ -4,26 +4,33 @@ import { Text, View, TouchableOpacity as Button, ToastAndroid} from 'react-nativ
 import {NewFlightCard} from './NewFlightCard';
 import { Picker } from '@react-native-picker/picker'
 import { styles } from './formStyles'
+import FlightData from './Origen' //the object where the flight data is stored, it was declared in the origin component. 
 
 export const Destino = ({navigation}) =>{
 
-    const FlightData = {
-        "Destiny": ["", ""], //use setState to get this data, then update the object and pass it
-        "Fecha": "", 
-        "Origin": ["Smh", "something"], 
-        "Passengers": "", 
-        "key": 0,
+    const [selectedValue, setSelectedValue] = useState("")
+    
+    const setObjectValue = (value) =>{
+        setSelectedValue(value)
+        FlightData.Destiny[0] = value
+        FlightData.Destiny[1] = value
     }
-
-    const goToScreen = () =>{
-        if (selectedLanguage != "") {
-            navigation.navigate('Fecha')
+    
+    const goToScreen = (nextScreen) =>{
+        if (selectedValue != "") {
+            navigation.navigate(nextScreen)
         }else{
             ToastAndroid.show("Select a valid option",ToastAndroid.LONG)
         }
-    }     
+    }    
+    
+    const nextStep = (pickerValue, nextScreen) =>{
+        setObjectValue(pickerValue)
+        goToScreen(nextScreen)
+        console.log(FlightData)
+    }  
 
-    const [selectedLanguage, setSelectedLanguage] = useState("")
+    //Next screen Fecha
 
     return (
         <View style={styles.screen}>
@@ -31,10 +38,10 @@ export const Destino = ({navigation}) =>{
             <NewFlightCard props={FlightData}></NewFlightCard>
             <View style={styles.centerMainContent}>
                 <Text style={styles.header}>Where will you be{'\n'}flying to?</Text>
-                <View style={(selectedLanguage != "" ? (styles.input) : (styles.inputDisabled))}>
+                <View style={(selectedValue != "" ? (styles.input) : (styles.inputDisabled))}>
                     <Picker
-                    selectedValue={selectedLanguage}
-                    onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}
+                    selectedValue={selectedValue}
+                    onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
                     >
                         {/**The last ono will be the default value */}
                         <Picker.Item label="Select Location" value=""></Picker.Item> 
@@ -46,7 +53,7 @@ export const Destino = ({navigation}) =>{
                 </View>
             </View>
 
-            <Button style={(selectedLanguage != "" ? (styles.button) : (styles.buttonDisabled))} onPress={goToScreen}>
+            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Pasajeros")}>
                 <Text style={styles.centerText}> Next </Text>
             </Button>
 
