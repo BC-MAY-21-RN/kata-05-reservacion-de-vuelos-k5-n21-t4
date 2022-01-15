@@ -1,15 +1,8 @@
 import React, { useEffect, useState} from 'react';
 import {PswrdInput, Input} from '../Components/InputLog';
 import {Container, Texto, TochOP, GoogleBtn} from '../Assets/styled';
-import auth from '@react-native-firebase/auth'
-
-import { Text } from 'react-native'
-import { GoogleSigninButton, GoogleSignin } from '@react-native-google-signin/google-signin';
+import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import { loginAuth, SignInWithGoogle } from '../utils/firebase/FirebaseFunctions'
-
-GoogleSignin.configure({
-  webClientId: '43375129789-19d3mo4bim7cgmt6d7co7lr44doerqti.apps.googleusercontent.com'
-});
 
 export const Login = ({navigation}) => {
   const [email, setEmail] = useState('');

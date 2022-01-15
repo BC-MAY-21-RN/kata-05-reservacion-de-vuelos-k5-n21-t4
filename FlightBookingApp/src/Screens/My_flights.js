@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Text } from 'react-native';
 import {Container2} from '../Assets/cardStyled'
 import { PlussButton, MyFlights_List } from '../Components/CardFlight/index';
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
