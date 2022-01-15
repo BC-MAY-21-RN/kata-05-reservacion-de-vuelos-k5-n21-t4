@@ -10,8 +10,11 @@ export const Confirmacion = ({navigation}) =>{
         return(<NewFlightCard props={FlightData}></NewFlightCard>)
     }
 
+    //upload data to firebase under the corresponding user id
     const goToScreen = () =>{
+        console.log(FlightData)
         navigation.navigate('My Flights')
+        console.log("upload new flight data")
     }    
 
     //Next screen is My flights but i need to send the object to the bd as a new flight under the user account
@@ -20,7 +23,7 @@ export const Confirmacion = ({navigation}) =>{
             {/**Origen */}
             {renderFlightCard()}
             <View style={styles.centerMainContent}>
-                <Text style={styles.header}>Your request {'\n'}was recieved.</Text>
+                <Text style={styles.lowerHeader}>Your request {'\n'}was recieved.</Text>
             </View>
             {/**have a boolean to decided the design of the input component in props */}
             <Button style={styles.button} onPress={goToScreen}>

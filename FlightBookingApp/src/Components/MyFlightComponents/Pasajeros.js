@@ -56,7 +56,7 @@ export const Pasajeros = ({navigation}) =>{
                 </View>
             </View>
             {/**have a boolean to decided the design of the input component in props */}
-            <Button style={styles.button} onPress={() => nextStep(selectedValue, "Fecha")}>
+            <Button style={styles.button} onPress={() => nextStep(selectedValue, "Confirmacion")}>
                 <Text style={styles.centerText}> Next </Text>
             </Button>
 

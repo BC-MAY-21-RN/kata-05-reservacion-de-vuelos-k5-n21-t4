@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
         color: 'black',
         marginBottom: 90,
     },
-    headerCalendar:{
+    lowerHeader:{
         fontSize: 35,
         fontWeight: 'bold',
         color: 'black',
