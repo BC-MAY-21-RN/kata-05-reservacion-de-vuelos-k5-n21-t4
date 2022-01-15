@@ -51,3 +51,10 @@ transform: translateY(10px)
 export const FlList = styled.FlatList `
   padding: 5%;
 `;
+
+export const SpinnerContainer = styled.View `
+  height: 100%;
+  display: flex;
+  justifyContent: center;
+  alignItems: center;
+`;

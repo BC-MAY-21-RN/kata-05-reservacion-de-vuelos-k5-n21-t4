@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import {FlList} from '../../Assets/cardStyled'
+import {FlList, SpinnerContainer} from '../../Assets/cardStyled'
 import { CardFlight } from './index'
 import { getFlights } from '../../Assets/hooks/firebase/loadData';
 import { getFlightsList } from '../../Assets/hooks/firebase/infoVuelos';
+import { ActivityIndicator } from 'react-native';
 
 export const MyFlights_List = (props) => {
   const [dataFlights, setDataFly] = useState([])
+  const [loading, setLoading] = useState(true) //set to true when finished
+
   console.log(props.infoUser)
   const { infoUser } = props
+
   async function loadData(){
     try{
       const response = await getFlights(infoUser)
       const info = await getFlightsList(response)
-      setDataFly(info)       
+      setDataFly(info)      
+      setLoading(false) 
     } catch(e){
       console.log('Este es un error '+ e)
     }
@@ -24,20 +29,29 @@ export const MyFlights_List = (props) => {
 
   const renderPlace = ({item})=>{
     return(
-      <CardFlight
+        <CardFlight
         props = {item}
-      />
+        />
+
     )
   }
 
   return (
-    <>
-      <FlList
+      loading ? (
+        <>
+          <SpinnerContainer>
+            <ActivityIndicator 
+              size="large" color="#5C6EF8"
+            />
+          </SpinnerContainer>
+        </>
+      ) : (
+        <FlList
         data={dataFlights}
         renderItem={renderPlace}
         keyExtractor={item => item.key}
         horizontal={false}
         />
-    </>
+      )
   );
 };
