@@ -1,19 +1,30 @@
-
 import React, { useState } from 'react'
 import { Text, View, TouchableOpacity as Button} from 'react-native'
 import { Input } from '../../Components/InputLog'
 import {NewFlightCard} from './NewFlightCard';
 import { styles } from './formStyles'
 import FlightData from './Origen';
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars'
+import { Calendar, Day } from 'react-native-calendars'
 import { getCalendarDateString } from 'react-native-calendars/src/services';
 
 export const Fecha = ({navigation}) =>{
 
     const [selectedValue, setSelectedValue] = useState("")
+    const date = new Date()
 
-    const getCurrentDay = () => {
-        return 1
+    const nToMonth = (nMonth) => {
+        const months = [ "January", "February", "March", "April", "May", "June", 
+           "July", "August", "September", "October", "November", "December" ];
+        return months[nMonth]
+    }
+
+
+    const getFullDate = () => {
+        return (date.getMonth() < 10 ? (
+            `${date.getFullYear()}-0${date.getMonth() +1 }-${date.getDate()}`
+        ) : (
+            `${date.getFullYear()}-${date.getMonth() +1 }-${date.getDate()}`
+        ))
     }
     
     const setObjectValue = (value) =>{
@@ -34,6 +45,7 @@ export const Fecha = ({navigation}) =>{
         goToScreen(nextScreen)
         console.log(FlightData)
     } 
+
     //Next screen Pasajeros
 
     return (
@@ -51,11 +63,17 @@ export const Fecha = ({navigation}) =>{
                     pastScrollRange={0}
                     hideDayNames={true}
                     allowSelectionOutOfRange={false}
-                    //maxDate={}
-                    onDayPress={() => console.log(() => getCalendarDateString())}
+                    minDate={getFullDate()}
+                    onDayPress={date => {
+                        setSelectedValue(`${nToMonth(date.month)} ${date.day}, ${date.year}`)
+                      }}
+                    theme={{
+                        selectedDayBackgroundColor: '#ffffff',
+                        selectedDayTextColor: '#ffffff',
+                    }}
                 />
             </View>
-            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Confirmacion")}>
+            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Pasajeros")}>
                 <Text style={styles.centerText}> Next </Text>
             </Button>
 

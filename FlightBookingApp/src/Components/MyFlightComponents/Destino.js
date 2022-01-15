@@ -64,7 +64,7 @@ export const Destino = ({navigation}) =>{
                 </View>
             </View>
 
-            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Pasajeros")}>
+            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Fecha")}>
                 <Text style={styles.centerText}> Next </Text>
             </Button>
 
