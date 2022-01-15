@@ -1,15 +1,8 @@
 import React, { useEffect, useState} from 'react';
 import {PswrdInput, Input} from '../Components/InputLog';
 import {Container, Texto, TochOP, GoogleBtn} from '../Assets/styled';
-import auth from '@react-native-firebase/auth'
-
-import { Text } from 'react-native'
-import { GoogleSigninButton, GoogleSignin } from '@react-native-google-signin/google-signin';
-import { getUserdata, loginAuth } from '../utils/firebase/FirebaseFunctions'
-
-GoogleSignin.configure({
-  webClientId: '43375129789-19d3mo4bim7cgmt6d7co7lr44doerqti.apps.googleusercontent.com'
-});
+import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import { loginAuth, SignInWithGoogle } from '../utils/firebase/FirebaseFunctions'
 
 export const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -23,18 +16,6 @@ export const Login = ({navigation}) => {
     else
       setValidation({bcolor: '#b6b7ba', disabled: true})
   }, [email, pswrd])
-
-
-  const signInGoogle = async () => {
-    // Get the users ID token
-    const { idToken } = await GoogleSignin.signIn();
-    // Create a Google credential with the token
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    // Sign-in the user with the credential
-    await auth().signInWithCredential(googleCredential).then((res)=>{
-      navigation.navigate("My Flights", res.user.uid)
-    })
-  };
 
   return (
     <Container>
@@ -61,7 +42,7 @@ export const Login = ({navigation}) => {
           style={{ width: 220, height: 50 }}
           size={GoogleSigninButton.Size.Wide}
           color={GoogleSigninButton.Color.Dark}
-          onPress={signInGoogle}
+          onPress={()=>SignInWithGoogle(navigation)}
         />;
       </GoogleBtn>
 
