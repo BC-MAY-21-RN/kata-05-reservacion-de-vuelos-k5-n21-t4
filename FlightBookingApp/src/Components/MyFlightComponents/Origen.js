@@ -7,6 +7,9 @@ import { styles } from './formStyles'
 {/**list picker: https://github.com/react-native-picker/picker */}
 
 const FlightData = {
+    //get the user id. this way i can have it at the end 
+    //of the form when i neeed to upload the form.
+    "userId": "oaksdmaoskmdoam",
     "Destiny": ["", ""],
     "Fecha": "", 
     "Origin": ["", ""], //use setState to get this data, then update the object and pass it
