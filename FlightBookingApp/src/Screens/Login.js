@@ -1,11 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {PswrdInput, Input} from '../Components/InputLog';
 import {Container, Texto, TochOP, GoogleBtn} from '../Assets/styled';
-import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
-import { loginAuth, SignInWithGoogle } from '../utils/firebase/FirebaseFunctions'
 import auth from '@react-native-firebase/auth';
-
-import {Text} from 'react-native';
 import {
   GoogleSigninButton,
   GoogleSignin,

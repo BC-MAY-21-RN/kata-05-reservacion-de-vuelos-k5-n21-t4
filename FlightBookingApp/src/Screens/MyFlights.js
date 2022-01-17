@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { TouchableOpacity } from 'react-native'
 import {Container2} from '../Assets/cardStyled'
 import { PlussButton, MyFlights_List } from '../Components/CardFlight/index';
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
@@ -21,7 +22,9 @@ export const MyFlights = (props) => {
   return (
     <Container2>
         <MyFlights_List infoUser={infoUser}/>
-        <PlussButton navigation={navigation}/>
+        <TouchableOpacity onPress={() => navigation.navigate('Origen')}>
+          <PlussButton/>
+        </TouchableOpacity>
     </Container2>
   );
 };
