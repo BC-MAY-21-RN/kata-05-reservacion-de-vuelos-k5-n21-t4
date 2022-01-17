@@ -56,9 +56,6 @@ export const SignUp = ({navigation}) => {
         </Texto>
       </TochOP1>
 
-      <Texto color={'#747474'} align={'center'}>
-        or
-      </Texto>
 
         <GoogleBtn>
           <GoogleSigninButton

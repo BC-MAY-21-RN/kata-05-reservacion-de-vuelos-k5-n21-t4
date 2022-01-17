@@ -1,29 +1,37 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Text, View, TouchableOpacity as Button, ToastAndroid} from 'react-native'
-import {NewFlightCard} from './NewFlightCard';
 import { Picker } from '@react-native-picker/picker'
 import { styles } from './formStyles'
-import FlightData from './Origen' //the object where the flight data is stored, it was declared in the origin component. 
+//import { useFormHelpers } from './useFormHelpers'
+{/**list picker: https://github.com/react-native-picker/picker */}
 
-export const Destino = ({navigation}) =>{
+const FlightData = {
+    //get the user id. this way i can have it at the end 
+    //of the form when i neeed to upload the form.
+    "userId": "oaksdmaoskmdoam",
+    "Destiny": ["", ""],
+    "Fecha": "", 
+    "Origin": ["", ""], //use setState to get this data, then update the object and pass it
+    "Passengers": "", 
+    "key": 0,
+}
+
+export const Origen = ({navigation}) =>{
+    
+    // const { selectedValue, setSelectedValue } = useFormHelpers -> custom hook that doesnt work
 
     const [selectedValue, setSelectedValue] = useState("")
-
-    //whenever the user wants to go back to make a change the component has to be rerendeered t
-    //hats why i have this function here, so each time the screen is in view the flightcard will re-render
-    const renderFlightCard = () =>{
-        return(<NewFlightCard props={FlightData}></NewFlightCard>)
-    }
     
     const setObjectValue = (value) =>{
+        //get only the country
         let Country = value.split(',')
-            Country.shift()
-            Country = Country.join(',')
+        Country.shift()
+        Country = Country.join(',')
 
-            setSelectedValue(value)
-            FlightData.Destiny[0] = value.slice(0, 3).toUpperCase() //get the first 3 letters of the country
-            FlightData.Destiny[1] = Country
+        setSelectedValue(value)
+        FlightData.Origin[0] = value.slice(0, 3).toUpperCase() //get the first 3 letters of the country
+        FlightData.Origin[1] = Country
     }
     
     const goToScreen = (nextScreen) =>{
@@ -37,16 +45,15 @@ export const Destino = ({navigation}) =>{
     const nextStep = (pickerValue, nextScreen) =>{
         setObjectValue(pickerValue)
         goToScreen(nextScreen)
-    }  
+    }
 
-    //Next screen Fecha
+    //Next screen Destino
 
     return (
         <View style={styles.screen}>
             {/**Origen */}
-            {renderFlightCard()}
             <View style={styles.centerMainContent}>
-                <Text style={styles.header}>Where will you be{'\n'}flying to?</Text>
+                <Text style={styles.header}>Where are you{'\n'}now?</Text>
                 <View style={(selectedValue != "" ? (styles.input) : (styles.inputDisabled))}>
                     <Picker
                     selectedValue={selectedValue}
@@ -59,15 +66,17 @@ export const Destino = ({navigation}) =>{
                         <Picker.Item label="Michoacan, México" value="Michoacan, México"></Picker.Item>
                         <Picker.Item label="Burlington, Canada" value="Burlington, Canada"></Picker.Item> 
                         <Picker.Item label="Cataluña, España" value="Cataluña, España"></Picker.Item> 
-                        <Picker.Item label="Colima, Colima" value="Colima, Colima"></Picker.Item>
+                        <Picker.Item label="Colima, Colima" value="Colima, Colima"></Picker.Item> 
                     </Picker>
                 </View>
             </View>
 
-            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Fecha")}>
+            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Destino")}>
                 <Text style={styles.centerText}> Next </Text>
             </Button>
 
         </View> 
     )
 }
+
+export default FlightData

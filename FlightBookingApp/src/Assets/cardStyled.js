@@ -42,10 +42,19 @@ export const MoreInfo = styled.Text`
 
 //temporal fix
 export const TempIcon = styled.Text`
+position: relative;
 font-weight: bold;
 color: #5974f5;
 font-size: 32px;
+transform: translateY(10px)
 `;
 export const FlList = styled.FlatList `
   padding: 5%;
+`;
+
+export const SpinnerContainer = styled.View `
+  height: 100%;
+  display: flex;
+  justifyContent: center;
+  alignItems: center;
 `;
