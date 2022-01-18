@@ -17,7 +17,7 @@ export const Fecha = ({navigation}) =>{
     const nToMonth = (nMonth) => {
         const months = [ "January", "February", "March", "April", "May", "June", 
            "July", "August", "September", "October", "November", "December" ]
-        return months[nMonth]
+        return months[nMonth-1]
     }
 
     /* i had to do this because the calendar date would return a single digit value 
@@ -26,9 +26,9 @@ export const Fecha = ({navigation}) =>{
        minDate can only be a string and somehow returning a string like that isnt allowed */
     const getFullDate = () => {
         return (date.getMonth() < 10 ? (
-            `${date.getFullYear()}-0${date.getMonth() +1 }-${date.getDate()}` //for some reason it returns the first month as 0,thus the +1
+            `${date.getFullYear()}-0${date.getMonth()+1 }-${date.getDate()}` //for some reason it returns the first month as 0,thus the +1
         ) : (
-            `${date.getFullYear()}-${date.getMonth() +1 }-${date.getDate()}`
+            `${date.getFullYear()}-${date.getMonth()+1 }-${date.getDate()}`
         ))
     }
     
