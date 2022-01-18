@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react'
-import { Text, View, TouchableOpacity as Button, ToastAndroid} from 'react-native'
+import { Text, View, TouchableOpacity as Button, ToastAndroid } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
 import { styles } from './formStyles'
 //import { useFormHelpers } from './useFormHelpers'
@@ -9,7 +9,7 @@ import { styles } from './formStyles'
 const FlightData = {
     //get the user id. this way i can have it at the end 
     //of the form when i neeed to upload the form.
-    "userId": "oaksdmaoskmdoam",
+    "userId": "",
     "Destiny": ["", ""],
     "Fecha": "", 
     "Origin": ["", ""], //use setState to get this data, then update the object and pass it

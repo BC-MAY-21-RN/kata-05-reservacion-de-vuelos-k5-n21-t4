@@ -1,9 +1,7 @@
-import React, { useEffect, useState} from 'react';
-import {Container, Texto, TochOP1, TextAlert, GoogleBtn} from '../Assets/styled';
+import React, { useState} from 'react';
+import {Container, Texto, TochOP, TochOP1, TextAlert, GoogleBtn} from '../Assets/styled';
 import {PswrdInput, Input} from '../Components/InputLog';
 import CheckBoxWithLabel from '../Components/Checkbox';
-import { GoogleSigninButton } from '@react-native-google-signin/google-signin'
-import validation from '../Components/SingUpVal';
 import { SignInWithGoogle, addUserToFirestore } from '../utils/firebase/FirebaseFunctions.js';
 
 export const SignUp = ({navigation}) => {
@@ -13,7 +11,6 @@ export const SignUp = ({navigation}) => {
   const [pswrd, setPswrd] = useState('');
   const [termsCheckBox, setTermsCheckBox] = useState('');
   const [subscribeCheckBox, setSubscribeCheckBox] = useState('');
-  const [info_user, setInfoUser] = useState({});
   const [textWarning, setTxtWarn] = useState('');
   const [textWarning2, setTxtWarn2] = useState('');
 
@@ -56,15 +53,19 @@ export const SignUp = ({navigation}) => {
         </Texto>
       </TochOP1>
 
+      <Texto color={'#747474'} align={'center'}>
+        or
+      </Texto>
 
-        <GoogleBtn>
-          <GoogleSigninButton
-            style={{ width: 192, height: 48 }}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={()=>SignInWithGoogle}
-          />;
-        </GoogleBtn>
+      <TochOP
+        actOpa={0.8}
+        onPress={()=>SignInWithGoogle(navigation)}
+        bcolor={'#5C6EF8'}>
+        <Texto size={'18px'} color={'white'} FW={'bold'}>
+          🇬 Sign in with Google
+        </Texto>
+      </TochOP>
+
 
       <Texto align={'center'} color={'gray'}>
         Alredy have an account?

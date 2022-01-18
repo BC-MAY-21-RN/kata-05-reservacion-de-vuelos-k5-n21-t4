@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {PswrdInput, Input} from '../Components/InputLog';
-import {Container, Texto, TochOP, GoogleBtn} from '../Assets/styled';
-import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
-import { loginAuth, SignInWithGoogle } from '../utils/firebase/FirebaseFunctions'
+import {Container, Texto, TochOP} from '../Assets/styled';
+import {loginAuth,  SignInWithGoogle} from '../utils/firebase/FirebaseFunctions';
 
 export const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -12,6 +11,12 @@ export const Login = ({navigation}) => {
     disabled: true,
   });
   const [hidePassword, setHidePassword] = useState(true);
+
+  useEffect(() => {
+    if (email.length > 0 && pswrd.length > 0)
+      setValidation({bcolor: '#5C6EF8', disabled: false});
+    else setValidation({bcolor: '#b6b7ba', disabled: true});
+  }, [email, pswrd]);
 
   return (
     <Container>
@@ -32,20 +37,21 @@ export const Login = ({navigation}) => {
         onPress={() => {
           loginAuth(navigation, email, pswrd);
         }}
+        actOpa={ 0.8}
         bcolor={validation.bcolor}>
         <Texto size={'18px'} color={'white'} FW={'bold'}>
           Login
         </Texto>
       </TochOP>
-
-      <GoogleBtn>
-        <GoogleSigninButton
-          style={{ width: 220, height: 50 }}
-          size={GoogleSigninButton.Size.Wide}
-          color={GoogleSigninButton.Color.Dark}
-          onPress={()=>SignInWithGoogle(navigation)}
-        />;
-      </GoogleBtn>
+      
+      <TochOP
+        actOpa={0.8}
+        onPress={()=>SignInWithGoogle(navigation)}
+        bcolor={'#5C6EF8'}>
+        <Texto size={'18px'} color={'white'} FW={'bold'}>
+          🇬 Sign in with Google
+        </Texto>
+      </TochOP>
 
       <Texto align={'center'} color={'gray'}>
         Dont have an account?.
@@ -54,18 +60,6 @@ export const Login = ({navigation}) => {
           onPress={() => navigation.navigate('SignUp')}
           style={{color: '#5974f5'}}>
           Sign Up
-        </Texto>
-        <Texto
-          color={'#5974f5'}
-          onPress={() => navigation.navigate('Origen')}
-          style={{color: '#5974f5'}}>
-          {'\n'}Add Flight
-        </Texto>
-        <Texto
-          color={'#5974f5'}
-          onPress={() => navigation.navigate('My Flights')}
-          style={{color: '#5974f5'}}>
-          {'\n'}My Flights
         </Texto>
       </Texto>
     </Container>
