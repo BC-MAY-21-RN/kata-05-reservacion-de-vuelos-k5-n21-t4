@@ -109,8 +109,6 @@ export const addUserToFirestore = (
 };
 
 export const SignInWithGoogle = async navigation => {
-   console.log('Hola')
-  // GoogleSignin.signOut()
   GoogleSignin.configure({
     webClientId:
       '43375129789-19d3mo4bim7cgmt6d7co7lr44doerqti.apps.googleusercontent.com',

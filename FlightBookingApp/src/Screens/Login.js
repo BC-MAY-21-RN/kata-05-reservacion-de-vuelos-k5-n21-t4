@@ -47,7 +47,7 @@ export const Login = ({navigation}) => {
       {/**test@gmail.com */}
       <TochOP
         actOpa={0.8}
-        onPress={SignInWithGoogle}
+        onPress={()=>SignInWithGoogle(navigation)}
         bcolor={'#5C6EF8'}>
         <Texto size={'18px'} color={'white'} FW={'bold'}>
           🇬 Sign in with Google
