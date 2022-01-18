@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react';
-import {Container, Texto, TochOP1, TextAlert, GoogleBtn} from '../Assets/styled';
+import {Container, Texto, TochOP, TochOP1, TextAlert, GoogleBtn} from '../Assets/styled';
 import {PswrdInput, Input} from '../Components/InputLog';
 import CheckBoxWithLabel from '../Components/Checkbox';
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin'
@@ -60,14 +60,15 @@ export const SignUp = ({navigation}) => {
         or
       </Texto>
 
-        <GoogleBtn>
-          <GoogleSigninButton
-            style={{ width: 192, height: 48 }}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={()=>SignInWithGoogle}
-          />;
-        </GoogleBtn>
+      <TochOP
+        actOpa={0.8}
+        onPress={SignInWithGoogle}
+        bcolor={'#5C6EF8'}>
+        <Texto size={'18px'} color={'white'} FW={'bold'}>
+          🇬 Sign in with Google
+        </Texto>
+      </TochOP>
+
 
       <Texto align={'center'} color={'gray'}>
         Alredy have an account?
