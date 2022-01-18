@@ -4,13 +4,16 @@ import { CardFlight } from './index'
 import { getFlights } from '../../Assets/hooks/firebase/loadData';
 import { getFlightsList } from '../../Assets/hooks/firebase/infoVuelos';
 import { ActivityIndicator } from 'react-native';
+import firestore from '@react-native-firebase/firestore'
 
 export const MyFlights_List = (props) => {
   const [dataFlights, setDataFly] = useState([])
-  const [loading, setLoading] = useState(true) //set to true when finished
+  const [loading, setLoading] = useState(true)
 
   console.log(props.infoUser)
   const { infoUser } = props
+
+
 
   async function loadData(){
     try{
@@ -36,16 +39,37 @@ export const MyFlights_List = (props) => {
     )
   }
 
-  return (
-      loading ? (
-        <>
-          <SpinnerContainer>
-            <ActivityIndicator 
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+      const subscriber = firestore()
+          .collection('Flights')
+          .onSnapshot(querySnapshot => {
+              const flighst = []
+              querySnapshot.forEach(documentSnapshot => {
+                  flighst.push({
+                      ...documentSnapshot.data(),
+                      key: documentSnapshot.id,
+                  })
+              })
+              setData(flighst)
+              setLoading(false)
+          })
+      return () => subscriber()
+  }, [])
+
+
+  if (loading) {
+      return (
+        <SpinnerContainer>
+          <ActivityIndicator 
               size="large" color="#5C6EF8"
-            />
-          </SpinnerContainer>
-        </>
-      ) : (
+          />
+        </SpinnerContainer> 
+      )
+  }
+
+  return (
         <FlList
         data={dataFlights}
         renderItem={renderPlace}
@@ -53,5 +77,4 @@ export const MyFlights_List = (props) => {
         horizontal={false}
         />
       )
-  );
 };
