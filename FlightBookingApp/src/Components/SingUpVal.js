@@ -1,10 +1,13 @@
-export function validation() { 
-    var m = document.getElementById("password").value;
-    var expreg = /^[A-Z]{1,2}\s\d{4}\s([B-D]|[F-H]|[J-N]|[P-T]|[V-Z]){3}$/;
+export function validation(m, setTxtWarn2) { 
+    
+    var expreg = /^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ]/;
     
     if(expreg.test(m))
-      alert("La password es correcta"); 
+    return true
     else 
-      alert("La password NO es correcta"); 
+      return false 
 } 
-export default literal;
+export default validation;
+
+
+
