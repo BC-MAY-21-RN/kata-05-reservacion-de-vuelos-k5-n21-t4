@@ -16,7 +16,7 @@ export const Fecha = ({navigation}) =>{
 
     const nToMonth = (nMonth) => {
         const months = [ "January", "February", "March", "April", "May", "June", 
-           "July", "August", "September", "October", "November", "December" ];
+           "July", "August", "September", "October", "November", "December" ]
         return months[nMonth]
     }
 
@@ -77,7 +77,7 @@ export const Fecha = ({navigation}) =>{
                     hideDayNames={true}
                     allowSelectionOutOfRange={false}
                     onDayPress={date => {
-                        setSelectedValue(`${nToMonth(date.month)} / ${date.day} / ${date.year}`) 
+                        setSelectedValue(`${date.day}/ ${nToMonth(date.month)} / ${date.year}`) 
                       }}
                     theme={{
                         selectedDayBackgroundColor: '#ffffff',

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Texto, Plus, } from '../../Assets/styled';
 
-export function PlussButton(){
+export function PlussButton({navigation}){
   return(
-      <Plus >
+      <Plus onPress={() => navigation.navigate('Origen')}>
         <Texto 
           size={'60px'} 
           color={'white'} 

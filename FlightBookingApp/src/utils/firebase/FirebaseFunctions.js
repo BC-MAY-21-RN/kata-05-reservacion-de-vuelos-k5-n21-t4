@@ -3,6 +3,7 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import validation from '../../Components/SingUpVal';
+import FlightData from '../../Components/MyFlightComponents/Origen';
 // import { useSelector, useDispatch } from 'react-redux'
 // import { setUid } from '../redux/actions.js'
 // const { uid } = useSelector(state => state.uidReducer)
@@ -14,6 +15,7 @@ export const loginAuth = async (navigation, email, pwd) => {
       .signInWithEmailAndPassword(email, pwd)
       .then(res => {
         navigation.navigate('My Flights', res.user.uid);
+        FlightData.userId = res.user.uid;
       })
       .catch(e => {
         switch (e.code) {

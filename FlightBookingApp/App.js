@@ -21,6 +21,7 @@ const App = () => {
     headerTitleAlign:'left',
   }
   const stackOptionsForm = {
+    headerShown: false,
     headerStyle: {
       elevation: 0,
       shadowOpacity: 0,
@@ -33,10 +34,10 @@ const App = () => {
     <NavigationContainer>
       {
         <Stack.Navigator>
-          <Stack.Screen name="Login" component={Login} options={{stackOptions}}/>
-          <Stack.Screen name="SignUp" component={SignUp} options={{stackOptions}}/>
-          <Stack.Screen name="My Flights" component={MyFlights} options={{stackOptions}}/>
-          <Stack.Screen name="Origen" component={Origen} options={{stackOptionsForm}}/>
+          <Stack.Screen name="Login" component={Login} options={stackOptions}/>
+          <Stack.Screen name="SignUp" component={SignUp} options={stackOptions}/>
+          <Stack.Screen name="My Flights" component={MyFlights} options={stackOptions}/>
+          <Stack.Screen name="Origen" component={Origen} options={stackOptions}/>
           <Stack.Screen name='Destino' component={Destino} options={stackOptionsForm}/>
           <Stack.Screen name='Fecha' component={Fecha} options={stackOptionsForm}/>
           <Stack.Screen name='Pasajeros' component={Pasajeros} options={stackOptionsForm}/>
