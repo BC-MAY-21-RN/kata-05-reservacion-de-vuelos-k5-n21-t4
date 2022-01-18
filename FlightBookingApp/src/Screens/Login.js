@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {PswrdInput, Input} from '../Components/InputLog';
-import {Container, Texto, TochOP, GoogleBtn} from '../Assets/styled';
+import {Container, Texto, TochOP} from '../Assets/styled';
 import {loginAuth,  SignInWithGoogle} from '../utils/firebase/FirebaseFunctions';
 
 export const Login = ({navigation}) => {
@@ -44,7 +44,6 @@ export const Login = ({navigation}) => {
         </Texto>
       </TochOP>
       
-      {/**test@gmail.com */}
       <TochOP
         actOpa={0.8}
         onPress={()=>SignInWithGoogle(navigation)}

@@ -1,9 +1,7 @@
-import React, { useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {Container, Texto, TochOP, TochOP1, TextAlert, GoogleBtn} from '../Assets/styled';
 import {PswrdInput, Input} from '../Components/InputLog';
 import CheckBoxWithLabel from '../Components/Checkbox';
-import { GoogleSigninButton } from '@react-native-google-signin/google-signin'
-import validation from '../Components/SingUpVal';
 import { SignInWithGoogle, addUserToFirestore } from '../utils/firebase/FirebaseFunctions.js';
 
 export const SignUp = ({navigation}) => {
@@ -13,7 +11,6 @@ export const SignUp = ({navigation}) => {
   const [pswrd, setPswrd] = useState('');
   const [termsCheckBox, setTermsCheckBox] = useState('');
   const [subscribeCheckBox, setSubscribeCheckBox] = useState('');
-  const [info_user, setInfoUser] = useState({});
   const [textWarning, setTxtWarn] = useState('');
   const [textWarning2, setTxtWarn2] = useState('');
 
