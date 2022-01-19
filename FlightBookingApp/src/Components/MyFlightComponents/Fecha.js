@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { Text, View, TouchableOpacity as Button, Alert, ToastAndroid} from 'react-native'
 import {NewFlightCard} from './NewFlightCard';
 import { styles } from './formStyles'
-import {  FlightData  } from '../../Assets/hooks/pikerHelper';
+import {  FlightData, nextStep  } from '../../Assets/hooks/pikerHelper';
 import { Calendar } from 'react-native-calendars'
 
 export const Fecha = ({navigation}) =>{
-    console.log(FlightData);
     const renderFlightCard = () =>{
         return(<NewFlightCard props={FlightData}></NewFlightCard>)
     }
@@ -33,11 +32,6 @@ export const Fecha = ({navigation}) =>{
         ))
     }
     
-    const setObjectValue = (value) =>{
-        setSelectedValue(value)
-        FlightData.Fecha = value
-    }
-    
     useEffect(() => {
         selectedValue != "" ? dateConfirmation() : null
     }, [selectedValue])
@@ -45,22 +39,9 @@ export const Fecha = ({navigation}) =>{
     const dateConfirmation = () => {
         Alert.alert("Book flight for",`${selectedValue}\nis this correct?`,[{text: "Cancel"},{ text: "OK"}])
     }
-    
-    const goToScreen = (nextScreen) =>{
-        if (selectedValue != "") {
-            navigation.navigate(nextScreen)
-        }else{
-            ToastAndroid.show("Select a valid option",ToastAndroid.LONG)
-        }
-    }    
-    
-    const nextStep = (pickerValue, nextScreen) =>{
-        setObjectValue(pickerValue) //this represents the selectedValue, change the name when the custom hook is ready
-        goToScreen(nextScreen)
-    } 
+     
 
     //Next screen Pasajeros
-
     return (
         <View style={styles.screen}>
             {renderFlightCard()}
@@ -86,7 +67,7 @@ export const Fecha = ({navigation}) =>{
                     }}
                 />
             </View>
-            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Pasajeros")}>
+            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Pasajeros", navigation, setSelectedValue, 'F')}>
                 <Text style={styles.centerText}> Next </Text>
             </Button>
 

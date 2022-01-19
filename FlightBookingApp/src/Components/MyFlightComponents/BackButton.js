@@ -10,7 +10,6 @@ export const BackButton = (props) => {
     const { navigation } = props
     //const { route: { params: infoUser } } = props
     
-    console.log(backTo);
     console.log(navigation);
     
     const stepBack = (screen) =>{

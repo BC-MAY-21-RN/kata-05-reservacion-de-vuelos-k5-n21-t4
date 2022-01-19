@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {PswrdInput, Input} from '../Components/InputLog';
 import {Container, Texto, TochOP} from '../Assets/styled';
-import {loginAuth,  SignInWithGoogle} from '../utils/firebase/FirebaseFunctions';
+import {loginAuth} from '../utils/firebase/FirebaseFunctions';
 import { GoogleBtn } from '../Components/GoogleBtn';
 
 export const Login = ({navigation}) => {

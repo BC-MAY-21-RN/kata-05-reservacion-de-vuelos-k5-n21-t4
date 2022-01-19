@@ -9,10 +9,7 @@ export const MyFlights_List = (props) => {
   const [dataFlights, setDataFly] = useState([])
   const [loading, setLoading] = useState(true)
 
-  console.log(props.infoUser)
   const { infoUser } = props
-
-
 
   async function loadData(){
     try{
