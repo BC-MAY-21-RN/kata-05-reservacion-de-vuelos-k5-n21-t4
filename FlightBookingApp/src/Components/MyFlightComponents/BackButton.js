@@ -8,15 +8,17 @@ import { Icon } from 'react-native-elements'
 export const BackButton = (props) => {
     
     const { navigation } = props
+    //const { route: { params: infoUser } } = props
     
-    console.log(props.backTo);
+    console.log(backTo);
+    console.log(navigation);
     
-    const backStep = (screen) =>{
+    const stepBack = (screen) =>{
         navigation.navigate(screen)
     }
 
     return (
-        <TouchableOpacity style={styles.headerBar} onPress={() => backStep(props.backTo)}>
+        <TouchableOpacity style={styles.headerBar} onPress={() => stepBack('My Flights')}>
             <Icon
                 name='chevron-back-outline'
                 type='ionicon'
