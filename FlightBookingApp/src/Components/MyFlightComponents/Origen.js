@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Text, View, TouchableOpacity as Button, ToastAndroid } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
 import { styles } from './formStyles'
+import { BackButton } from './BackButton'
 //import { useFormHelpers } from './useFormHelpers'
 {/**list picker: https://github.com/react-native-picker/picker */}
 
@@ -52,6 +53,7 @@ export const Origen = ({navigation}) =>{
     return (
         <View style={styles.screen}>
             {/**Origen */}
+            <BackButton backTo={"My Flights"}/>
             <View style={styles.centerMainContent}>
                 <Text style={styles.header}>Where are you{'\n'}now?</Text>
                 <View style={(selectedValue != "" ? (styles.input) : (styles.inputDisabled))}>
