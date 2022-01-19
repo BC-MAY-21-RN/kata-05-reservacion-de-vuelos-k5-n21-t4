@@ -4,7 +4,8 @@ import { Text, View, TouchableOpacity as Button, ToastAndroid} from 'react-nativ
 import { Picker } from '@react-native-picker/picker'
 import {NewFlightCard} from './NewFlightCard';
 import { styles } from './formStyles'
-import FlightData from './Origen';
+import {  FlightData  } from '../../Assets/hooks/pikerHelper';
+
 
 export const Pasajeros = ({navigation}) =>{
 
@@ -31,7 +32,6 @@ export const Pasajeros = ({navigation}) =>{
     const nextStep = (pickerValue, nextScreen) =>{
         setObjectValue(pickerValue)
         goToScreen(nextScreen, false)
-        console.log(FlightData)
     } 
 
     //Next screen Confirmation

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { Text, View, TouchableOpacity as Button, Alert, ToastAndroid} from 'react-native'
 import {NewFlightCard} from './NewFlightCard';
 import { styles } from './formStyles'
-import FlightData from './Origen';
+import {  FlightData  } from '../../Assets/hooks/pikerHelper';
 import { Calendar } from 'react-native-calendars'
 
 export const Fecha = ({navigation}) =>{
-
+    console.log(FlightData);
     const renderFlightCard = () =>{
         return(<NewFlightCard props={FlightData}></NewFlightCard>)
     }
@@ -17,6 +17,7 @@ export const Fecha = ({navigation}) =>{
     const nToMonth = (nMonth) => {
         const months = [ "January", "February", "March", "April", "May", "June", 
            "July", "August", "September", "October", "November", "December" ]
+           
         return months[nMonth-1]
     }
 

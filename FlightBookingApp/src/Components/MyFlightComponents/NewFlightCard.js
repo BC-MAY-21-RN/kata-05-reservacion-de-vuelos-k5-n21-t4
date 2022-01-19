@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text } from 'react-native-elements';
 import {Container, Cont, Linea, Pais, Ciudad, MoreInfo, TempIcon} from '../../Assets/cardStyled';
 
 export function NewFlightCard({props}) {
