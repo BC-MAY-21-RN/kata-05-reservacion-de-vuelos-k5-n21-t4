@@ -4,10 +4,6 @@ import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import validation from '../../Components/SingUpVal';
 import FlightData from '../../Components/MyFlightComponents/Origen';
-// import { useSelector, useDispatch } from 'react-redux'
-// import { setUid } from '../redux/actions.js'
-// const { uid } = useSelector(state => state.uidReducer)
-// const dispatch = useDispatch()
 
 export const loginAuth = async (navigation, email, pwd) => {
   try {
