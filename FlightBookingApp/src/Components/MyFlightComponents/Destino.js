@@ -4,7 +4,7 @@ import { Text, View, TouchableOpacity as Button, ToastAndroid} from 'react-nativ
 import {NewFlightCard} from './NewFlightCard';
 import { Picker } from '@react-native-picker/picker'
 import { styles } from './formStyles'
-import FlightData from './Origen' //the object where the flight data is stored, it was declared in the origin component. 
+import { nextStep, FlightData  } from '../../Assets/hooks/pikerHelper';
 
 export const Destino = ({navigation}) =>{
 
@@ -16,29 +16,7 @@ export const Destino = ({navigation}) =>{
         return(<NewFlightCard props={FlightData}></NewFlightCard>)
     }
     
-    const setObjectValue = (value) =>{
-        let Country = value.split(',')
-            Country.shift()
-            Country = Country.join(',')
-
-            setSelectedValue(value)
-            FlightData.Destiny[0] = value.slice(0, 3).toUpperCase() //get the first 3 letters of the country
-            FlightData.Destiny[1] = Country
-    }
-    
-    const goToScreen = (nextScreen) =>{
-        if (selectedValue != "") {
-            navigation.navigate(nextScreen)
-        }else{
-            ToastAndroid.show("Select a valid option",ToastAndroid.LONG)
-        }
-    }    
-    
-    const nextStep = (pickerValue, nextScreen) =>{
-        setObjectValue(pickerValue)
-        goToScreen(nextScreen)
-    }  
-
+   
     //Next screen Fecha
 
     return (
@@ -64,7 +42,7 @@ export const Destino = ({navigation}) =>{
                 </View>
             </View>
 
-            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Fecha")}>
+            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Fecha", navigation, setSelectedValue, 'D')}>
                 <Text style={styles.centerText}> Next </Text>
             </Button>
 

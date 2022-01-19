@@ -4,7 +4,6 @@ import { CardFlight } from './index'
 import { getFlights } from '../../Assets/hooks/firebase/loadData';
 import { getFlightsList } from '../../Assets/hooks/firebase/infoVuelos';
 import { ActivityIndicator } from 'react-native';
-import firestore from '@react-native-firebase/firestore'
 
 export const MyFlights_List = (props) => {
   const [dataFlights, setDataFly] = useState([])
@@ -39,42 +38,20 @@ export const MyFlights_List = (props) => {
     )
   }
 
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-      const subscriber = firestore()
-          .collection('Flights')
-          .onSnapshot(querySnapshot => {
-              const flighst = []
-              querySnapshot.forEach(documentSnapshot => {
-                  flighst.push({
-                      ...documentSnapshot.data(),
-                      key: documentSnapshot.id,
-                  })
-              })
-              setData(flighst)
-              setLoading(false)
-          })
-      return () => subscriber()
-  }, [])
-
-
-  if (loading) {
-      return (
+  return (
+      (loading) ? (
         <SpinnerContainer>
           <ActivityIndicator 
               size="large" color="#5C6EF8"
           />
         </SpinnerContainer> 
-      )
-  }
-
-  return (
+      ) : (
         <FlList
         data={dataFlights}
         renderItem={renderPlace}
         keyExtractor={item => item.key}
         horizontal={false}
         />
-      )
+      ) 
+    )
 };

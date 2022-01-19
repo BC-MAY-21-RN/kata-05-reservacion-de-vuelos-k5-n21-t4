@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {PswrdInput, Input} from '../Components/InputLog';
 import {Container, Texto, TochOP} from '../Assets/styled';
 import {loginAuth,  SignInWithGoogle} from '../utils/firebase/FirebaseFunctions';
+import { GoogleBtn } from '../Components/GoogleBtn';
 
 export const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -44,14 +45,7 @@ export const Login = ({navigation}) => {
         </Texto>
       </TochOP>
       
-      <TochOP
-        actOpa={0.8}
-        onPress={()=>SignInWithGoogle(navigation)}
-        bcolor={'#5C6EF8'}>
-        <Texto size={'18px'} color={'white'} FW={'bold'}>
-          🇬 Sign in with Google
-        </Texto>
-      </TochOP>
+      <GoogleBtn />
 
       <Texto align={'center'} color={'gray'}>
         Dont have an account?.

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Text, View, TouchableOpacity as Button} from 'react-native'
 import {NewFlightCard} from './NewFlightCard';
 import { styles } from './formStyles'
-import FlightData from './Origen' //the object where the flight data is stored, it was declared in the origin component. 
+import {  FlightData  } from '../../Assets/hooks/pikerHelper'; 
 import firestore from '@react-native-firebase/firestore'
 import { MyFlights } from '../../Screens/MyFlights';
 

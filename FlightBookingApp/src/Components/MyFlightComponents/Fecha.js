@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { Text, View, TouchableOpacity as Button, Alert, ToastAndroid} from 'react-native'
 import {NewFlightCard} from './NewFlightCard';
 import { styles } from './formStyles'
-import FlightData from './Origen';
+import {  FlightData  } from '../../Assets/hooks/pikerHelper';
 import { Calendar } from 'react-native-calendars'
 
 export const Fecha = ({navigation}) =>{
-
+    console.log(FlightData);
     const renderFlightCard = () =>{
         return(<NewFlightCard props={FlightData}></NewFlightCard>)
     }
@@ -77,7 +77,7 @@ export const Fecha = ({navigation}) =>{
                     hideDayNames={true}
                     allowSelectionOutOfRange={false}
                     onDayPress={date => {
-                        setSelectedValue(`${date.day}/ ${nToMonth(date.month)} / ${date.year}`) 
+                        setSelectedValue(`${date.day}/ ${nToMonth(date.month)-1} / ${date.year}`) 
                       }}
                     theme={{
                         selectedDayBackgroundColor: '#ffffff',

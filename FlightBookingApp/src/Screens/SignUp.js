@@ -1,8 +1,9 @@
 import React, { useState} from 'react';
-import {Container, Texto, TochOP, TochOP1, TextAlert, GoogleBtn} from '../Assets/styled';
+import {Container, Texto, TochOP1, TextAlert} from '../Assets/styled';
 import {PswrdInput, Input} from '../Components/InputLog';
 import CheckBoxWithLabel from '../Components/Checkbox';
-import { SignInWithGoogle, addUserToFirestore } from '../utils/firebase/FirebaseFunctions.js';
+import { addUserToFirestore } from '../utils/firebase/FirebaseFunctions.js';
+import { GoogleBtn } from '../Components/GoogleBtn';
 
 export const SignUp = ({navigation}) => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -57,15 +58,7 @@ export const SignUp = ({navigation}) => {
         or
       </Texto>
 
-      <TochOP
-        actOpa={0.8}
-        onPress={()=>SignInWithGoogle(navigation)}
-        bcolor={'#5C6EF8'}>
-        <Texto size={'18px'} color={'white'} FW={'bold'}>
-          🇬 Sign in with Google
-        </Texto>
-      </TochOP>
-
+      <GoogleBtn />
 
       <Texto align={'center'} color={'gray'}>
         Alredy have an account?
