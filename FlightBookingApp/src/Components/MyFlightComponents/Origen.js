@@ -5,14 +5,11 @@ import { Picker } from '@react-native-picker/picker'
 import { styles } from './formStyles'
 import { MenuBar } from './MenuBar'
 import { nextStep, FlightData  } from '../../Assets/hooks/pikerHelper';
-
-//import { useFormHelpers } from './useFormHelpers'
+import { NextButton } from './NextButton'
+import { pick } from './refaPicker'
 {/**list picker: https://github.com/react-native-picker/picker */}
 
 export const Origen = ({navigation}) =>{
-    
-    // const { selectedValue, setSelectedValue } = useFormHelpers -> custom hook that doesnt work
-
     const [selectedValue, setSelectedValue] = useState("")
     
     return (
@@ -24,8 +21,8 @@ export const Origen = ({navigation}) =>{
                 <View style={(selectedValue != "" ? (styles.input) : (styles.inputDisabled))}>
                     <Picker
                     selectedValue={selectedValue}
-                    onValueChange={(itemValue, itemIndex) => {setSelectedValue(itemValue)}}
-                    >
+                    onValueChange={(itemValue, itemIndex) => {setSelectedValue(itemValue)}}>
+                    
                         {/**The last ono will be the default value */}
                         <Picker.Item label="Select Location" value=""></Picker.Item> 
                         <Picker.Item label="Serbia, Belgrade" value="Serbia, Belgrade"></Picker.Item>
@@ -38,10 +35,10 @@ export const Origen = ({navigation}) =>{
                 </View>
             </View>
 
-            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Destino", navigation, setSelectedValue, 'O')}>
+            {/* <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Destino", navigation, setSelectedValue, 'O')}>
                 <Text style={styles.centerText}> Next </Text>
-            </Button>
-
+            </Button> */}
+            <NextButton />
         </View> 
     )
 }

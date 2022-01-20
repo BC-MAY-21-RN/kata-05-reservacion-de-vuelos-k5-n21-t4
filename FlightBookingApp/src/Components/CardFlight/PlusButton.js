@@ -1,5 +1,5 @@
 import React from 'react'
-import { Texto, Plus, } from '../../Assets/styled';
+import { Texto, Plus } from '../../Assets/styled';
 
 export function PlussButton({navigation}){
   return(

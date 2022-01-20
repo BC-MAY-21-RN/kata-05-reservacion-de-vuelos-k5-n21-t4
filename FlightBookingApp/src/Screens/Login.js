@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {PswrdInput, Input} from '../Components/InputLog';
 import {Container, Texto, TochOP} from '../Assets/styled';
-import {loginAuth,  SignInWithGoogle} from '../utils/firebase/FirebaseFunctions';
+import {loginAuth} from '../utils/firebase/FirebaseFunctions';
 import { GoogleBtn } from '../Components/GoogleBtn';
 import { MenuBar } from '../Components/MyFlightComponents/MenuBar';
 export const Login = ({navigation}) => {
@@ -27,8 +27,6 @@ export const Login = ({navigation}) => {
 
       <Texto size={'16px'}>Password:</Texto>
       <PswrdInput
-        keyboardType={null}
-        placeholder="Contraseña"
         secureTextEntry={hidePassword}
         onPress={() => setHidePassword(!hidePassword)}
         value={setPswrd}

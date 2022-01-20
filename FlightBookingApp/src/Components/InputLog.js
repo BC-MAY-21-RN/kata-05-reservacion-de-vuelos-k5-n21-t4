@@ -8,7 +8,8 @@ export function PswrdInput(props) {
   return (
     <InpCon BColor={border}>
       <InpL
-        placeholder={props.placeholder}
+        keyboardType={null}
+        placeholder={'Contraseña'}
         secureTextEntry={props.secureTextEntry}
         onChangeText={valor => {
           valor.length > 0 ? setBorder(color.PRIMARYCOLOR) : setBorder('black');
