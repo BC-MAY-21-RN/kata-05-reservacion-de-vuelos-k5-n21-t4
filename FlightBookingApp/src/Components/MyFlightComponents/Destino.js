@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { Text, View, TouchableOpacity as Button, ToastAndroid} from 'react-native'
-import {NewFlightCard} from './NewFlightCard';
+import { FlightCard } from '../FlightCard';
 import { Picker } from '@react-native-picker/picker'
 import { styles } from './formStyles'
 import { nextStep, FlightData  } from '../../Assets/hooks/pikerHelper';
@@ -13,7 +13,7 @@ export const Destino = ({navigation}) =>{
     //whenever the user wants to go back to make a change the component has to be rerendeered t
     //hats why i have this function here, so each time the screen is in view the flightcard will re-render
     const renderFlightCard = () =>{
-        return(<NewFlightCard props={FlightData}></NewFlightCard>)
+        return(<FlightCard props={FlightData}></FlightCard>)
     }
     
    

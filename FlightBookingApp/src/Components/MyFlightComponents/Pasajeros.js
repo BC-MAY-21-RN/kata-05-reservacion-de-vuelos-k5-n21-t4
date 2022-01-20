@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { Text, View, TouchableOpacity as Button, ToastAndroid} from 'react-native'
 import { Picker } from '@react-native-picker/picker'
-import {NewFlightCard} from './NewFlightCard';
+import { FlightCard } from '../FlightCard';
 import { styles } from './formStyles'
 import {  FlightData, nextStep  } from '../../Assets/hooks/pikerHelper';
 
@@ -12,10 +12,9 @@ export const Pasajeros = ({navigation}) =>{
     const [selectedValue, setSelectedValue] = useState("1")
 
     //Next screen Confirmation
-
     return (
         <View style={styles.screen}>
-            <NewFlightCard props={FlightData}></NewFlightCard>
+            <FlightCard props={FlightData}></FlightCard>
             <View style={styles.centerMainContent}>
                 <Text style={styles.header}>How many passengers?</Text>
                 <View style={styles.inputPicker}>

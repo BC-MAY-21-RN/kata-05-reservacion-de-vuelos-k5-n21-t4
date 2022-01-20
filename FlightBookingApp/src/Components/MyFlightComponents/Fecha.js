@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Text, View, TouchableOpacity as Button, Alert, ToastAndroid} from 'react-native'
-import {NewFlightCard} from './NewFlightCard';
 import { styles } from './formStyles'
 import {  FlightData, nextStep  } from '../../Assets/hooks/pikerHelper';
 import { Calendar } from 'react-native-calendars'
+import { FlightCard } from '../FlightCard';
 
 export const Fecha = ({navigation}) =>{
     const renderFlightCard = () =>{
-        return(<NewFlightCard props={FlightData}></NewFlightCard>)
+        return(<FlightCard props={FlightData}></FlightCard>)
     }
 
     const [selectedValue, setSelectedValue] = useState("")
