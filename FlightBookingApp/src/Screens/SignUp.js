@@ -18,6 +18,7 @@ export const SignUp = ({navigation}) => {
   const [textWarning, setTxtWarn] = useState('');
   const [textWarning2, setTxtWarn2] = useState('');
   const [visible, setVisible] = useState(false)
+  const [RequestText, setRequestText] = useState('')
 
   return (
     <Container>
@@ -50,11 +51,11 @@ export const SignUp = ({navigation}) => {
         Subscribe for select product updates
       </CheckBoxWithLabel>
 
-      {/* <RegistredModal visible={visible}/> */}
+      <RegistredModal visible={visible} RequestText={RequestText}/>
+
       <TochOP1 BackColor="gray" 
       disabled={(email.length > 2 && name.length > 2  && termsCheckBox == true && pswrd.length > 0) ? false : true} onPress={() => {
-        addUserToFirestore(navigation, email, name, pswrd,setTxtWarn, setTxtWarn2)
-        // setVisible(true)
+        addUserToFirestore(navigation, email, name, pswrd, setTxtWarn, setTxtWarn2, setVisible, setRequestText)
          }}>
         <Texto size={'18px'} color={'white'} FW={'bold'}>
           Sign Up
