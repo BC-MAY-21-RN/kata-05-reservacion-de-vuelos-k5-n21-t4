@@ -5,9 +5,9 @@ import { FlightData } from './FlightData'
 export const setObjectValue = (value, id) =>{
 
     const getCountryFromValue = (value) => {
-        let Country = value.split(',')
-        Country.shift()
-        Country = Country.join(',')
+        let Country = value.split(',').shift().join(',')
+        // Country.shift()
+        // Country = Country.join(',')
         return Country
     }
 
