@@ -9,10 +9,6 @@ import { styles } from './MenuBarStyles'
 
 export const MenuBar = (props) => {
     
-    //const { navigation } = props
-    //const { route: { params: infoUser } } = props
-    //console.log(navigation);
-    
     const stepBack = (screen, clearField = "") =>{
         if (clearField != "") {
             //unsetObjectValue(clearField)

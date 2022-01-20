@@ -1,5 +1,4 @@
 import { FlightData } from './FlightData'
-import { ToastAndroid } from 'react-native'
 //formHelper*
 
 export const setObjectValue = (value, id) =>{
@@ -37,23 +36,3 @@ export const setObjectValue = (value, id) =>{
             break;
     }    
 }
-
-export const nextStep = (value, id) =>{
-    setObjectValue(value, id)
-}
-
-
-/** Go to screens pasenngers
- * const goToScreen = (nextScreen, firstOptionDisabled = true) =>{
-        //usage example: in this component, the picker has to start with a default value, 
-        //in the previous ones it wasnt allowed, the firstOptionDisabled variable is true by default
-        if (firstOptionDisabled) {
-            if (selectedValue != "")
-                navigation.navigate(nextScreen)
-            else
-                ToastAndroid.show("Select a valid option",ToastAndroid.LONG)
-        }else{
-            navigation.navigate(nextScreen)
-        }
-    }   
- */
