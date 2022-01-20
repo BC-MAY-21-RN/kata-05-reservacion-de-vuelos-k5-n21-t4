@@ -1,4 +1,5 @@
 import react from 'react';
+import { Picker } from '@react-native-picker/picker'
 
 export const pick = () => {
     return (

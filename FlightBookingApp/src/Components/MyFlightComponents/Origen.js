@@ -9,6 +9,17 @@ import { NextButton } from './NextButton'
 
 export const Origen = ({navigation}) =>{
     const [selectedValue, setSelectedValue] = useState("")
+
+    const goToScreen = (selectedValue, nextScreen) =>{
+        if (value == "") {
+    
+            navigation.navigate(nextScreen);
+            //is there a way to import the navigation?
+            ToastAndroid.show("This should trigger the navigation to " + nextScreen,ToastAndroid.LONG)
+        }else{
+            ToastAndroid.show("Select a valid option",ToastAndroid.LONG)
+        }
+    }  
     
     return (
         <View style={styles.screen}>
