@@ -54,7 +54,7 @@ export const goToScreen = (nextScreen, navigation, selectedValue) =>{
 }  
 
 export const nextStep = (pickerValue, nextScreen, navigation, setSelectedValue, ID) =>{
-    setObjectValue(pickerValue, setSelectedValue,ID)
+    setObjectValue(pickerValue, setSelectedValue, ID)
     goToScreen(nextScreen, navigation, pickerValue)
 }
 

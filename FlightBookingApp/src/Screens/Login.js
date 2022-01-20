@@ -26,8 +26,6 @@ export const Login = ({navigation}) => {
 
       <Texto size={'16px'}>Password:</Texto>
       <PswrdInput
-        keyboardType={null}
-        placeholder="Contraseña"
         secureTextEntry={hidePassword}
         onPress={() => setHidePassword(!hidePassword)}
         value={setPswrd}

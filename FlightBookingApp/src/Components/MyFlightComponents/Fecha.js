@@ -67,10 +67,10 @@ export const Fecha = ({navigation}) =>{
                     }}
                 />
             </View>
-            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Pasajeros", navigation, setSelectedValue, 'F')}>
+            {/* <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Pasajeros", navigation, setSelectedValue, 'F')}>
                 <Text style={styles.centerText}> Next </Text>
-            </Button>
-
+            </Button> */}
+            <NextButton />
         </View> 
     )
 }

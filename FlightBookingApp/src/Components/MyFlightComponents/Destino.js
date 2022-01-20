@@ -42,10 +42,10 @@ export const Destino = ({navigation}) =>{
                 </View>
             </View>
 
-            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Fecha", navigation, setSelectedValue, 'D')}>
+            {/* <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Fecha", navigation, setSelectedValue, 'D')}>
                 <Text style={styles.centerText}> Next </Text>
-            </Button>
-
+            </Button> */}
+            <NextButton />
         </View> 
     )
 }
