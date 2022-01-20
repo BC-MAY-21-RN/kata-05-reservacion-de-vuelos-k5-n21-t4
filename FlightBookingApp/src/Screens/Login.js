@@ -55,13 +55,6 @@ export const Login = ({navigation}) => {
           Sign Up
         </Texto>
       </Texto>
-
-      <Texto
-        color={'#5974f5'}
-        onPress={() => navigation.navigate('Origen')}
-        style={{color: '#5974f5'}}> Booking
-      </Texto>
-
     </Container>
   );
 };
