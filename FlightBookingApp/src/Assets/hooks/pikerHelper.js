@@ -1,13 +1,13 @@
-//formHelper*
-import { ToastAndroid } from 'react-native'
 import { FlightData } from './FlightData'
+import { ToastAndroid } from 'react-native'
+//formHelper*
 
 export const setObjectValue = (value, id) =>{
 
     const getCountryFromValue = (value) => {
-        let Country = value.split(',')
-        Country.shift()
-        Country = Country.join(',')
+        let Country = value.split(',').shift().join(',')
+        // Country.shift()
+        // Country = Country.join(',')
         return Country
     }
 
@@ -38,21 +38,8 @@ export const setObjectValue = (value, id) =>{
     }    
 }
 
-export const goToScreen = (value, nextScreen) =>{
-    
-    if (value == "") {
-
-        navigation.navigate(nextScreen);
-        //is there a way to import the navigation?
-        ToastAndroid.show("This should trigger the navigation to " + nextScreen,ToastAndroid.LONG)
-    }else{
-        ToastAndroid.show("Select a valid option",ToastAndroid.LONG)
-    }
-}  
-
-export const nextStep = (value, nextScreen, id) =>{
+export const nextStep = (value, id) =>{
     setObjectValue(value, id)
-    goToScreen(nextScreen)
 }
 
 
