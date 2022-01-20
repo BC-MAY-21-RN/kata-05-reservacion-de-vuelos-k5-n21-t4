@@ -1,61 +1,58 @@
 //formHelper*
-import { ToastAndroid} from 'react-native'
+import { ToastAndroid } from 'react-native'
+import { FlightData } from './FlightData'
 
-export const FlightData = {
-    "userId": "",
-    "Destiny": ["", ""],
-    "Fecha": "", 
-    "Origin": ["", ""], 
-    "Passengers": "", 
-    "key": 0,
-}
+export const setObjectValue = (value, id) =>{
 
-export const setObjectValue = (value, setSelectedValue, ID) =>{
-    //get only the country
-    let Country = value.split(',')
-    Country.shift()
-    Country = Country.join(',')
+    const getCountryFromValue = (value) => {
+        let Country = value.split(',')
+        Country.shift()
+        Country = Country.join(',')
+        return Country
+    }
 
-    setSelectedValue(value)
-    switch (ID) {
-        case 'O':
+    switch (id) {
+        case 'Origin':
             FlightData.Origin[0] = value.slice(0, 3).toUpperCase(); //get the first 3 letters of the country
-            FlightData.Origin[1] = Country;
-            
+            FlightData.Origin[1] = getCountryFromValue(value);
+            console.log(FlightData.Origin);
             break;
             
-            case 'D':
-                FlightData.Destiny[0] = value.slice(0, 3).toUpperCase(); //get the first 3 letters of the country
-                FlightData.Destiny[1] = Country;
-                
+        case 'Destination':
+            FlightData.Destiny[0] = value.slice(0, 3).toUpperCase(); //get the first 3 letters of the country
+            FlightData.Destiny[1] = getCountryFromValue(value)
             break;
 
-            case 'F':
-                console.log('Esta es la ' + value)
-                FlightData.Fecha = value;     
+        case 'Date':
+            console.log('Esta es la ' + value)
+            FlightData.Fecha = value;     
             break;
             
-            case 'P':
-                console.log('Esta es la ' + value)
-                FlightData.Passengers = value;    
+        case 'Passengers':
+            console.log('Esta es la ' + value)
+            FlightData.Passengers = value;    
             break;
     
         default:
             break;
-    }
+    }    
 }
 
-export const goToScreen = (nextScreen, navigation, selectedValue) =>{
-    if (selectedValue != "") {
+export const goToScreen = (value, nextScreen) =>{
+    
+    if (value == "") {
+
         navigation.navigate(nextScreen);
+        //is there a way to import the navigation?
+        ToastAndroid.show("This should trigger the navigation to " + nextScreen,ToastAndroid.LONG)
     }else{
         ToastAndroid.show("Select a valid option",ToastAndroid.LONG)
     }
 }  
 
-export const nextStep = (pickerValue, nextScreen, navigation, setSelectedValue, ID) =>{
-    setObjectValue(pickerValue, setSelectedValue, ID)
-    goToScreen(nextScreen, navigation, pickerValue)
+export const nextStep = (value, nextScreen, id) =>{
+    setObjectValue(value, id)
+    goToScreen(nextScreen)
 }
 
 

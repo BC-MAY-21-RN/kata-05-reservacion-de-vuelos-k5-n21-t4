@@ -1,7 +1,8 @@
 import React from 'react'
-import { TouchableOpacity, StyleSheet, View, Text } from 'react-native'
+import { TouchableOpacity, View, Text } from 'react-native'
 import { Icon } from 'react-native-elements'
-import auth from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth'
+import { styles } from './MenuBarStyles'
 
 {/**a more general use icon component  would have a prop for choosing the icon type */}
 
@@ -84,37 +85,3 @@ export const MenuBar = (props) => {
     )
 
 }
-const styles = StyleSheet.create({
-    header:{
-        position: 'relative',
-        fontSize: 30,
-        fontWeight: '900',
-        color: '#5C6EF8',
-    },
-    container:{
-        //position: 'absolute',
-        top: 0,
-        right: 0,
-        left: 0,
-        bottom: 0, 
-        paddingLeft: 10,
-        paddingRight: 10,
-    },
-    containerForm:{
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        left: 0,
-        bottom: 0, 
-        padding: 10,
-    },
-    menuBar:{
-        flexDirection: 'row',
-        alignSelf: 'stretch',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: 10,
-        paddingLeft: 0,
-        zIndex: 1,
-    },    
-})
