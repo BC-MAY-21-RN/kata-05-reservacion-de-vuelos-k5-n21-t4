@@ -1,11 +1,10 @@
-import react from 'react';
-import { Picker } from '@react-native-picker/picker'
-
-export const pick = () => {
+import React from 'react';
+import { Picker } from '@react-native-picker/picker';
+export const Pick = ({selectedValue, setSelectedValue}) => {
     return (
         <Picker
-        selectedValue={selectedValue}
-        onValueChange={(itemValue, itemIndex) => {setSelectedValue(itemValue)}}
+            selectedValue={selectedValue}
+            onValueChange={(itemValue, itemIndex) => {setSelectedValue(itemValue)}}
         >
             {/**The last ono will be the default value */}
             <Picker.Item label="Select Location" value=""></Picker.Item> 
