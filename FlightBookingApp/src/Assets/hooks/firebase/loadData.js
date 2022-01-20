@@ -7,10 +7,9 @@ export async function getFlights(uId) {
     .doc(uId)
     .get()
     .then(res  => {
-      console.log(res.data().flights)
-      
-      return res.data().flights
-           return collectionData.flights;
+      console.log(res.data())
+        return res.data().flights
+          return collectionData.flights;
       }
     );
 }

@@ -1,10 +1,11 @@
 
 import React, { useState, useEffect } from 'react'
 import { Text, View, TouchableOpacity as Button, ToastAndroid} from 'react-native'
-import {NewFlightCard} from './NewFlightCard';
+import { FlightCard } from '../FlightCard';
 import { Picker } from '@react-native-picker/picker'
 import { styles } from './formStyles'
-import FlightData from './Origen' //the object where the flight data is stored, it was declared in the origin component. 
+import { nextStep, FlightData  } from '../../Assets/hooks/pikerHelper';
+import { MenuBar } from './MenuBar';
 
 export const Destino = ({navigation}) =>{
 
@@ -13,37 +14,15 @@ export const Destino = ({navigation}) =>{
     //whenever the user wants to go back to make a change the component has to be rerendeered t
     //hats why i have this function here, so each time the screen is in view the flightcard will re-render
     const renderFlightCard = () =>{
-        return(<NewFlightCard props={FlightData}></NewFlightCard>)
+        return(<FlightCard props={FlightData}></FlightCard>)
     }
     
-    const setObjectValue = (value) =>{
-        let Country = value.split(',')
-            Country.shift()
-            Country = Country.join(',')
-
-            setSelectedValue(value)
-            FlightData.Destiny[0] = value.slice(0, 3).toUpperCase() //get the first 3 letters of the country
-            FlightData.Destiny[1] = Country
-    }
-    
-    const goToScreen = (nextScreen) =>{
-        if (selectedValue != "") {
-            navigation.navigate(nextScreen)
-        }else{
-            ToastAndroid.show("Select a valid option",ToastAndroid.LONG)
-        }
-    }    
-    
-    const nextStep = (pickerValue, nextScreen) =>{
-        setObjectValue(pickerValue)
-        goToScreen(nextScreen)
-    }  
-
+   
     //Next screen Fecha
 
     return (
         <View style={styles.screen}>
-            {/**Origen */}
+            <MenuBar backTo={"Origen"} navigation={navigation} clearField={"Origin"} type={'Back'} exit={false}/>
             {renderFlightCard()}
             <View style={styles.centerMainContent}>
                 <Text style={styles.header}>Where will you be{'\n'}flying to?</Text>
@@ -64,10 +43,10 @@ export const Destino = ({navigation}) =>{
                 </View>
             </View>
 
-            <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Fecha")}>
+            {/* <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Fecha", navigation, setSelectedValue, 'D')}>
                 <Text style={styles.centerText}> Next </Text>
-            </Button>
-
+            </Button> */}
+            <NextButton />
         </View> 
     )
 }

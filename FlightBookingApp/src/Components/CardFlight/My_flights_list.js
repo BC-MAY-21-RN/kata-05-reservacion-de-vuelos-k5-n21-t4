@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import {FlList, SpinnerContainer} from '../../Assets/cardStyled'
-import { CardFlight } from './index'
+import { FlightCard } from '../FlightCard'
 import { getFlights } from '../../Assets/hooks/firebase/loadData';
 import { getFlightsList } from '../../Assets/hooks/firebase/infoVuelos';
 import { ActivityIndicator } from 'react-native';
 
 export const MyFlights_List = (props) => {
   const [dataFlights, setDataFly] = useState([])
-  const [loading, setLoading] = useState(true) //set to true when finished
+  const [loading, setLoading] = useState(true)
 
-  console.log(props.infoUser)
   const { infoUser } = props
 
   async function loadData(){
@@ -29,7 +28,7 @@ export const MyFlights_List = (props) => {
 
   const renderPlace = ({item})=>{
     return(
-        <CardFlight
+        <FlightCard
         props = {item}
         />
 
@@ -37,14 +36,12 @@ export const MyFlights_List = (props) => {
   }
 
   return (
-      loading ? (
-        <>
-          <SpinnerContainer>
-            <ActivityIndicator 
+      (loading) ? (
+        <SpinnerContainer>
+          <ActivityIndicator 
               size="large" color="#5C6EF8"
-            />
-          </SpinnerContainer>
-        </>
+          />
+        </SpinnerContainer> 
       ) : (
         <FlList
         data={dataFlights}
@@ -52,6 +49,6 @@ export const MyFlights_List = (props) => {
         keyExtractor={item => item.key}
         horizontal={false}
         />
-      )
-  );
+      ) 
+    )
 };

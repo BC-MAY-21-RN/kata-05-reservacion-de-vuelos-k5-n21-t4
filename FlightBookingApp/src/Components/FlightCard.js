@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text } from 'react-native-elements';
-import {Container, Cont, Linea, Pais, Ciudad, MoreInfo, TempIcon} from '../../Assets/cardStyled';
+import {Container, Cont, Linea, Pais, Ciudad, MoreInfo, TempIcon} from '../Assets/cardStyled';
 
-export function NewFlightCard({props}) {
-  return(
+export function FlightCard({props}) {
+    console.log(props)
+  return (
     <Container>
         <Cont height={'40px'}>
           <Pais>{props.Origin[0]}</Pais>
@@ -20,5 +20,5 @@ export function NewFlightCard({props}) {
           {(props.Passengers < 1) ? (<></>) : (<MoreInfo>{props.Passengers} passengers</MoreInfo>)}
         </Cont>
     </Container>
-  )
+  );
 }
