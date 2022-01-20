@@ -5,6 +5,7 @@ import { styles } from './formStyles'
 import {  FlightData  } from '../../Assets/hooks/pikerHelper'; 
 import firestore from '@react-native-firebase/firestore'
 import { MyFlights } from '../../Screens/MyFlights';
+import { MenuBar } from './MenuBar';
 
 export const Confirmacion = ({navigation}) =>{
 
@@ -65,7 +66,7 @@ export const Confirmacion = ({navigation}) =>{
     //Next screen is My flights but i need to send the object to the bd as a new flight under the user account
     return (
         <View style={styles.screen}>
-            {/**Origen */}
+            <MenuBar backTo={"Pasajeros"} navigation={navigation} clearField={"Origin"} exit={false}/>
             {renderFlightCard()}
             <View style={styles.centerMainContent}>
                 <Text style={styles.lowerHeader}>Your request {'\n'}was recieved.</Text>

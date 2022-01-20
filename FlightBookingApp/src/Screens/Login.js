@@ -3,7 +3,7 @@ import {PswrdInput, Input} from '../Components/InputLog';
 import {Container, Texto, TochOP} from '../Assets/styled';
 import {loginAuth,  SignInWithGoogle} from '../utils/firebase/FirebaseFunctions';
 import { GoogleBtn } from '../Components/GoogleBtn';
-
+import { MenuBar } from '../Components/MyFlightComponents/MenuBar';
 export const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [pswrd, setPswrd] = useState('');
@@ -21,6 +21,7 @@ export const Login = ({navigation}) => {
 
   return (
     <Container>
+      <MenuBar backTo={""} navigation={navigation} type={"Header"} header={"Login"}/>
       <Texto size={'16px'}>Email:</Texto>
       <Input placeholder="Email" value={setEmail} />
 
@@ -54,6 +55,13 @@ export const Login = ({navigation}) => {
           onPress={() => navigation.navigate('SignUp')}
           style={{color: '#5974f5'}}>
           Sign Up
+        </Texto>
+
+        <Texto
+          color={'#5974f5'}
+          onPress={() => navigation.navigate('Origen')}
+          style={{color: '#5974f5'}}>
+          {`\n`}Book flight
         </Texto>
       </Texto>
     </Container>

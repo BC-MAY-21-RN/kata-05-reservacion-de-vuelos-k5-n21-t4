@@ -4,6 +4,7 @@ import {PswrdInput, Input} from '../Components/InputLog';
 import CheckBoxWithLabel from '../Components/Checkbox';
 import { addUserToFirestore } from '../utils/firebase/FirebaseFunctions.js';
 import { GoogleBtn } from '../Components/GoogleBtn';
+import { MenuBar } from '../Components/MyFlightComponents/MenuBar';
 
 export const SignUp = ({navigation}) => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -17,6 +18,7 @@ export const SignUp = ({navigation}) => {
 
   return (
     <Container>
+      <MenuBar backTo={""} navigation={navigation} type={"Header"} header={"Sign Up"} exit={true}/>
       <Texto size={'16px'}>First Name</Texto>
       <Input placeholder="Name" value={setName} />
 

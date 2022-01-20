@@ -4,6 +4,7 @@ import {NewFlightCard} from './NewFlightCard';
 import { styles } from './formStyles'
 import {  FlightData  } from '../../Assets/hooks/pikerHelper';
 import { Calendar } from 'react-native-calendars'
+import { MenuBar } from './MenuBar';
 
 export const Fecha = ({navigation}) =>{
     console.log(FlightData);
@@ -63,6 +64,7 @@ export const Fecha = ({navigation}) =>{
 
     return (
         <View style={styles.screen}>
+            <MenuBar backTo={"Destino"} navigation={navigation} clearField={"Origin"} type={'Back'} exit={false}/>
             {renderFlightCard()}
             <View style={styles.centerCalendarContent}>
                 <Text style={styles.lowerHeader}>Select date</Text>

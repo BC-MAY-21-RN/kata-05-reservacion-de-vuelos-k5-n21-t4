@@ -3,7 +3,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SignUp, Login, MyFlights, Origen, Destino, Fecha, Pasajeros, Confirmacion} from './src/Screens/index';
 import {stackOptions, stackOptionsForm} from './src/Components/StackOptions'
-
 const Stack = createNativeStackNavigator();
 
 const App = () => {

@@ -5,6 +5,7 @@ import {NewFlightCard} from './NewFlightCard';
 import { Picker } from '@react-native-picker/picker'
 import { styles } from './formStyles'
 import { nextStep, FlightData  } from '../../Assets/hooks/pikerHelper';
+import { MenuBar } from './MenuBar';
 
 export const Destino = ({navigation}) =>{
 
@@ -21,7 +22,7 @@ export const Destino = ({navigation}) =>{
 
     return (
         <View style={styles.screen}>
-            {/**Origen */}
+            <MenuBar backTo={"Origen"} navigation={navigation} clearField={"Origin"} type={'Back'} exit={false}/>
             {renderFlightCard()}
             <View style={styles.centerMainContent}>
                 <Text style={styles.header}>Where will you be{'\n'}flying to?</Text>

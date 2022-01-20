@@ -1,4 +1,5 @@
 export const stackOptions = {
+    headerShown: false, 
     headerStyle: {
       elevation: 0,
       shadowOpacity: 0,

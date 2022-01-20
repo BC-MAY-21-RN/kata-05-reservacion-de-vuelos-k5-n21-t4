@@ -5,6 +5,7 @@ import { Picker } from '@react-native-picker/picker'
 import {NewFlightCard} from './NewFlightCard';
 import { styles } from './formStyles'
 import {  FlightData  } from '../../Assets/hooks/pikerHelper';
+import { MenuBar } from './MenuBar';
 
 
 export const Pasajeros = ({navigation}) =>{
@@ -38,6 +39,7 @@ export const Pasajeros = ({navigation}) =>{
 
     return (
         <View style={styles.screen}>
+            <MenuBar backTo={"Fecha"} navigation={navigation} clearField={"Origin"} type={'Back'} exit={false}/>
             <NewFlightCard props={FlightData}></NewFlightCard>
             <View style={styles.centerMainContent}>
                 <Text style={styles.header}>How many passengers?</Text>
