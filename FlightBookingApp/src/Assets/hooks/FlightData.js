@@ -5,6 +5,7 @@ export const FlightData = {
     "Origin": ["", ""], 
     "Passengers": "", 
     "key": 0,
+    "nextStep": false,
 }
 
 export const OriginLocations = [
