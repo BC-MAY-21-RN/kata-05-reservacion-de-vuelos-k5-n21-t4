@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, Modal } from 'react-native';
+import { View, StyleSheet, Text, Modal, ActivityIndicator } from 'react-native';
 import { Texto } from '../../Assets/styled';
 import { styles } from './styles';
+import { Icon } from 'react-native-elements';
 
 const ModalPopup = ({visible, children}) =>{
   const [showModal, setShowModal] = useState(false);
@@ -26,16 +27,19 @@ const ModalPopup = ({visible, children}) =>{
 
 export const RegistredModal = ({visible, RequestText}) => {
   const [state, setState] = useState('')
-  const [image, setImage] = useState(null)
+  const [item, setItem] = useState(<ActivityIndicator size="large" color="#5C6EF8"/>)
 
   useEffect(()=>{
-    console.log(RequestText)
     setState(RequestText)
-
     switch(RequestText){
       case 'Signed Up':
+        setItem(<Icon name='checkmark-circle-outline' type='ionicon' color='#5C6EF8' size={30} />)
         break;
       case 'Error':
+        setItem(<Icon name='close-outline' type='ionicon' color='#5C6EF8' size={30} />)
+        break;
+      case 'Signing Up...':
+        setItem(<ActivityIndicator size="large" color="#5C6EF8"/>)
         break;
     }
   }, [RequestText]) 
@@ -44,6 +48,7 @@ export const RegistredModal = ({visible, RequestText}) => {
     <View style={styles.container}>
       <ModalPopup visible={visible}>
         <View style={{alignItems: 'center'}}>
+          {item}
           <Texto color={'#5974f5'}>{state}</Texto>
         </View>
       </ModalPopup>
