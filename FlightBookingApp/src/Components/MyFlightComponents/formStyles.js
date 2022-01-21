@@ -37,6 +37,15 @@ export const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         backgroundColor: '#5C6EF8',
+        //shadow
+        shadowColor: "#5C6EF8",
+        shadowOffset: {
+            width: 0,
+            height: 12,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 10.00,
+        elevation: 20,
     },
     buttonDisabled:{
         position: 'absolute',

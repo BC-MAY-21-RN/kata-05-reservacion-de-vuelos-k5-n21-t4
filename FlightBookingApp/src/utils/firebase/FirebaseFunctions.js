@@ -3,19 +3,18 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import validation from '../../Components/SingUpVal';
-import FlightData from '../../Components/MyFlightComponents/Origen';
-// import { useSelector, useDispatch } from 'react-redux'
-// import { setUid } from '../redux/actions.js'
-// const { uid } = useSelector(state => state.uidReducer)
-// const dispatch = useDispatch()
+import { waitFor } from '../../Components/RegistredModal/RegistredModal';
+import { FlightData } from '../../Assets/hooks/FlightData';
 
 export const loginAuth = async (navigation, email, pwd) => {
+  let infoUser = ""
   try {
     await auth()
       .signInWithEmailAndPassword(email, pwd)
       .then(res => {
-        navigation.navigate('My Flights', res.user.uid);
         FlightData.userId = res.user.uid;
+        infoUser = res.user.uid
+        navigation.navigate('My Flights', infoUser);
       })
       .catch(e => {
         switch (e.code) {
@@ -37,10 +36,6 @@ export const loginAuth = async (navigation, email, pwd) => {
               5,
             );
             break;
-
-          default:
-            ToastAndroid.show('Please contact support', 5);
-            break;
         }
       });
   } catch (e) {
@@ -48,40 +43,49 @@ export const loginAuth = async (navigation, email, pwd) => {
   }
 };
 
-export const addUserToFirestore = (
+export const addUserToFirestore = async (
   navigation,
   email,
   name,
   pwd,
   setTxtWarn,
   setTxtWarn2,
-) => {
-  let infoUser = '';
-  console.log(pwd.length)
-  if (pwd.length >= 8 && validation(pwd)) {
-  setTxtWarn2('');
-    auth()
+  setVisible,
+  setRequestText
+  ) => {
+    let infoUser = '';
+    console.log(pwd.length)
+    if (pwd.length >= 8 && validation(pwd)) {
+      setVisible(true)
+      setRequestText('Signing Up...')
+      await waitFor(2000)
+      setTxtWarn2('');
+      auth()
       .createUserWithEmailAndPassword(email, pwd)
-      .then(e => {
+      .then((e) => {
         firestore()
-          .collection('Users')
-          .doc(e.user.uid)
-          .set({
-            email: email,
-            flights: [],
-            name: name,
-            password: pwd,
-          })
-          .then(() => {
-            console.log('User registration succesful');
-            infoUser = e.user.uid;
-            navigation.navigate('My Flights', infoUser);
-          });
+        .collection('Users')
+        .doc(e.user.uid)
+        .set({
+          email: email,
+          flights: [],
+          name: name,
+          password: pwd,
+        })
+        .then(async () => {
+          infoUser = e.user.uid;
+          setRequestText('Signed Up')
+          await waitFor(2000)
+          setVisible(false)
+          navigation.navigate('My Flights', infoUser);
+        });
       })
-      .catch(e => {
-        console.log(e.code);
+      .catch(async (e) => {
+        setRequestText('Error')
+        await waitFor(2000)
+        setVisible(false)
+
         switch (e.code) {
-          //ya lo pasaste lo calo?
           case 'auth/email-already-in-use':
             setTxtWarn('Este correo ya está en uso.');
             break;
@@ -100,12 +104,12 @@ export const addUserToFirestore = (
             break;
         }
       });
-  } else {
-    console.log(validation(pwd))
-    setTxtWarn2(
-      validation(pwd) ?  'Contraseña menor a 8 caracteres' : 'Formato invlaido' 
-    );
-  }
+    } else {
+      console.log(validation(pwd))
+      setTxtWarn2(
+        validation(pwd) ?  'Contraseña menor a 8 caracteres' : 'Formato invlaido' 
+      );
+    }
 };
 
 export const SignInWithGoogle = async navigation => {

@@ -5,14 +5,19 @@ import { Icon } from 'react-native-elements'
 {/**a more general use icon component  would have a prop for choosing the icon type */}
 
 
-export const BackButton = ({navigation}) => {
+export const BackButton = (props) => {
     
-    const backStep = (screen) =>{
+    const { navigation } = props
+    //const { route: { params: infoUser } } = props
+    
+    console.log(navigation);
+    
+    const stepBack = (screen) =>{
         navigation.navigate(screen)
     }
 
     return (
-        <TouchableOpacity style={styles.headerBar} onPress={() => backStep("Pasajeros")}>
+        <TouchableOpacity style={styles.headerBar} onPress={() => stepBack('My Flights')}>
             <Icon
                 name='chevron-back-outline'
                 type='ionicon'

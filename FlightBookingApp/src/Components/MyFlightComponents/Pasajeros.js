@@ -1,44 +1,20 @@
-
 import React, { useState } from 'react'
 import { Text, View, TouchableOpacity as Button, ToastAndroid} from 'react-native'
 import { Picker } from '@react-native-picker/picker'
-import {NewFlightCard} from './NewFlightCard';
+import { FlightCard } from '../FlightCard';
 import { styles } from './formStyles'
-import FlightData from './Origen';
+import { MenuBar } from './MenuBar';
+import {  FlightData  } from '../../Assets/hooks/FlightData';
+import { NextButton } from './NextButton';
 
 export const Pasajeros = ({navigation}) =>{
 
     const [selectedValue, setSelectedValue] = useState("1")
-    
-    const setObjectValue = (value) =>{
-        setSelectedValue(value)
-        FlightData.Passengers = value
-    }
-    
-    const goToScreen = (nextScreen, firstOptionDisabled = true) =>{
-        //usage example: in this component, the picker has to start with a default value, 
-        //in the previous ones it wasnt allowed, the firstOptionDisabled variable is true by default
-        if (firstOptionDisabled) {
-            if (selectedValue != "")
-                navigation.navigate(nextScreen)
-            else
-                ToastAndroid.show("Select a valid option",ToastAndroid.LONG)
-        }else{
-            navigation.navigate(nextScreen)
-        }
-    }    
-    
-    const nextStep = (pickerValue, nextScreen) =>{
-        setObjectValue(pickerValue)
-        goToScreen(nextScreen, false)
-        console.log(FlightData)
-    } 
-
-    //Next screen Confirmation
 
     return (
         <View style={styles.screen}>
-            <NewFlightCard props={FlightData}></NewFlightCard>
+            <MenuBar backTo={"Fecha"} navigation={navigation} clearField={"Origin"} type={'Back'} exit={false}/>
+            <FlightCard props={FlightData}></FlightCard>
             <View style={styles.centerMainContent}>
                 <Text style={styles.header}>How many passengers?</Text>
                 <View style={styles.inputPicker}>
@@ -55,11 +31,7 @@ export const Pasajeros = ({navigation}) =>{
                     </Picker>
                 </View>
             </View>
-            {/**have a boolean to decided the design of the input component in props */}
-            <Button style={styles.button} onPress={() => nextStep(selectedValue, "Confirmacion")}>
-                <Text style={styles.centerText}> Next </Text>
-            </Button>
-
+            <NextButton value={selectedValue} nextScreen={'Confirmacion'} id={'Pasajeros'} navigation={navigation}/>
         </View> 
     )
 }
