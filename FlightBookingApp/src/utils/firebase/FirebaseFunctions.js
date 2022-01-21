@@ -3,16 +3,18 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import validation from '../../Components/SingUpVal';
-import FlightData from '../../Components/MyFlightComponents/Origen';
 import { waitFor } from '../../Components/RegistredModal/RegistredModal';
+import { FlightData } from '../../Assets/hooks/FlightData';
 
 export const loginAuth = async (navigation, email, pwd) => {
+  let infoUser = ""
   try {
     await auth()
       .signInWithEmailAndPassword(email, pwd)
       .then(res => {
-        navigation.navigate('My Flights', res.user.uid);
         FlightData.userId = res.user.uid;
+        infoUser = res.user.uid
+        navigation.navigate('My Flights', infoUser);
       })
       .catch(e => {
         switch (e.code) {

@@ -14,7 +14,6 @@ export const MenuBar = (props) => {
             //unsetObjectValue(clearField)
         }
         props.navigation.navigate(screen)
-        console.log(screen);
     }
 
     const unsetObjectValue = (ObjectField) =>{
@@ -24,7 +23,6 @@ export const MenuBar = (props) => {
 
     const logOut = () => {
         auth().signOut().then(function() {
-            console.log('Signed Out');
             stepBack('Login')
         }, function(error) {
             console.error('Sign Out Error', error);

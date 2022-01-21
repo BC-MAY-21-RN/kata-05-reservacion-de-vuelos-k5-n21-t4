@@ -54,6 +54,7 @@ export const Login = ({navigation}) => {
           style={{color: '#5974f5'}}>
           Sign Up
         </Texto>
+
       </Texto>
     </Container>
   );

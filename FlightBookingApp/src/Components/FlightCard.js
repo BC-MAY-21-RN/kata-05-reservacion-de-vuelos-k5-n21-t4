@@ -2,7 +2,6 @@ import React from 'react';
 import {Container, Cont, Linea, Pais, Ciudad, MoreInfo, TempIcon} from '../Assets/cardStyled';
 
 export function FlightCard({props}) {
-    console.log(props)
   return (
     <Container>
         <Cont height={'40px'}>

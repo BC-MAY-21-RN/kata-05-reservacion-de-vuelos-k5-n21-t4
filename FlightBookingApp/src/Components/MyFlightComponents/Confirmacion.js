@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Text, View, TouchableOpacity as Button} from 'react-native'
 import {FlightCard} from '../FlightCard'
 import { styles } from './formStyles'
-import {  FlightData  } from '../../Assets/hooks/pikerHelper'
+import { FlightData } from '../../Assets/hooks/FlightData'
 import firestore from '@react-native-firebase/firestore'
 import { MenuBar } from './MenuBar'
+import { clearFlightCardData } from '../../Assets/hooks/pikerHelper'
 
 export const Confirmacion = ({navigation}) =>{
     const renderFlightCard = () =>{
@@ -49,6 +50,7 @@ export const Confirmacion = ({navigation}) =>{
     const goToScreen = () =>{
         addFlight()
         navigation.navigate('My Flights')
+        clearFlightCardData()
     }    
 
     return (

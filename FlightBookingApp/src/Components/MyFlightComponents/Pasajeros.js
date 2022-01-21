@@ -1,18 +1,16 @@
-
 import React, { useState } from 'react'
 import { Text, View, TouchableOpacity as Button, ToastAndroid} from 'react-native'
 import { Picker } from '@react-native-picker/picker'
 import { FlightCard } from '../FlightCard';
 import { styles } from './formStyles'
 import { MenuBar } from './MenuBar';
-import {  FlightData, nextStep  } from '../../Assets/hooks/pikerHelper';
-
+import {  FlightData  } from '../../Assets/hooks/FlightData';
+import { NextButton } from './NextButton';
 
 export const Pasajeros = ({navigation}) =>{
 
     const [selectedValue, setSelectedValue] = useState("1")
 
-    //Next screen Confirmation
     return (
         <View style={styles.screen}>
             <MenuBar backTo={"Fecha"} navigation={navigation} clearField={"Origin"} type={'Back'} exit={false}/>
@@ -33,11 +31,7 @@ export const Pasajeros = ({navigation}) =>{
                     </Picker>
                 </View>
             </View>
-            {/**have a boolean to decided the design of the input component in props */}
-            {/* <Button style={styles.button} onPress={() => nextStep(selectedValue, "Confirmacion", navigation, setSelectedValue, 'P')}>
-                <Text style={styles.centerText}> Next </Text>
-            </Button> */}
-            <NextButton />
+            <NextButton value={selectedValue} nextScreen={'Confirmacion'} id={'Pasajeros'} navigation={navigation}/>
         </View> 
     )
 }

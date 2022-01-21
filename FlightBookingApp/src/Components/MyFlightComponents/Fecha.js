@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Text, View, TouchableOpacity as Button, Alert, ToastAndroid} from 'react-native'
 import { styles } from './formStyles'
-import {  FlightData, nextStep  } from '../../Assets/hooks/pikerHelper';
+import {  FlightData  } from '../../Assets/hooks/FlightData';
 import { Calendar } from 'react-native-calendars'
 import { MenuBar } from './MenuBar';
 import { FlightCard } from '../FlightCard';
+import { NextButton } from './NextButton'
 
 export const Fecha = ({navigation}) =>{
     const renderFlightCard = () =>{
@@ -21,13 +22,9 @@ export const Fecha = ({navigation}) =>{
         return months[nMonth-1]
     }
 
-    /* i had to do this because the calendar date would return a single digit value 
-       instead of something like "02" which we need to set the minimun date value
-       also using "date => {`${date.year}..." wouldnt work as the data type the field
-       minDate can only be a string and somehow returning a string like that isnt allowed */
     const getFullDate = () => {
         return (date.getMonth() < 10 ? (
-            `${date.getFullYear()}-0${date.getMonth()+1 }-${date.getDate()}` //for some reason it returns the first month as 0,thus the +1
+            `${date.getFullYear()}-0${date.getMonth()+1 }-${date.getDate()}`
         ) : (
             `${date.getFullYear()}-${date.getMonth()+1 }-${date.getDate()}`
         ))
@@ -51,8 +48,6 @@ export const Fecha = ({navigation}) =>{
                 <Text style={styles.lowerHeader}>Select date</Text>
                 <Calendar 
                     style={{
-                        //the calendar would shift the whole content due to some months 
-                        //not having the same amount of days thus being vertically shorter
                         height: 320 
                     }}
                     minDate={getFullDate()}
@@ -69,10 +64,7 @@ export const Fecha = ({navigation}) =>{
                     }}
                 />
             </View>
-            {/* <Button style={(selectedValue != "" ? (styles.button) : (styles.buttonDisabled))} onPress={() => nextStep(selectedValue, "Pasajeros", navigation, setSelectedValue, 'F')}>
-                <Text style={styles.centerText}> Next </Text>
-            </Button> */}
-            <NextButton />
+            <NextButton value={selectedValue} nextScreen={'Pasajeros'} id={'Fecha'} navigation={navigation}/>
         </View> 
     )
 }
